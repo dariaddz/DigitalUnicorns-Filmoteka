@@ -1,12 +1,12 @@
 // Глобальные стили
 body {
-    font-family: $primary-text, $reserved-text;
-    font-size: $primary-font-size;
-    font-weight: $primary-font-weight;
-    line-height: $primary-line-height;
-    letter-spacing: $primary-letter-spacing;
-    color: $primary-text-color;
-    background-color: $primary-background-color;
+  font-family: $primary-text, $reserved-text;
+  font-size: $primary-font-size;
+  font-weight: $primary-font-weight;
+  line-height: $primary-line-height;
+  letter-spacing: $primary-letter-spacing;
+  color: $primary-text-color;
+  background-color: $primary-background-color;
 }
 
 // Сброс стилей
@@ -38,15 +38,15 @@ img {
   margin-right: auto;
   margin-left: auto;
 
-    @media screen and (min-width: 768px) {
-        width: 768px;
-        padding-left: 76px;
-        padding-right: 76px;
-    }
+  @media screen and (min-width: 768px) {
+    min-width: 768px;
+    padding-left: 76px;
+    padding-right: 76px;
+  }
 
-    @media screen and (min-width: 1024px) {
-        width: 1024px;
-        padding-left: 71px;
-        padding-right: 71px;
-    } 
+  @media screen and (min-width: 1024px) {
+    min-width: 1024px;
+    padding-left: 71px;
+    padding-right: 71px;
+  }
 }
