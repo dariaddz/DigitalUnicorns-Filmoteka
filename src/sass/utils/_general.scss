@@ -1,0 +1,52 @@
+// Глобальные стили
+body {
+    font-family: $primary-text, $reserved-text;
+    font-size: $primary-font-size;
+    font-weight: $primary-font-weight;
+    line-height: $primary-line-height;
+    letter-spacing: $primary-letter-spacing;
+    color: $primary-text-color;
+    background-color: $primary-background-color;
+}
+
+// Сброс стилей
+h1,
+h2,
+h3,
+p,
+ul,
+a {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+// Размеры контейнера
+.container {
+  min-width: 320px;
+  max-width: 480px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-right: auto;
+  margin-left: auto;
+
+    @media screen and (min-width: 768px) {
+        width: 768px;
+        padding-left: 76px;
+        padding-right: 76px;
+    }
+
+    @media screen and (min-width: 1024px) {
+        width: 1024px;
+        padding-left: 71px;
+        padding-right: 71px;
+    } 
+}
