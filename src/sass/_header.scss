@@ -1,0 +1,83 @@
+.header {
+  height: 230px;
+  padding-top: 50px;
+  background-color: $primary-text-color;
+}
+
+.top-line {
+  display: flex;
+  justify-content: space-between;
+  align-content: flex-end;
+  margin-bottom: 50px;
+}
+.logo {
+  display: flex;
+}
+.title {
+  display: none;
+
+  font-size: 30px;
+  color: $secondary-text-color;
+  padding-top: 5px;
+  margin-left: 15px;
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
+}
+.navigation {
+  display: flex;
+  align-content: flex-end;
+  padding-top: 10px;
+}
+.navigation__link {
+  position: relative;
+  text-transform: uppercase;
+  color: $secondary-text-color;
+}
+.navigation__link:first-of-type {
+  margin-right: 40px;
+}
+
+.current::after {
+  color: $accent-text-color;
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  background-color: $accent-text-color;
+  width: 100%;
+  height: 3px;
+}
+
+.search__input {
+  //   position: relative;
+  font-size: 14px;
+  color: $secondary-text-color;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid $primary-background-color;
+
+  width: 320px;
+
+  @media screen and (min-width: 768px) {
+    width: 340px;
+  }
+}
+::placeholder {
+  font-size: 14px;
+  color: $secondary-text-color;
+}
+.search {
+  //   position: relative;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.search__button {
+  //   position: absolute;
+  background-color: transparent;
+  border: none;
+  right: 0;
+}
