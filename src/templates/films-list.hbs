@@ -1,10 +1,10 @@
-{{#each result}}
+{{#each this}}
     <li class="films-list__item">
         <a class="films-list__link" href="#">
-            <img src="{{poster_path}}" loading="eager" alt="{{original_title}}">
+            <img src="https://image.tmdb.org/t/p/original/{{poster_path}}" loading="eager" alt="{{original_title}}">
             <div class="films-list__container">
                 <h3 class="films-list__title">{{original_title}}</h3>
-                <p class="films-list__description">{{genre_ids}} | {{release_date}} | {{vote_average}}</p>
+                <p class="films-list__description">{{#each genre_ids}} {{this}} {{/each}} | {{release_date}} | {{vote_average}}</p>
             </div>
         </a>
     </li>
