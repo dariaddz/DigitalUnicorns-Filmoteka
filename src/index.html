@@ -16,8 +16,6 @@
     />
   </head>
   <body>
-
-
     <!--header class="header">
       
 
@@ -51,26 +49,29 @@
 
     </header-->
     <include src="partials/page-header.html"></include>
+
     <main>      <!-- Галерея фильмов -->
       <section class="movies-gallery">
           <div class="container">
               <ul class="movies-list">
               </ul>
           </div>
-      </section></main>
+      </section>
+    <div class="loader is-hidden">Loading...</div>
+  </main>
 
 
-<!-- footer  -->
+    <!-- footer  -->
     <footer class="footer">
       <div class="container footer-container">
-        <p class="copyright"> 
-          &copy  2020 | All Rights Reserved | 
-                 </p>
-               <p class="developers"> Developed with 
+        <p class="copyright">&copy 2022 | All Rights Reserved |</p>
+        <p class="developers">
+          Developed with
           <svg width="12" height="12">
-            <use href="/images/symbol-defs.svg#icon-Vector-4"></use></svg>
-            <span> by</span>
-          <a class="team-credits" data-action="open-modal-team" href="https://dariaddz.github.io/DigitalUnicorns-Filmoteka/" >GoIT Digital Unicorns</a>
+            <use href="/images/symbol-defs.svg#icon-Vector-4"></use>
+          </svg>
+          <span> by</span>
+          <a class="team-credits" data-action="open-modal-team" href="">GoIT Digital Unicorns</a>
         </p>
       </div>
     </footer>
@@ -78,7 +79,6 @@
     <!-- Так добавляются фрагменты в главные HTML-файлы страниц. -->
     <!-- модалка с описанием команды -->
     <include src="./partials/team-modal.html"></include>
-
 
     <!-- Скрипт идёт последним в разметке. В нём уже подключен главный SASS-файл. -->
     <script src="./index.js"></script>
