@@ -1,15 +1,15 @@
-import filmsTemplate from '../templates/films-list.hbs';
+import moviesTemplate from '../templates/movies-list.hbs';
 
 const axios = require('axios');
 
 const API_KEY = '1aaaa4b4eb79ea073919ef453434f2ea';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
-const filmsList = document.querySelector('.films-list');
+const moviesList = document.querySelector('.movies-list');
 
-getFilms().then(data => renderFilmsList(data));
+getTrendingMovies().then(data => renderTrendingMovies(data));
 
-async function getFilms() {
+async function getTrendingMovies() {
   const url = `${BASE_URL}trending/movie/week?api_key=${API_KEY}`;
   try {
     const response = await axios.get(url);
@@ -21,6 +21,6 @@ async function getFilms() {
   }
 }
 
-function renderFilmsList(data) {
-  filmsList.insertAdjacentHTML('beforeend', filmsTemplate(data));
+function renderTrendingMovies(data) {
+  moviesList.insertAdjacentHTML('beforeend', moviesTemplate(data));
 }
