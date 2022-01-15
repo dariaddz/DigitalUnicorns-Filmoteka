@@ -1,0 +1,102 @@
+<div class='modal-img-container'>
+  {{#if poster_path}}
+    <img
+      class='modal-img'
+      src='https://image.tmdb.org/t/p/w500{{poster_path}}'
+      alt='{{title}}'
+    />
+  {{/if}}
+</div>
+
+<div class='modal-movie-info'>
+  <h2 class='modal-movie-title'>
+    {{title}}
+  </h2>
+
+  <table class='modal-movie-table'>
+    <tr class='movie-table-row'>
+      <td class='movie-table-data key'>
+        Vote / Votes
+      </td>
+      <td class='movie-table-data value'>
+        <span class='value__accent'>
+          {{vote_average}}
+        </span>
+        <span class='value__slash'>
+          /
+        </span>
+        <span class='value__grey'>
+          {{vote_count}}
+        </span>
+      </td>
+    </tr>
+
+    <tr class='movie-table-row'>
+      <td class='movie-table-data key'>
+        Popularity
+      </td>
+      <td class='movie-table-data value'>
+        {{popularity}}
+      </td>
+    </tr>
+
+    <tr class='movie-table-row'>
+      <td class='movie-table-data key'>
+        Original Title
+      </td>
+      <td class='movie-table-data value value__title'>
+        {{original_title}}
+      </td>
+    </tr>
+
+    <tr class='movie-table-row'>
+      <td class='movie-table-data key'>
+        Genre
+      </td>
+
+      <td class='movie-table-data value'>
+        {{#each genres}}
+          <span class='value__genres'>
+            {{this.name}}
+          </span>
+        {{/each}}
+      </td>
+    </tr>
+  </table>
+
+  <h3 class='movie-overview-title'>
+    About
+  </h3>
+  <p class='modal-movie-overview'>
+    {{overview}}
+  </p>
+  <div class='modal-buttons'>
+    <button
+      type='button'
+      class='animate__slideInUp animate__animated modal-button add-to-library'
+      data-action='add-to-watched'
+    >
+      Add to watched
+    </button>
+    <button
+      type='button'
+      class='animate__slideInUp animate__animated modal-button add-to-library'
+      data-action='add-to-queue'
+    >
+      Add to queue
+    </button>
+  </div>
+
+  <div class='wraper-trailer'>
+    <a
+      class='animate__slideInUp animate__animated trailer-btn'
+      target='_blank'
+      href='https://www.youtube.com/results?search_query={{title}}+trailer'
+    >
+      <span class='trailer-btn_text'>
+        TRAILER ▶
+      </span>
+      <span class='trailer-btn_wave'></span>
+    </a>
+  </div>
+</div>
