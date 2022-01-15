@@ -1,3 +1,4 @@
 import './sass/main.scss';
 import './js/page-header';
 import './js/modal';
+import './js/api-service';
