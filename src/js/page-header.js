@@ -14,32 +14,22 @@ function toHome() {
   refs.paginatorElRef.classList.remove('is-hidden-pagination');
 
   const lib = refs.headerRef.classList.contains('page-my-library');
-  const det = refs.headerRef.classList.contains('page-details');
+  
 
   if (lib) {
     refs.headerRef.classList.remove('page-my-library');
-    refs.libraryRef.classList.remove('is-active');
+    refs.libraryRef.classList.remove('current');
   }
 
-  if (det) {
-    refs.headerRef.classList.remove('page-details');
-  }
-
-  refs.homeRef.classList.add('is-active');
+  refs.homeRef.classList.add('current');
 }
 
 function toLibrary() {
   refs.paginatorElRef.classList.add('is-hidden-pagination');
 
-  const det = refs.headerRef.classList.contains('page-details');
-
-  if (det) {
-    refs.headerRef.classList.remove('page-details');
-  }
-
-  refs.homeRef.classList.remove('is-active');
+  refs.homeRef.classList.remove('current');
   refs.headerRef.classList.add('page-my-library');
-  refs.libraryRef.classList.add('is-active');
+  refs.libraryRef.classList.add('current');
 
   refs.filmContainer.innerHTML = '';
 
@@ -51,11 +41,11 @@ function toDetails() {
 
   if (lib) {
     refs.headerRef.classList.remove('page-my-library');
-    refs.libraryRef.classList.remove('is-active');
+    refs.libraryRef.classList.remove('current');
   }
 
-  refs.homeRef.classList.remove('is-active');
-  refs.headerRef.classList.add('page-details');
+  refs.homeRef.classList.remove('current');
+  
 }
 
 
