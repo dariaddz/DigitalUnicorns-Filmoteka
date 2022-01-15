@@ -1,10 +1,27 @@
 .movies-list {
     padding-top: 20px;
     padding-bottom: 20px;
+
+    @media screen and (min-width: 768px) {
+      display: flex;
+      flex-wrap: wrap;
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
 }
 
+.movies-list__item {
+    @media screen and (min-width: 768px) {
+      width: calc((100% - 2 * 30px)/2);
+      margin: 15px;
+    }
+}
 .movies-list__item:not(:last-child) {
     margin-bottom: 20px;
+    
+        @media screen and (min-width: 768px) {
+          margin-bottom: 0px;
+        }
 }
 
 .movies-list__image {
