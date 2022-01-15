@@ -180,6 +180,29 @@ img {
   right: 0;
 }
 
+.movies-list {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.movies-list__item:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.movies-list__image {
+  margin-bottom: 10px;
+}
+
+.movies-list__title {
+  margin-bottom: 5px;
+  color: #000000;
+  text-transform: uppercase;
+}
+
+.movies-list__description {
+  color: #ff6b08;
+}
+
 .footer {
   height: 100px;
   background-color: #f7f7f7;
