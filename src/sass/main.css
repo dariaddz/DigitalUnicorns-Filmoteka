@@ -223,6 +223,7 @@ img {
 
 .movies-list__image {
   margin-bottom: 10px;
+  border-radius: 5px;
 }
 
 .movies-list__title {
