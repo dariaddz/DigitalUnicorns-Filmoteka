@@ -15,6 +15,11 @@
       width: calc((100% - 2 * 30px)/2);
       margin: 15px;
     }
+
+    @media screen and (min-width: 1024px) {
+      width: calc((100% - 3 * 30px)/3);
+      margin: 15px;
+    }
 }
 .movies-list__item:not(:last-child) {
     margin-bottom: 20px;
