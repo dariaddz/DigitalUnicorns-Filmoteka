@@ -83,4 +83,4 @@ module.exports=require("./lib/axios");
 },{"../templates/movies-list.hbs":"OYkv","axios":"dZBD"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/page-header"),require("./js/modal"),require("./js/spinner"),require("./js/api-service");
 },{"./sass/main.scss":"clu1","./js/page-header":"CWwk","./js/modal":"RSqK","./js/spinner":"Sc1o","./js/api-service":"hC31"}]},{},["Focm"], null)
-//# sourceMappingURL=/DigitalUnicorns-Filmoteka/src.fb7baa1d.js.map
+//# sourceMappingURL=/DigitalUnicorns-Filmoteka/src.936516e2.js.map
