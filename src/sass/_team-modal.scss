@@ -24,6 +24,7 @@
 .modal {
   margin: 20px;
   padding: 20px 40px;
+  position: relative;
   // transform: translate(-50%, -50%);
 
   // width: 80vw;
@@ -37,6 +38,11 @@
   //   transition: transform $trans-duration $timing-func;
 
   @media (min-width: 786px) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
     width: 620px;
     min-height: 560px;
   }
@@ -49,30 +55,29 @@
 // .backdrop.show-modal .modal {
 //   transform: translate(-50%, -50%) scale(0.5);
 // }
+.close-modal__btn {
+  position: absolute;
 
-// .icon-close {
-//   position: absolute;
+  top: 10px;
+  right: 10px;
 
-//   top: 7px;
-//   right: 9px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  color: $primary-text-color;
 
-//   width: 30px;
-//   height: 30px;
-//   border: none;
-//   //   border-radius: 50%;
-//   //   //   @include border(rgba(0, 0, 0, 0.1));
-//   fill: black;
-//   background-color: transparent;
+  background-color: transparent;
 
-//   cursor: pointer;
+  cursor: pointer;
 
-//   //   transition: fill $trans-duration $timing-func;
-
-//   &:hover,
-//   &:focus {
-//     // fill: $accent-color;
-//   }
-// }
+  &:hover,
+  &:focus {
+    color: $accent-text-color;
+  }
+}
+.icon-close {
+  fill: currentColor;
+}
 
 .team-modal_title {
   background-color: $primary-text-color;
