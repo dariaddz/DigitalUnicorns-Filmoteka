@@ -7,30 +7,30 @@ const BASE_URL = 'https://api.themoviedb.org/3/';
 
 const moviesList = document.querySelector('.movies-list');
 
-getTrendingMovies().then(results => {
-  changeReleaseGenres(results);
-  changeReleaseDate(results);
-  renderTrendingMovies(results);
+getTrendingMovies().then(data => {
+  changeReleaseGenres(data);
+  changeReleaseDate(data);
+  renderTrendingMovies(data);
 });
 
 async function getTrendingMovies() {
-  const url = `${BASE_URL}trending/movie/week?api_key=${API_KEY}`;
+  const url = `${BASE_URL}trending/movie/week?api_key=${API_KEY}&page=${pageNumber}&per_page=${itemsPerPage}`;
   try {
-    const response = await axios.get(url);
-    const results = response.data.results;
-    console.log(results);
-    return results;
+    const { data } = await axios.get(url);
+    const { page, results, total_pages, total_results } = data;
+    console.log(data);
+    return { results, total_pages, page, total_results };
   } catch (error) {
     console.error(error);
   }
 }
 
-function renderTrendingMovies(results) {
-  moviesList.insertAdjacentHTML('beforeend', moviesTemplate(results));
+function renderTrendingMovies(data) {
+  moviesList.insertAdjacentHTML('beforeend', moviesTemplate(data.results));
 }
 
-function changeReleaseDate(results) {
-  for (let result of results) {
+function changeReleaseDate(data) {
+  for (let result of data.results) {
     let newDate = result.release_date.slice(0, 4);
 
     Object.defineProperties(result, {
@@ -42,8 +42,8 @@ function changeReleaseDate(results) {
   }
 }
 
-function changeReleaseGenres(results) {
-  for (let result of results) {
+function changeReleaseGenres(data) {
+  for (let result of data.results) {
     const genresWord = [];
 
     result.genre_ids.forEach(element => {
