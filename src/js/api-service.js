@@ -55,14 +55,23 @@ function smoothScroll() {
 
 function changeReleaseDate(data) {
   for (let result of data.results) {
-    let newDate = result.release_date.slice(0, 4);
-
-    Object.defineProperties(result, {
-      release_date: {
-        value: newDate,
-        writable: true,
-      },
-    });
+    // let newDate = '';
+    if (result.release_date !== '') {
+      let newDate = result.release_date.slice(0, 4);
+      Object.defineProperties(result, {
+        release_date: {
+          value: newDate,
+          writable: true,
+        },
+      });
+    } else {
+      Object.defineProperties(result, {
+        release_date: {
+          value: 'Unknown',
+          writable: true,
+        },
+      });
+    }
   }
 }
 
