@@ -55,7 +55,6 @@ function smoothScroll() {
 
 function changeReleaseDate(data) {
   for (let result of data.results) {
-    // let newDate = '';
     if (result.release_date !== '') {
       let newDate = result.release_date.slice(0, 4);
       Object.defineProperties(result, {
@@ -87,7 +86,7 @@ function changeReleaseGenres(data) {
       });
     });
 
-    if (genresWord.length > 2) {
+    if (genresWord.length > 2 || genresWord.length === 0) {
       const extraGenres = genresWord.length - 2;
       genresWord.splice(2, extraGenres, 'Other');
     }
