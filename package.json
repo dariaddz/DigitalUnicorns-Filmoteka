@@ -27,8 +27,10 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
+    "body-scroll-lock": "^4.0.0-beta.0",
     "firebase": "^9.6.3",
     "prettier": "^2.5.1",
-    "tmdbv3": "^0.1.2"
+    "tmdbv3": "^0.1.2",
+    "vanilla-back-to-top": "^7.2.1"
   }
 }
