@@ -26,9 +26,8 @@
     "sass": "^1.32.8"
   },
   "dependencies": {
-   
     "axios": "^0.24.0",
-    "prettier": "^2.5.1"
-
+    "prettier": "^2.5.1",
+    "tmdbv3": "^0.1.2"
   }
 }
