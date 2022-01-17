@@ -7,3 +7,4 @@ import './js/spinner';
 
 import './js/api-service';
 import './js/watched-queue';
+import './js/authorization';

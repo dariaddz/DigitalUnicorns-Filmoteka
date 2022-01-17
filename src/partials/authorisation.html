@@ -1,0 +1,27 @@
+<div class="auth-backdrop is-hidden">
+  <div class="auth-modal">
+    <button class="close-modal__btn" data-action="close-modal" type="button">
+      <svg class="icon-close" width="14" height="14">
+        <use href="./images/symbol-defs.svg#icon-close-1"></use>
+      </svg>
+    </button>
+    <h3 class="auth__title">Please sign in</h3>
+    <form class="auth">
+      <div class="auth__form">
+        <label class="auth__label" for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          autocomplete="off"
+          data-index="insertEmail"
+          placeholder="example@domain.com"
+          class="auth__input"
+        />
+
+        <label class="auth__label" for="password">Password</label>
+        <input type="password" id="password" placeholder="password" class="auth__input" />
+        <button class="auth__btn" type="submit" data-index="signEmail">Sign In</button>
+      </div>
+    </form>
+  </div>
+</div>
