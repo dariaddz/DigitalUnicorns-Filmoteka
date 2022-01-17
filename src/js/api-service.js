@@ -39,8 +39,18 @@ function renderTrendingMovies() {
       changeReleaseGenres(data);
       changeReleaseDate(data);
       moviesList.innerHTML = moviesTemplate(data.results);
+      smoothScroll();
     });
   });
+}
+
+function smoothScroll() {
+  setTimeout(() => {
+    window.scrollTo({
+      top: 100,
+      behavior: 'smooth',
+    });
+  }, 2000);
 }
 
 function changeReleaseDate(data) {
