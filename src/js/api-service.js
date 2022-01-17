@@ -1,4 +1,5 @@
 import moviesTemplate from '../templates/movies-list.hbs';
+import { pagination } from './pagination';
 
 const axios = require('axios');
 
@@ -7,14 +8,10 @@ const BASE_URL = 'https://api.themoviedb.org/3/';
 
 const moviesList = document.querySelector('.movies-list');
 
-getTrendingMovies().then(data => {
-  changeReleaseGenres(data);
-  changeReleaseDate(data);
-  renderTrendingMovies(data);
-});
+let page = 1;
 
 async function getTrendingMovies() {
-  const url = `${BASE_URL}trending/movie/week?api_key=${API_KEY}&page=${pageNumber}&per_page=${itemsPerPage}`;
+  const url = `${BASE_URL}trending/movie/week?api_key=${API_KEY}&page=${page}`;
   try {
     const { data } = await axios.get(url);
     const { page, results, total_pages, total_results } = data;
@@ -25,8 +22,25 @@ async function getTrendingMovies() {
   }
 }
 
-function renderTrendingMovies(data) {
-  moviesList.insertAdjacentHTML('beforeend', moviesTemplate(data.results));
+renderTrendingMovies();
+
+function renderTrendingMovies() {
+  page = 1;
+  // Рендеринг на старте
+  getTrendingMovies().then(data => {
+    changeReleaseGenres(data);
+    changeReleaseDate(data);
+    moviesList.innerHTML = moviesTemplate(data.results);
+  });
+  // Рендеринг при пагинации
+  pagination.on('afterMove', function (event) {
+    page = event.page;
+    getTrendingMovies().then(data => {
+      changeReleaseGenres(data);
+      changeReleaseDate(data);
+      moviesList.innerHTML = moviesTemplate(data.results);
+    });
+  });
 }
 
 function changeReleaseDate(data) {
