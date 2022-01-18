@@ -57,6 +57,10 @@ img {
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .header {
   height: 230px;
   padding-top: 50px;
@@ -102,6 +106,12 @@ img {
 @media screen and (min-width: 768px) {
   .header {
     background-image: url("../images/Rectangle1024_1x.jpg");
+  }
+}
+
+@media (min-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  .header {
+    background-image: url("../images/Rectangle1024_2x.jpg");
   }
 }
 
@@ -172,11 +182,29 @@ img {
   line-height: 0.9;
   text-transform: uppercase;
   color: #ffffff;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 250ms;
+          transition-duration: 250ms;
+  -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.navigation__link :hover,
-.navigation__link :focus {
+.navigation__link:hover,
+.navigation__link:focus {
   color: #ff6b08;
+}
+
+.navigation__link.current::after {
+  position: absolute;
+  bottom: -3px;
+  content: " ";
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 3px;
+  background-color: #ff6b08;
 }
 
 .navigation__link:first-of-type {
@@ -207,7 +235,13 @@ img {
 
 @media screen and (min-width: 768px) {
   .header.page-my-library {
-    background-image: url("../images/Rectangle1024_1x.jpg");
+    background-image: url("../images/my-library1024_1x.jpg");
+  }
+}
+
+@media (min-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  .header.page-my-library {
+    background-image: url("../images/my-library1024_2x.jpg");
   }
 }
 
@@ -427,6 +461,7 @@ img {
 .modal {
   margin: 20px;
   padding: 20px 40px;
+  position: relative;
   overflow-y: scroll;
   background-color: #f7f7f7;
   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
@@ -435,6 +470,11 @@ img {
 
 @media (min-width: 786px) {
   .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     width: 620px;
     min-height: 560px;
   }
@@ -445,6 +485,26 @@ img {
     width: 880px;
     height: 570px;
   }
+}
+
+.close-modal__btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  color: #000000;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.close-modal__btn:hover, .close-modal__btn:focus {
+  color: #ff6b08;
+}
+
+.icon-close {
+  fill: currentColor;
 }
 
 .team-modal_title {
@@ -624,5 +684,82 @@ img {
 
 .is-hidden {
   display: none;
+}
+
+.auth-backdrop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 999;
+}
+
+.auth-backdrop.is-hidden {
+  display: none;
+}
+
+.auth-modal {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  max-width: 600px;
+  max-height: 300px;
+  overflow-y: auto;
+  background: #fff;
+  padding: 30px 20px;
+}
+
+.auth__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.auth__title {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.auth__btn {
+  background-color: #ff6b08;
+  text-transform: uppercase;
+  font-family: "Roboto", "sans-serif";
+  font-size: 12px;
+  line-height: 16px;
+  border-radius: 5px;
+  border: 1px solid #ff6b08;
+}
+
+.auth__input {
+  margin-bottom: 15px;
 }
 /*# sourceMappingURL=main.css.map */
