@@ -50,3 +50,8 @@ img {
     padding-right: 71px;
   }
 }
+
+//плавний скрол сторінки
+html {
+  scroll-behavior: smooth;
+}
