@@ -85,6 +85,7 @@ function getButtonQueued() {
     const buttonQueued = document.querySelectorAll('queue-link');
     buttonQueued.forEach(element => element.addEventListener('click', addToQueued))
 }
+
 // export default function (data) {
 //   const addToWatched = document.querySelector('.modal__watch-list')
 //   const addToQueue = document.querySelector('.modal__queue-list')
