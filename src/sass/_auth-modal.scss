@@ -18,9 +18,11 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  max-width: 600px;
-  max-height: 300px;
+
+  width: 300px;
+  height: 600px;
+  max-width: 800px;
+  max-height: 450px;
 
   overflow-y: auto;
   background: #fff;
@@ -34,17 +36,26 @@
 }
 .auth__title {
   text-align: center;
-  margin-bottom: 25px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  font-size: 20px;
 }
 
+.auth__label {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
 .auth__btn {
   background-color: $accent-text-color;
   text-transform: uppercase;
   font-family: $primary-text, $reserved-text;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 500;
   line-height: $primary-line-height;
   border-radius: 5px;
   border: 1px solid $accent-text-color;
+  margin-top: 30px;
 }
 .auth__input {
   margin-bottom: 15px;

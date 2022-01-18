@@ -1,8 +1,10 @@
 const refs = {
   authForm: document.querySelector('.auth'),
   authModal: document.querySelector('.auth-backdrop'),
+  signInBtn: document.querySelector('.navigation__autorization'),
 };
 
+refs.signInBtn.addEventListener('click', authModalOpen);
 refs.authForm.addEventListener('submit', onSignInFormSubmit);
 
 // данные тестового юзера
@@ -35,6 +37,10 @@ function authWithEmailAndPassword(email, password) {
     .then(response => response.json())
     .then(data => console.log(data))
     .then(authModalClose);
+}
+
+function authModalOpen() {
+  refs.authModal.classList.remove('is-hidden');
 }
 
 function authModalClose() {
