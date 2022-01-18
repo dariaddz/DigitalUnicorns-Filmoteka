@@ -1,0 +1,14 @@
+{{#each this}}
+<div class="movie-wrapper" value={{id}}></div>
+    <li class="movies-list__item">
+        <a class="movies-list__link" href="#">
+            <img class="movies-list__image" src="https://image.tmdb.org/t/p/original/{{poster_path}}" loading="eager" alt="{{original_title}}">
+            <div class="movies-list__container">
+                <h3 class="movies-list__title">{{original_title}}</h3>
+                <p class="movies-list__description">{{#each genre_ids}} {{this}} {{/each}} | {{release_date}}
+                    <span>{{vote_average}}</span>
+                </p>
+            </div>
+        </a>
+    </li>
+{{/each}}

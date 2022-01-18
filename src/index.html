@@ -15,43 +15,19 @@
       crossorigin="anonymous"
     />
     <link rel="shortcut icon" href="./images/film-favicon.svg" type="image/svg" />
+   
   </head>
   <body>
-    <!--header class="header">
-      
-
- <div class="container"> <nav class="top-line">
-        <a class="logo" href="index.html"><svg width="24" height="24">
-            <use href="/images/symbol-defs.svg#icon-film"></use>
-          </svg><p class="title">Filmoteka</p>
-          
-</a>
-
-         
-          <ul class="navigation">
-            <li class="navigation__item">
-              <a class="navigation__link current" href="index.html">Home</a>
-            </li>
-            <li class="navigation__item">
-              <a class="navigation__link" href="index.html">My library</a>
-            </li>
-           
-          </ul>
-        </nav>
-        <div class="search">
-       <input class="search__input" type="text" name="search" placeholder="Поиск фильмов" />
-
-
-  <button class="search__button" type="submit"><svg width="12" height="12">
-            <use href="/images/symbol-defs.svg#icon-search-2"></use>
-          </svg></button>
-</div>
-
-
-    </header-->
     <include src="partials/page-header.html"></include>
+   
 
     <main>
+<!-- спиннер во время загрузки -->
+<div class="loader is-hidden">Loading...</div>
+
+      <!-- Autorization form -->
+      <include src="partials/authorisation.html"></include>
+
       <!-- Галерея фильмов -->
       <section class="movies-gallery">
         <div class="container">
@@ -59,7 +35,18 @@
           <div id="pagination" class="tui-pagination"></div>
         </div>
       </section>
-      <div class="loader is-hidden">Loading...</div>
+
+<!-- секция для Watched -->
+<section class="watched"></section>
+
+<!-- секция для Queue -->
+<section class="queue">
+
+<!-- секция для Search results -->
+<section class="search-results"></section>
+
+
+   
     </main>
 
     <!-- footer  -->

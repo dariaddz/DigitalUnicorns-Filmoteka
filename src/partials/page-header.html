@@ -1,37 +1,39 @@
 <header class="header">
       
+ <div class="container">
+    <nav class="header_box">
+        <a class="header_logo_box" href="index.html" id="logo">
+          <svg class="header_logo_svg" width="24" height="24">
+            <use href="/images/symbol-defs.svg#icon-film"></use>
+          </svg><p class="title">Filmoteka</p>
+          
+</a>
 
-    <div class="container"> 
-       
-            <nav class="header_box">
-           <a class="header_logo_box" href="index.html" id="logo">
-             <svg class="header_logo_svg" width="24" height="24">
-               <use href="/images/symbol-defs.svg#icon-film"></use>
-             </svg><p class="title">Filmoteka</p>    
-   </a>
+          <nav class="navigation">
+            <div class="navigation__home">
+              <a href="index.html" class="navigation__link current" id="home">Home</a>
+            </div>
+            <div class="navigation__library">
+              <a href="#" class="navigation__link" id="library">My Library</a>
+            </div>
+            <div class="navigation__autorization">
+              <a href="#" class="navigation__link"> Sing in</a>
+            </div>
+          </nav>
+        </nav>
+        <div class="search">
+       <input class="search__input" type="text" name="search" placeholder="Поиск фильмов" />
 
-             <nav class="navigation">
-               <div class="navigation__home">
-                 <a class="navigation__link current" href="index.html" id="home">Home</a>
-               </div>
-               <div class="navigation__library">
-                 <a class="navigation__link" href="index.html" id="library">My library</a>
-               </div>
-              
-              </nav>
-           </nav>
-           <div class="search">
-          <input class="search__input" type="text" name="search" placeholder="Поиск фильмов" />
-   
-   
-     <button class="search__button" type="submit"><svg width="12" height="12">
-               <use href="/images/symbol-defs.svg#icon-search-2"></use>
-             </svg></button>
-   </div>
 
-   <div class="librarry-filter">
-    <a href="#" class="library-button watched-link">Watched</a>
-    <a href="#" class="library-button queue-link">Queue</a>
-  </div>
-   
-       </header>
+  <button class="search__button" type="submit"><svg width="12" height="12">
+            <use href="/images/symbol-defs.svg#icon-search-2"></use>
+          </svg></button>
+</div>
+<div class="librarry-filter">
+
+  <a href="#" class="library-button watched-link">Watched</a>
+
+  <a href="#" class="library-button queue-link">Queue</a>
+</div>
+
+    </header>
