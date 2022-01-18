@@ -1,35 +1,40 @@
 import { doc } from 'prettier';
+import {getButtonWatched, getButtonQueued} from './watched-queue.js';
 
 const refs = {
   headerRef: document.querySelector('header'),
   logoRef: document.querySelector('#logo'),
   homeRef: document.querySelector('#home'),
   libraryRef: document.querySelector('#library'),
+  searchFormRef: document.querySelector('#search'),
 };
 
 refs.logoRef.addEventListener('click', toHome);
 refs.homeRef.addEventListener('click', toHome);
 refs.libraryRef.addEventListener('click', toLibrary);
 
-function toHome() {
-  refs.paginatorElRef.classList.remove('is-hidden-pagination');
+
+function toHome(e) {
+ e.preventDefault();
+
+  
   const lib = refs.headerRef.classList.contains('page-my-library');
   const det = refs.headerRef.classList.contains('page-details');
 
   if (lib) {
     refs.headerRef.classList.remove('page-my-library');
     refs.libraryRef.classList.remove('current');
+   
   }
 
   if (det) {
     refs.headerRef.classList.remove('page-details');
   }
-
   refs.homeRef.classList.add('current');
+  
 }
 
 function toLibrary() {
-  
   const det = refs.headerRef.classList.contains('page-details');
 
   if (det) {
@@ -40,20 +45,9 @@ function toLibrary() {
   refs.headerRef.classList.add('page-my-library');
   refs.libraryRef.classList.add('current');
 
-  refs.filmContainer.innerHTML = '';
 
-  onWatchedLinkClick();
-
-  document
-    .querySelector('.watched-link')
-    .addEventListener('click', onWatchedLinkClick);
-
-  document
-    .querySelector('.queue-link')
-    .addEventListener('click', onQueueLinkClick);
-  
-  isResults()
 }
+
 
 function toDetails() {
   const lib = refs.headerRef.classList.contains('page-my-library');
@@ -66,6 +60,7 @@ function toDetails() {
   refs.homeRef.classList.remove('current');
   refs.headerRef.classList.add('page-details');
 }
+
 
 
 export default function isResults() {
