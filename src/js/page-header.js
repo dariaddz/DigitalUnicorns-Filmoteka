@@ -12,7 +12,7 @@ refs.homeRef.addEventListener('click', toHome);
 refs.libraryRef.addEventListener('click', toLibrary);
 
 function toHome() {
-  refs.paginatorElRef.classList.remove('is-hidden-pagination');
+ 
   const lib = refs.headerRef.classList.contains('page-my-library');
   const det = refs.headerRef.classList.contains('page-details');
 
@@ -40,19 +40,7 @@ function toLibrary() {
   refs.headerRef.classList.add('page-my-library');
   refs.libraryRef.classList.add('current');
 
-  refs.filmContainer.innerHTML = '';
-
-  onWatchedLinkClick();
-
-  document
-    .querySelector('.watched-link')
-    .addEventListener('click', onWatchedLinkClick);
-
-  document
-    .querySelector('.queue-link')
-    .addEventListener('click', onQueueLinkClick);
   
-  isResults()
 }
 
 function toDetails() {
