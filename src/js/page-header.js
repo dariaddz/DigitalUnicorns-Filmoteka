@@ -11,8 +11,8 @@ refs.logoRef.addEventListener('click', toHome);
 refs.homeRef.addEventListener('click', toHome);
 refs.libraryRef.addEventListener('click', toLibrary);
 
-function toHome() {
- 
+function toHome(e) {
+ e.preventDefault()
   const lib = refs.headerRef.classList.contains('page-my-library');
   const det = refs.headerRef.classList.contains('page-details');
 
@@ -28,8 +28,8 @@ function toHome() {
   refs.homeRef.classList.add('current');
 }
 
-function toLibrary() {
-  
+function toLibrary(e) {
+  e.preventDefault()
   const det = refs.headerRef.classList.contains('page-details');
 
   if (det) {
