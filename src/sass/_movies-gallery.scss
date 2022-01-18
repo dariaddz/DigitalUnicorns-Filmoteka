@@ -1,16 +1,26 @@
+.movies-gallery {
+  padding-bottom: 40px;
+
+    @media screen and (min-width: 768px) {
+      padding-bottom: 60px;
+    }
+}
+
 .movies-list {
     padding-top: 20px;
-    padding-bottom: 20px;
+    margin-bottom: 40px;
 
     @media screen and (min-width: 768px) {
       display: flex;
       flex-wrap: wrap;
       padding-top: 60px;
-      padding-bottom: 60px;
+      margin-bottom: 50px;
     }
 }
 
 .movies-list__item {
+  margin: 0 0 20px 0;
+
     @media screen and (min-width: 768px) {
       width: calc((100% - 2 * 30px)/2);
       margin: 15px;
@@ -21,11 +31,12 @@
       margin: 15px;
     }
 }
-.movies-list__item:not(:last-child) {
-    margin-bottom: 20px;
+
+.movies-list__item:last-child {
+    margin: 0px;
     
         @media screen and (min-width: 768px) {
-          margin-bottom: 0px;
+          margin: 15px;
         }
 }
 

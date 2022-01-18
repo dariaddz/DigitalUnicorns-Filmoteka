@@ -1,4 +1,5 @@
 import moviesTemplate from '../templates/movies-list.hbs';
+import { pagination } from './pagination';
 
 const axios = require('axios');
 
@@ -7,59 +8,89 @@ const BASE_URL = 'https://api.themoviedb.org/3/';
 
 const moviesList = document.querySelector('.movies-list');
 
-getTrendingMovies().then(results => {
-  changeReleaseGenres(results);
-  changeReleaseDate(results);
-  renderTrendingMovies(results);
-});
+let page = 1;
 
 async function getTrendingMovies() {
-  const url = `${BASE_URL}trending/movie/week?api_key=${API_KEY}`;
+  const url = `${BASE_URL}trending/movie/week?api_key=${API_KEY}&page=${page}`;
   try {
-    const response = await axios.get(url);
-    const results = response.data.results;
-    console.log(results);
-    return results;
+    const { data } = await axios.get(url);
+    const { page, results, total_pages, total_results } = data;
+    console.log(data);
+    return { results, total_pages, page, total_results };
   } catch (error) {
     console.error(error);
   }
 }
 
-function renderTrendingMovies(results) {
-  moviesList.insertAdjacentHTML('beforeend', moviesTemplate(results));
+renderTrendingMovies();
+
+function renderTrendingMovies() {
+  page = 1;
+  // Рендеринг на старте
+  getTrendingMovies().then(data => {
+    changeReleaseGenres(data);
+    changeReleaseDate(data);
+    moviesList.innerHTML = moviesTemplate(data.results);
+  });
+  // Рендеринг при пагинации
+  pagination.on('afterMove', function (event) {
+    page = event.page;
+    getTrendingMovies().then(data => {
+      changeReleaseGenres(data);
+      changeReleaseDate(data);
+      moviesList.innerHTML = moviesTemplate(data.results);
+      smoothScroll();
+    });
+  });
 }
 
-function changeReleaseDate(results) {
-  for (let result of results) {
-    let newDate = result.release_date.slice(0, 4);
-
-    Object.defineProperties(result, {
-      release_date: {
-        value: newDate,
-        writable: true,
-      },
+function smoothScroll() {
+  setTimeout(() => {
+    window.scrollTo({
+      top: 100,
+      behavior: 'smooth',
     });
+  }, 2000);
+}
+
+function changeReleaseDate(data) {
+  for (let result of data.results) {
+    if (result.release_date !== '') {
+      let newDate = result.release_date.slice(0, 4);
+      Object.defineProperties(result, {
+        release_date: {
+          value: newDate,
+          writable: true,
+        },
+      });
+    } else {
+      Object.defineProperties(result, {
+        release_date: {
+          value: 'Unknown',
+          writable: true,
+        },
+      });
+    }
   }
 }
 
-
-function changeReleaseGenres(results) {
-  for (let result of results) {
+function changeReleaseGenres(data) {
+  for (let result of data.results) {
     const genresWord = [];
 
     result.genre_ids.forEach(element => {
       genres.find(({ id, name }) => {
         if (id === element) {
-          genresWord.push(name)
+          genresWord.push(name);
         }
-      })
+      });
     });
-    
-    if (genresWord.length > 2) {
+
+    if (genresWord.length > 2 || genresWord.length === 0) {
       const extraGenres = genresWord.length - 2;
       genresWord.splice(2, extraGenres, 'Other');
-    };    
-    
+    }
+
     Object.defineProperties(result, {
       genre_ids: {
         value: genresWord,
@@ -69,25 +100,24 @@ function changeReleaseGenres(results) {
   }
 }
 
-  const genres =  [
-    { "id": 28, "name": "Action" },
-    { "id": 12, "name": "Adventure" },
-    { "id": 16, "name": "Animation" },
-    { "id": 35, "name": "Comedy" },
-    { "id": 80, "name": "Crime" },
-    { "id": 99, "name": "Documentary" },
-    { "id": 18, "name": "Drama" },
-    { "id": 10751, "name": "Family" },
-    { "id": 14, "name": "Fantasy" },
-    { "id": 36, "name": "History" },
-    { "id": 27, "name": "Horror" },
-    { "id": 10402, "name": "Music" },
-    { "id": 9648, "name": "Mystery" },
-    { "id": 10749, "name": "Romance" },
-    { "id": 878, "name": "Science Fiction" },
-    { "id": 10770, "name": "TV Movie" },
-    { "id": 53, "name": "Thriller" },
-    { "id": 10752, "name": "War" },
-    { "id": 37, "name": "Western" }
-  ]
-
+const genres = [
+  { id: 28, name: 'Action' },
+  { id: 12, name: 'Adventure' },
+  { id: 16, name: 'Animation' },
+  { id: 35, name: 'Comedy' },
+  { id: 80, name: 'Crime' },
+  { id: 99, name: 'Documentary' },
+  { id: 18, name: 'Drama' },
+  { id: 10751, name: 'Family' },
+  { id: 14, name: 'Fantasy' },
+  { id: 36, name: 'History' },
+  { id: 27, name: 'Horror' },
+  { id: 10402, name: 'Music' },
+  { id: 9648, name: 'Mystery' },
+  { id: 10749, name: 'Romance' },
+  { id: 878, name: 'Science Fiction' },
+  { id: 10770, name: 'TV Movie' },
+  { id: 53, name: 'Thriller' },
+  { id: 10752, name: 'War' },
+  { id: 37, name: 'Western' },
+];
