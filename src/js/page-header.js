@@ -11,8 +11,8 @@ refs.logoRef.addEventListener('click', toHome);
 refs.homeRef.addEventListener('click', toHome);
 refs.libraryRef.addEventListener('click', toLibrary);
 
-function toHome() {
-  refs.paginatorElRef.classList.remove('is-hidden-pagination');
+function toHome(e) {
+ e.preventDefault()
   const lib = refs.headerRef.classList.contains('page-my-library');
   const det = refs.headerRef.classList.contains('page-details');
 
@@ -28,8 +28,8 @@ function toHome() {
   refs.homeRef.classList.add('current');
 }
 
-function toLibrary() {
-  
+function toLibrary(e) {
+  e.preventDefault()
   const det = refs.headerRef.classList.contains('page-details');
 
   if (det) {
@@ -40,19 +40,7 @@ function toLibrary() {
   refs.headerRef.classList.add('page-my-library');
   refs.libraryRef.classList.add('current');
 
-  refs.filmContainer.innerHTML = '';
-
-  onWatchedLinkClick();
-
-  document
-    .querySelector('.watched-link')
-    .addEventListener('click', onWatchedLinkClick);
-
-  document
-    .querySelector('.queue-link')
-    .addEventListener('click', onQueueLinkClick);
   
-  isResults()
 }
 
 function toDetails() {
