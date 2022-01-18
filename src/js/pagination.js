@@ -1,5 +1,5 @@
 import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.css';
+import '../sass/_pagination.scss';
 
 const options = {
   totalItems: 20000,
