@@ -3,87 +3,76 @@ const API_KEY = '1aaaa4b4eb79ea073919ef453434f2ea';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const axios = require('axios');
 
-const dataDiv = document.querySelector('.movies-list')
-
+const dataDiv = document.querySelector('.movies-list');
 
 const Watched = [];
 
 const Queued = [];
 
 async function fetchMovies() {
-   const response = await fetch(`${BASE_URL}trending/all/day?api_key=${API_KEY}`)
-    const data = await response.json();
-    console.log(data.results)
-       dataDiv.insertAdjacentHTML('afterbegin', moviesTemplate(data.results));
-   
-    // getClickedElem()
-    getButtonWatched()
-    getButtonQueued()
-    return data;
+  const response = await fetch(`${BASE_URL}trending/all/day?api_key=${API_KEY}`);
+  const data = await response.json();
+  console.log(data.results);
+  dataDiv.insertAdjacentHTML('afterbegin', moviesTemplate(data.results));
+
+  // getClickedElem()
+  getButtonWatched();
+  getButtonQueued();
+  return data;
 }
 
 function addArrayToLocalStorage(array) {
-    localStorage.setItem('Watched', JSON.stringify(array))
-    localStorage.setItem('Queued', JSON.stringify(array))
+  localStorage.setItem('Watched', JSON.stringify(array));
+  localStorage.setItem('Queued', JSON.stringify(array));
 }
-fetchMovies(550)
+// fetchMovies(550)
 
-addArrayToLocalStorage([])
+addArrayToLocalStorage([]);
 
 function addToWatched(e) {
-      fetchMovies(550).then(data => {
-          data.results.forEach(element => {
-              if(+e.srcelementent.parentElement.attributes.value.value === element.id){
-              try {
-                    
-                    const savedData = localStorage.getItem('Watched')
-                    const parsedData = JSON.parse(savedData)
-         
-                    parsedData.push(element)
-                    localStorage.setItem('Watched', JSON.stringify(parsedData))
-                    console.log(element,parsedData)
-                    
-                } catch (error) {
-                    console.log(error)
-                }}
-        
-            
-        })
-    
-    })
+  fetchMovies(550).then(data => {
+    data.results.forEach(element => {
+      if (+e.srcelementent.parentElement.attributes.value.value === element.id) {
+        try {
+          const savedData = localStorage.getItem('Watched');
+          const parsedData = JSON.parse(savedData);
+
+          parsedData.push(element);
+          localStorage.setItem('Watched', JSON.stringify(parsedData));
+          console.log(element, parsedData);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    });
+  });
 }
 
 function addToQueued(e) {
-      fetchMovies(550).then(data => {
-          data.results.forEach(element => {
-              if(+e.srcelementent.parentElement.attributes.value.value === element.id){
-              try {
-                    
-                    const savedData = localStorage.getItem('Queued')
-                    const parsedData = JSON.parse(savedData)
-         
-                    parsedData.push(element)
-                    localStorage.setItem('Queued', JSON.stringify(parsedData))
-                    
-                    
-                } catch (error) {
-                    console.log(error)
-                }}
-        
-            
-        })
-    
-    })
-}
+  fetchMovies(550).then(data => {
+    data.results.forEach(element => {
+      if (+e.srcelementent.parentElement.attributes.value.value === element.id) {
+        try {
+          const savedData = localStorage.getItem('Queued');
+          const parsedData = JSON.parse(savedData);
 
+          parsedData.push(element);
+          localStorage.setItem('Queued', JSON.stringify(parsedData));
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    });
+  });
+}
 
 function getButtonWatched() {
-    const buttonWatched = document.querySelectorAll('.watched-link');
-    buttonWatched.forEach(element => element.addEventListener('click', addToWatched))
+  const buttonWatched = document.querySelectorAll('.watched-link');
+  buttonWatched.forEach(element => element.addEventListener('click', addToWatched));
 }
 function getButtonQueued() {
-    const buttonQueued = document.querySelectorAll('queue-link');
-    buttonQueued.forEach(element => element.addEventListener('click', addToQueued))
+  const buttonQueued = document.querySelectorAll('queue-link');
+  buttonQueued.forEach(element => element.addEventListener('click', addToQueued));
 }
 
 // export default function (data) {
@@ -101,14 +90,14 @@ function getButtonQueued() {
 //       if (element.id === data.id) {
 //         addToWatched.textContent = 'REMOVE FROM WATCHED'
 //         indexOfElWatched = i
-//       } 
+//       }
 //     })
 
 //     queueList.forEach((element, i) => {
 //       if (element.id === data.id) {
 //         addToQueue.textContent = 'REMOVE FROM QUEUE'
 //         indexOfElQueue = i
-//     } 
+//     }
 //     })
 //   }
 
@@ -119,7 +108,6 @@ function getButtonQueued() {
 //       watchedList.splice(indexOfElWatched, 1)
 //       localStorage.setItem(`watchedList`, JSON.stringify(watchedList))
 //       addToWatched.textContent = 'ADD TO WATCHED'
-
 
 //       // setTimeout(e => {
 //       //   notifications.removeFromWatched()
@@ -153,11 +141,10 @@ function getButtonQueued() {
 //       queueList.splice(indexOfElQueue, 1)
 //       localStorage.setItem(`queueList`, JSON.stringify(queueList))
 //       addToQueue.textContent = 'ADD TO QUEUE'
-      
+
 //       // setTimeout(e => {
 //       //   notifications.removeFromQueue()
 //       // }, 1000)
-
 
 //       checkButton()
 //     chekBtnStatus()
@@ -174,7 +161,7 @@ function getButtonQueued() {
 //       chekBtnStatus()
 //       }
 //       else {
-        
+
 //         // setTimeout(e => {
 //         //   notifications.alreadyInWatched()
 //         // }, 1000)
@@ -207,7 +194,7 @@ function getButtonQueued() {
 //       addToWatched.classList.add('modal__watch-list')
 //     }
 //   }
-  
+
 //   addToWatched.addEventListener(`click`, addToLocalStorageWatched)
 //   addToQueue.addEventListener('click', addToLocalStorageQueue)
 
