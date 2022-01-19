@@ -1,56 +1,56 @@
 .movies-gallery {
   padding-bottom: 40px;
 
-    @media screen and (min-width: 768px) {
-      padding-bottom: 60px;
-    }
+  @media screen and (min-width: 768px) {
+    padding-bottom: 60px;
+  }
 }
 
 .movies-list {
-    padding-top: 20px;
-    margin-bottom: 40px;
+  padding-top: 20px;
+  margin-bottom: 40px;
 
-    @media screen and (min-width: 768px) {
-      display: flex;
-      flex-wrap: wrap;
-      padding-top: 60px;
-      margin-bottom: 50px;
-    }
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 60px;
+    margin-bottom: 50px;
+  }
 }
 
 .movies-list__item {
   margin: 0 0 20px 0;
 
-    @media screen and (min-width: 768px) {
-      width: calc((100% - 2 * 30px)/2);
-      margin: 15px;
-    }
+  @media screen and (min-width: 768px) {
+    width: calc((100% - 2 * 30px) / 2);
+    margin: 15px;
+  }
 
-    @media screen and (min-width: 1024px) {
-      width: calc((100% - 3 * 30px)/3);
-      margin: 15px;
-    }
+  @media screen and (min-width: 1024px) {
+    width: calc((100% - 3 * 30px) / 3);
+    margin: 15px;
+  }
 }
 
 .movies-list__item:last-child {
-    margin: 0px;
-    
-        @media screen and (min-width: 768px) {
-          margin: 15px;
-        }
+  margin: 0px;
+
+  @media screen and (min-width: 768px) {
+    margin: 15px;
+  }
 }
 
 .movies-list__image {
-    margin-bottom: 10px;
-    border-radius: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
 
 .movies-list__title {
-    margin-bottom: 5px;
-    color: $primary-text-color;
-    text-transform: uppercase;
+  margin-bottom: 5px;
+  color: $primary-text-color;
+  text-transform: uppercase;
 }
 
 .movies-list__description {
-    color: $accent-text-color;
+  color: $accent-text-color;
 }
