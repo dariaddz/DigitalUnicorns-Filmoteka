@@ -1,11 +1,21 @@
 const refs = {
   authForm: document.querySelector('.auth'),
-  authModal: document.querySelector('.auth-backdrop'),
+  authModalBackdrop: document.querySelector('.auth-backdrop'),
+  authModal: document.querySelector('.auth-modal'),
   signInBtn: document.querySelector('.navigation__autorization'),
+  closeAuthModalBtn: document.querySelector('.close-authmodal-btn'),
 };
+
+const bodyScrollLock = require('body-scroll-lock');
+const disableBodyScroll = bodyScrollLock.disableBodyScroll;
+const enableBodyScroll = bodyScrollLock.enableBodyScroll;
 
 refs.signInBtn.addEventListener('click', authModalOpen);
 refs.authForm.addEventListener('submit', onSignInFormSubmit);
+refs.authModalBackdrop.addEventListener('click', onBackdropClick);
+refs.closeAuthModalBtn.addEventListener('click', authModalClose);
+
+// проверка логина-пароля пользователя
 
 // данные тестового юзера
 // email: films@gmail.com
@@ -39,10 +49,35 @@ function authWithEmailAndPassword(email, password) {
     .then(authModalClose);
 }
 
-function authModalOpen() {
-  refs.authModal.classList.remove('is-hidden');
+// открытие-закрытие модалки-авторизации
+
+function authModalOpen(event) {
+  event.preventDefault();
+  refs.authModalBackdrop.classList.remove('is-hidden');
+  window.addEventListener('keydown', onEscKeyPress);
+  disableBodyScroll(refs.authModal);
 }
 
 function authModalClose() {
-  refs.authModal.classList.add('is-hidden');
+  refs.authModalBackdrop.classList.add('is-hidden');
+  window.removeEventListener('keydown', onEscKeyPress);
+  enableBodyScroll(refs.authModal);
 }
+
+function onEscKeyPress(event) {
+  const ESC_KEY_CODE = 'Escape';
+  const isEscKey = event.code === ESC_KEY_CODE;
+
+  if (isEscKey) {
+    authModalClose();
+  }
+}
+
+function onBackdropClick(event) {
+  if (event.currentTarget === event.target) {
+    authModalClose();
+  }
+}
+// function onCloseBtnClick() {
+//   authModalClose();
+// }
