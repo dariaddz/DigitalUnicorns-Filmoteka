@@ -30,6 +30,7 @@ $primary-letter-spacing: 0em;
 // Добавляем переменные цветов шрифта
 $primary-text-color: #000000;
 $secondary-text-color: #ffffff;
+$light-grey-color-text: #8c8c8c;
 $footer-text-color: #545454;
 $accent-text-color: #ff6b08;
 
@@ -37,3 +38,7 @@ $accent-text-color: #ff6b08;
 $primary-background-color: #ffffff;
 $secondary-background-color: #f7f7f7;
 $accent-background-color: #ff6b08;
+
+// timing-function
+$timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+$duration: 300ms;
