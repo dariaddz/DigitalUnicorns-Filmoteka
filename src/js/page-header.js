@@ -1,11 +1,13 @@
-import { doc } from 'prettier';
+
 
 const refs = {
   headerRef: document.querySelector('header'),
   logoRef: document.querySelector('#logo'),
   homeRef: document.querySelector('#home'),
   libraryRef: document.querySelector('#library'),
+
 };
+
 
 refs.logoRef.addEventListener('click', toHome);
 refs.homeRef.addEventListener('click', toHome);
@@ -40,7 +42,6 @@ function toLibrary(e) {
   refs.headerRef.classList.add('page-my-library');
   refs.libraryRef.classList.add('current');
 
-  
 }
 
 function toDetails() {
@@ -54,8 +55,6 @@ function toDetails() {
   refs.homeRef.classList.remove('current');
   refs.headerRef.classList.add('page-details');
 }
-
-
 export default function isResults() {
   const w = JSON.parse(localStorage.getItem('watched')); 
   const q = JSON.parse(localStorage.getItem('queue'));
@@ -76,3 +75,5 @@ export default function isResults() {
     refs.noResults.classList.remove('visible');
   }
 }
+
+

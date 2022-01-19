@@ -29,26 +29,33 @@
   background-image: url('../images/Rectangle320_1x.jpg');
   background-position: center;
   background-repeat: no-repeat;
-
+  
   @media screen and (min-width: 320px) {
     background-image: url('../images/Rectangle768_1x.jpg');
+    
   }
 
   @media screen and (min-width: 768px) {
     background-image: url('../images/Rectangle1024_1x.jpg');
+    
 }
 @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
   background-image:  url('../images/Rectangle1024_2x.jpg');
   }
+  
 }
-
+.header .library-filter {
+  display: none;
+}
 
 .header_box {
   display: flex;
   justify-content: space-between;
   align-content: flex-end;
   margin-bottom: 50px;
+  
 }
+
 .header_logo_box {
   display: flex;
 }
@@ -121,6 +128,9 @@
   width: 100%;
   height: 3px;
 }
+.header .library-filter {
+  display: none;
+}
 
 
 // ... my library ...
@@ -138,6 +148,76 @@
   @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
     background-image:  url('../images/my-library1024_2x.jpg');
     }
+    .search {
+      display: none;
+    }
+}
+.librarry-filter {
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (min-width: 320px) {
+    justify-content: center;
+  }
+
+  & .link {
+    width: 130px;
+    height: 44px;
+
+    border-radius: 5px;
+    border: 1px solid #ffffff;
+
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 44px;
+    text-align: center;
+    text-transform: uppercase;
+    color: $secondary-text-color;
+    background-color: transparent;
+
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    @media screen and (min-width: 480px) {
+      width: 136px;
+    }
+  }
+    & .link:hover,
+    & .link:focus {
+      border-color: $accent-text-color;
+      transform: scale(1.1);
+    }
+
+    & .watched-link {
+      @media screen and(min-width: 320px) {
+        margin-right: 15px;
+      }
+    }
+
+    & .button.is-active {
+      border-color: transparent;
+      background-color: $accent-text-color;
+
+      box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+    }
+  }
+
+
+.header.page-my-library .library-filter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+@media screen and (min-width: 320px) {
+  .header.page-my-library .library-filter {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 .search__input {
   //   position: relative;
@@ -171,31 +251,120 @@
   right: 0;
 }
 // Главные кнопки библиотеки
+.librarry-filter {
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (min-width: 320px) {
+    justify-content: center;
+  }
+
+  & .link {
+    width: 130px;
+    height: 44px;
+
+    border-radius: 5px;
+    border: 1px solid #ffffff;
+
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 44px;
+    text-align: center;
+    text-transform: uppercase;
+    color: $secondary-text-color;
+    background-color: transparent;
+
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    @media screen and (min-width: 480px) {
+      width: 136px;
+    }
+  }
+
+  & .link:hover,
+  & .link:focus {
+    border-color: $accent-text-color;
+    transform: scale(1.1);
+  }
+
+  & .link.watched {
+    @media screen and(min-width: 320px) {
+      margin-right: 15px;
+    }
+  }
+
+  & .link.is-active {
+    border-color: transparent;
+    background-color: $accent-text-color;
+
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+  }
+}
+
+.header-box {
+  margin-bottom: 45px;
+}
+
+
+// ... page details ...
+
+.header.page-details {
+background-image: url('../images/page-details320_1x.jpg');
+background-position: 75%;
+
+@media screen and (min-width: 320px) {
+  background-image: url('../images/page-details1024_1x.jpg');
+}
+
+.home-search {
+  display: none;
+}
+
+.librarry-filter {
+  display: none;
+}
+}
+
+// Главные кнопки библиотеки
 
 .library-button {
-  text-transform: uppercase;
-  padding: 15px 38px 13px 38px;
+  display: inline-block;
+  padding: 10px 13px;
+  height: 44px;
+  width: 136px;
+  border-radius: 5px;
+  border: 1px solid $secondary-text-color;
   color: $secondary-text-color;
-  transition: background-color 250ms cubic-bezier(0.4,0,0.2,1);
-
-  &:hover,
-  &:focus {
-    color: $accent-text-color;
-    border: 1px solid 250ms cubic-bezier(0.4,0,0.2,1);
+  background-color: transparent;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  @media screen and (min-width: 768px) {
+    width: 129px;
   }
+padding: 15px 38px 13px 38px;
+color: $secondary-text-color;
+transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);;
+
+&:hover,
+&:focus {
+  color: $accent-text-color;
+  border: 1px solid $accent-text-color;
+}
 }
 
 .watched-link {
-  margin-right: 15px;
+margin-right: 15px;
 }
 
 .library-button-is-active {
-  background-color: $accent-background-color;
-  border: none;
-  box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+background-color: $accent-text-color;
+border: none;
+box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
 
-  &:hover,
-  &:focus {
-    color: $primary-text-color;
-  }
+&:hover,
+&:focus {
+  color: $primary-text-color;
+}
 }
