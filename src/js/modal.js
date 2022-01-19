@@ -1,30 +1,54 @@
+const bodyScrollLock = require('body-scroll-lock');
+const disableBodyScroll = bodyScrollLock.disableBodyScroll;
+const enableBodyScroll = bodyScrollLock.enableBodyScroll;
+
 const refs = {
   openModal: document.querySelector('[data-action="open-modal-team"]'),
-  closeModalBtn: document.querySelector('[data-action="close-modal"]'),
   backdrop: document.querySelector('.js-backdrop'),
   backdropTeam: document.querySelector('[data-action="backdrop-team"]'),
+  modal: document.querySelectorAll('.modal'),
 };
 
+
+
 refs.openModal.addEventListener('click', onOpenModal);
-refs.closeModalBtn.addEventListener('click', onCloseModal);
+
 refs.backdrop.addEventListener('click', onBackdropClick);
+
+
+
+function modalIsOpen() {
+  window.addEventListener('keydown', onEscKeyPress);
+
+  disableBodyScroll(refs.modal);
+  }
 
 function onOpenModal(event) {
   event.preventDefault();  
-  window.addEventListener('keydown', onEscKeyPress);
   refs.backdropTeam.classList.add('show-modal');
+  
+  modalIsOpen();
 }
 
 function onCloseModal() {
   window.removeEventListener('keydown', onEscKeyPress);
   refs.backdrop.classList.remove('show-modal');
+
+  enableBodyScroll(refs.modal);
 }
 
 function onBackdropClick(event) {
-  if (event.currentTarget === event.target) {
+
+  const isCloseBtn = event.target.classList.contains('close-modal__btn');
+  const isCloseIcon = event.target.classList.contains('icon-close');
+
+  if ((event.currentTarget === event.target) || (isCloseIcon || isCloseBtn)) {
 
     onCloseModal();
-  }
+  };
+
+ 
+
 }
 
 function onEscKeyPress(event) {

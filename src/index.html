@@ -22,15 +22,31 @@
    
 
     <main>
+<!-- спиннер во время загрузки -->
+<div class="loader is-hidden">Loading...</div>
+
       <!-- Autorization form -->
       <include src="partials/authorisation.html"></include>
+
       <!-- Галерея фильмов -->
       <section class="movies-gallery">
         <div class="container">
           <ul class="movies-list"></ul>
+          <div id="pagination" class="tui-pagination"></div>
         </div>
       </section>
-      <div class="loader is-hidden">Loading...</div>
+
+<!-- секция для Watched -->
+<section class="watched"></section>
+
+<!-- секция для Queue -->
+<section class="queue">
+
+<!-- секция для Search results -->
+<section class="search-results"></section>
+
+
+   
     </main>
 
     <!-- footer  -->
