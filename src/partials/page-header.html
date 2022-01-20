@@ -5,29 +5,40 @@
         <a class="header_logo_box" href="index.html" id="logo">
           <svg class="header_logo_svg" width="24" height="24">
             <use href="/images/symbol-defs.svg#icon-film"></use>
-          </svg><p class="title">Filmoteka</p>
-          
-</a>
+          </svg>
+          <p class="title">Filmoteka</p>
+        </a>
 
           <nav class="navigation">
-            <div class="navigation__home">
+            <div class="navigation__home navigation__btn">
               <a href="index.html" class="navigation__link current" id="home">Home</a>
             </div>
-            <div class="navigation__library">
+            <div class="navigation__library navigation__btn">
               <a href="#" class="navigation__link" id="library">My Library</a>
             </div>
-            <div class="navigation__autorization">
+            <div class="navigation__autorization navigation__btn">
               <a href="#" class="navigation__link"> Sign in</a>
             </div>
           </nav>
-        </nav>
+     </nav>
         <div class="search">
-       <input class="search__input" type="text" name="search" placeholder="Поиск фильмов" />
+       <form action="#" class="search__form" id="search">
+<div class="search__form__box">
+       <input 
+       class="search__input" 
+       type="text" 
+       name="search" 
+       placeholder="Поиск фильмов"
+        />
+ 
 
-
-  <button class="search__button" type="submit"><svg width="12" height="12">
+  <button class="search__button" type="submit">
+    <svg class="search__svg"width="14" height="14">
             <use href="/images/symbol-defs.svg#icon-search-2"></use>
           </svg></button>
+          <span class="search__form__after"></span>
+        </div>
+        </form>   
 </div>
 <div class="library-filter" >
 
@@ -36,4 +47,4 @@
   <a href="#" class="library-button queue-link">Queue</a>
 </div>
 
-    </header>
+</header>
