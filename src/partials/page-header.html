@@ -22,12 +22,24 @@
           </nav>
         </nav>
         <div class="search">
-       <input class="search__input" type="text" name="search" placeholder="Поиск фильмов" />
+          <form action="#" class="search__form" id="search">
+<div class="search__form__box">
+       <input 
+       class="search__input" 
+       type="text" 
+       name="search" 
+       placeholder="Поиск фильмов"
+        />
+ 
 
-
-  <button class="search__button" type="submit"><svg width="12" height="12">
+  <button class="search__button" type="submit">
+    <svg class="search__svg"width="14" height="14">
             <use href="/images/symbol-defs.svg#icon-search-2"></use>
           </svg></button>
+          <span class="search__form__after"></span>
+        </div>
+        </form>   
+        
 </div>
 <div class="library-filter" >
 
