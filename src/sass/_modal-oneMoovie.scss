@@ -1,239 +1,242 @@
+.movie__backdrop.is-hidden {
+  display: none;
+}
 .modal-movie-template {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    @media screen and (min-width: 768px) {
-        flex-direction: row;
-        align-items: flex-start;
-      }
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
 }
 
 .modal-img-container {
-    width: 240px;
-    height: 356px;
-    background-image: url(../images/no-poster_1x.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+  width: 240px;
+  height: 356px;
+  background-image: url(../images/no-poster_1x.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 
-    @media screen and (max-width: 767px) {
-        margin-bottom: 30px;
-    }
+  @media screen and (max-width: 767px) {
+    margin-bottom: 30px;
+  }
 
-    @media screen and (min-width: 768px) {
-        width: 263px;
-        height: 373px;
-    }
+  @media screen and (min-width: 768px) {
+    width: 263px;
+    height: 373px;
+  }
 
-    @media screen and (min-width: 1024px) {
-        width: 395px;
-        height: 477px;
-        background-image: url(../images/no-poster_2x.jpg);
-    }
+  @media screen and (min-width: 1024px) {
+    width: 395px;
+    height: 477px;
+    background-image: url(../images/no-poster_2x.jpg);
+  }
 }
 
 .modal-img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 5px;
+  display: block;
+  width: 396px;
+  height: 448px;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 .modal-movie-info {
-    width: 240px;
-    align-self: start;
-    
-    @media screen and (min-width: 768px) {
-        margin-left: 30px;
-        width: 264px;
-    }
-    
-    @media screen and (min-width: 1024px) {
-        width: 396px;
-    }
+  width: 240px;
+  align-self: start;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 30px;
+    width: 264px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 396px;
+  }
 }
 
 .modal-movie-title {
-    margin-bottom: 15px;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 1.16;
-    text-transform: uppercase;
+  margin-bottom: 15px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.16;
+  text-transform: uppercase;
 
-    @media screen and (min-width: 1024px) {
-        font-size: 30px;
-    }
+  @media screen and (min-width: 1024px) {
+    font-size: 30px;
+  }
 }
 
 .modal-movie-table {
-    table-layout: fixed;
-    width: 100%;
-    margin-bottom: 15px;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 1.33;
+  table-layout: fixed;
+  width: 100%;
+  margin-bottom: 15px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
 }
 
 .movie-table-data {
-    padding-top: 5px;
-    padding-bottom: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 
-    &.key {
-        width: 40%;
-        color: $light-grey-color-text;
-      }
-    
-      &.value {
-        width: 60%;
-      }
-    
-      & .value__accent {
-        padding: 1px 9px;
-        margin-right: 4px;
-        background-color: $accent-background-color;
-        color: $primary-background-color;
-        border-radius: 5px;
-      }
+  &.key {
+    width: 40%;
+    color: $light-grey-color-text;
+  }
 
-      & .value__slash {
-        color: $light-grey-color-text;
-      }
+  &.value {
+    width: 60%;
+  }
 
-      & .value__grey {
-        padding: 1px 4px;
-        margin-left: 3px;
-        background-color: $secondary-background-color;
-        border-radius: 5px;
-      }
+  & .value__accent {
+    padding: 1px 9px;
+    margin-right: 4px;
+    background-color: $accent-background-color;
+    color: $primary-background-color;
+    border-radius: 5px;
+  }
 
-      &.value__title {
-        text-transform: uppercase;
-      }
+  & .value__slash {
+    color: $light-grey-color-text;
+  }
 
-      & .value__genres {
-        &:not(:last-child)::after {
-          content: ',';
-        }
-      }
+  & .value__grey {
+    padding: 1px 4px;
+    margin-left: 3px;
+    background-color: $secondary-background-color;
+    border-radius: 5px;
+  }
+
+  &.value__title {
+    text-transform: uppercase;
+  }
+
+  & .value__genres {
+    &:not(:last-child)::after {
+      content: ',';
+    }
+  }
 }
 
 .movie-overview-title {
-    margin-bottom: 10px;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 1.33;
-    text-transform: uppercase;
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
 }
-  
+
 .modal-movie-overview {
-    margin-bottom: 20px;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 1.67;
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.67;
 }
-  
+
 .modal-buttons {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 // кнопка трейлер
 
 .wraper-trailer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    justify-content: left;
+  }
+  @media screen and (min-width: 768px) {
+    justify-content: left;
+  }
+  @media screen and (min-width: 1024px) {
+    justify-content: center;
+  }
+  .trailer-btn {
+    margin-top: 16px;
+    margin-right: 110px;
+    position: relative;
+    width: 136px;
+    height: 44px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 8px;
+
+    text-decoration: none;
+    overflow: hidden;
     @media screen and (min-width: 320px) and (max-width: 767px) {
-      justify-content: left;
+      width: 113px;
     }
     @media screen and (min-width: 768px) {
-      justify-content: left;
+      width: 126px;
     }
     @media screen and (min-width: 1024px) {
-      justify-content: center;
-    }
-    .trailer-btn {
-      margin-top: 16px;
-      margin-right: 110px;
-      position: relative;
       width: 136px;
-      height: 44px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 8px;
-  
-      text-decoration: none;
-      overflow: hidden;
-      @media screen and (min-width: 320px) and (max-width: 767px) {
-        width: 113px;
-      }
-      @media screen and (min-width: 768px) {
-        width: 126px;
-      }
-      @media screen and (min-width: 1024px) {
-        width: 136px;
-      }
-      &:hover .trailer-btn_wave {
-        top: -50px;
-      }
     }
-  
-    .trailer-btn_text {
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 1.14;
-      display: flex;
-      align-items: center;
-      text-align: center;
-      text-transform: uppercase;
-      color: #ffffff;
-      position: relative;
-      z-index: 1;
+    &:hover .trailer-btn_wave {
+      top: -50px;
     }
-  
-    .trailer-btn_wave {
+  }
+
+  .trailer-btn_text {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.14;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    color: #ffffff;
+    position: relative;
+    z-index: 1;
+  }
+
+  .trailer-btn_wave {
+    position: absolute;
+    width: 136px;
+    height: 136px;
+    background-color: red;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease 0s;
+
+    &::after,
+    &::before {
+      content: '';
       position: absolute;
-      width: 136px;
-      height: 136px;
-      background-color: red;
-      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
       top: 0;
-      left: 0;
-      transition: all 0.3s ease 0s;
-  
-      &::after,
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: 250%;
-        height: 250%;
+      left: 50%;
+      width: 250%;
+      height: 250%;
+      transform: translate3d(-50%, -96%, 0) rotate(0deg) scale(1);
+    }
+    &::before {
+      background-color: rgb(10, 185, 238);
+      border-radius: 48%;
+      animation: waves 5s infinite linear;
+    }
+    &::after {
+      background-color: rgb(240, 12, 12);
+      border-radius: 44%;
+      animation: waves 10s infinite linear;
+    }
+    @keyframes waves {
+      0% {
         transform: translate3d(-50%, -96%, 0) rotate(0deg) scale(1);
       }
-      &::before {
-        background-color: rgb(10, 185, 238);
-        border-radius: 48%;
-        animation: waves 5s infinite linear;
-      }
-      &::after {
-        background-color: rgb(240, 12, 12);
-        border-radius: 44%;
-        animation: waves 10s infinite linear;
-      }
-      @keyframes waves {
-        0% {
-          transform: translate3d(-50%, -96%, 0) rotate(0deg) scale(1);
-        }
-  
-        100% {
-          transform: translate3d(-50%, -96%, 0) rotate(360deg) scale(1);
-        }
+
+      100% {
+        transform: translate3d(-50%, -96%, 0) rotate(360deg) scale(1);
       }
     }
+  }
 }
