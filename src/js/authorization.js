@@ -1,10 +1,11 @@
-const refs = {
-  authForm: document.querySelector('.auth'),
-  authModalBackdrop: document.querySelector('.auth-backdrop'),
-  authModal: document.querySelector('.auth-modal'),
-  signInBtn: document.querySelector('.navigation__autorization'),
-  closeAuthModalBtn: document.querySelector('.close-authmodal-btn'),
-};
+// const refs = {
+//   authForm: document.querySelector('.auth'),
+//   authModalBackdrop: document.querySelector('.auth-backdrop'),
+//   authModal: document.querySelector('.auth-modal'),
+//   signInBtn: document.querySelector('.navigation__autorization'),
+//   closeAuthModalBtn: document.querySelector('.close-authmodal-btn'),
+// };
+import refs from './refs';
 
 const bodyScrollLock = require('body-scroll-lock');
 const disableBodyScroll = bodyScrollLock.disableBodyScroll;

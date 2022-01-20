@@ -1,6 +1,8 @@
-const refs = {
-  spinner: document.querySelector('.loader'),
-};
+import refs from './refs';
+
+// const refs = {
+//   spinner: document.querySelector('.loader'),
+// };
 
 function showSpinner() {
   refs.spinner.classList.remove('is-hidden');
