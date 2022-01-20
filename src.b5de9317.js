@@ -103,4 +103,4 @@ var o;function t(o){return(t="function"==typeof Symbol&&"symbol"==typeof Symbol.
 },{"vanilla-back-to-top":"mehQ"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/page-header"),require("./js/modal"),require("./js/search"),require("./js/spinner"),require("./js/api-service"),require("./js/pagination"),require("./js/watched-queue"),require("./js/authorization"),require("./js/back-to-top");
 },{"./sass/main.scss":"clu1","./js/page-header":"CWwk","./js/modal":"RSqK","./js/search":"HU2o","./js/spinner":"Sc1o","./js/api-service":"hC31","./js/pagination":"o8lo","./js/watched-queue":"pknh","./js/authorization":"ARBQ","./js/back-to-top":"EZ65"}]},{},["Focm"], null)
-//# sourceMappingURL=/DigitalUnicorns-Filmoteka/src.b7379845.js.map
+//# sourceMappingURL=/DigitalUnicorns-Filmoteka/src.b5de9317.js.map
