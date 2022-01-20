@@ -13,5 +13,4 @@ import './js/authorization';
 
 
 import './js/back-to-top';
-
-
+import './js/one-movie-modal';
