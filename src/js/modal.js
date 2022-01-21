@@ -16,23 +16,18 @@ refs.closeModalBtn.addEventListener('click', onCloseModal);
 refs.backdropTeam.addEventListener('click', onBackdropClick);
 
 
-
-function modalIsOpen() {
+function onOpenModal(event) {
+  event.preventDefault();  
+  refs.backdropTeam.classList.remove('is-hidden');
+  
   window.addEventListener('keydown', onEscKeyPress);
 
   disableBodyScroll(refs.modalTeam);
-  }
-
-function onOpenModal(event) {
-  event.preventDefault();  
-  refs.backdropTeam.classList.add('show-modal');
-  
-  modalIsOpen();
 }
 
 function onCloseModal() {
   window.removeEventListener('keydown', onEscKeyPress);
-  refs.backdrop.classList.remove('show-modal');
+  refs.backdropTeam.classList.add('is-hidden');
 
   enableBodyScroll(refs.modalTeam);
 }
