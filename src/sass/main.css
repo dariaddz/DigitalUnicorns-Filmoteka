@@ -439,6 +439,7 @@ html {
 .movies-list__image {
   margin-bottom: 10px;
   border-radius: 5px;
+  aspect-ratio: 1/1.5;
 }
 
 .movies-list__title {
