@@ -66,11 +66,15 @@
 
 .team-modal__title-box {
   display: block;
-  height: 50px;
+  height: 65px;
   margin: 0;
   background-color: $primary-text-color;
   color: $secondary-text-color;
   padding-top: 12px;
+
+  @media (min-width: 412px) {
+    height: 50px;
+  }
 }
 
 .team-modal__title {
@@ -113,6 +117,39 @@
   @media (min-width: 768px) {
     width: calc((100% - 6 * 15px) / 4);
   }
+}
+
+.team__task-list {
+  display: none;
+
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+
+  border-radius: 10%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 50px);
+  z-index: 1000;
+
+  background-color: rgba(0, 0, 0, 0.603);
+  color: $secondary-text-color;
+
+  transform: scale(0.7);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+  }
+}
+
+.team__item.show-tasks .team__task-list {
+  display: flex;
+  transform: scale(1);
 }
 
 .team__picture {
