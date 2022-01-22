@@ -1,14 +1,12 @@
 import moviesTemplate from '../templates/movies-list.hbs';
 import { pagination } from './pagination';
 import { Notify } from 'notiflix';
-
-const axios = require('axios');
+import axios from 'axios';
 
 const API_KEY = '1aaaa4b4eb79ea073919ef453434f2ea';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
 const moviesList = document.querySelector('.movies-list');
-const cardsContainer = document.querySelector('.movies-gallery');
 const searchForm = document.querySelector('.search__form');
 
 let page = 1;
@@ -98,25 +96,27 @@ function onSearch(event) {
 
   if (searchQuery === '') {
     Notify.failure('Sorry, there are no movies matching your search query. Please try again');
-    return clearCardsContainer();
+    return clearMoviesList();
   }
   getMoviesbySearchQuery()
     .then(data => {
-      if (data.total_results === 0) {
+      if (data.total_results === 0 || searchQuery === '') {
         Notify.failure('Sorry, there are no movies matching your search query. Please try again');
-        return clearCardsContainer();
+        return clearMoviesList();
       }
       changeReleaseGenres(data);
       changeReleaseDate(data);
-      moviesList.innerHTML = '';
-      moviesList.innerHTML = moviesTemplate(data.results);
+      clearMoviesList();
+      markUpMoviesList(data);
       Notify.success(`Hooray! We found ${data.total_results} movies`);
     })
-    .finally(() => searchForm.reset());
+    .finally(() => {
+      searchForm.reset();
+    });
 }
 
 async function getMoviesbySearchQuery() {
-  const url = `${BASE_URL}search/movie?api_key=${API_KEY}&page=${page}&language=en-US&query=${searchQuery}&page=1&include_adult=false`;
+  const url = `${BASE_URL}search/movie?api_key=${API_KEY}&page=${page}&language=en-US&query=${searchQuery}&page=${page}&include_adult=false`;
   try {
     const { data } = await axios.get(url);
     const { page, results, total_pages, total_results } = data;
@@ -126,6 +126,11 @@ async function getMoviesbySearchQuery() {
     console.error(error);
   }
 }
-function clearCardsContainer() {
-  cardsContainer.innerHTML = '';
+
+function clearMoviesList() {
+  moviesList.innerHTML = '';
+}
+
+function markUpMoviesList(data) {
+  moviesList.innerHTML = moviesTemplate(data.results);
 }
