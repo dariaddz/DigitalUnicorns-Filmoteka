@@ -107,4 +107,4 @@ var o;function t(o){return(t="function"==typeof Symbol&&"symbol"==typeof Symbol.
 },{"../templates/modal-oneMoovie.hbs":"FMhP","axios":"dZBD","body-scroll-lock":"AK1d"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/page-header"),require("./js/modal"),require("./js/search"),require("./js/spinner"),require("./js/api-service"),require("./js/pagination"),require("./js/watched-queue"),require("./js/authorization"),require("./js/back-to-top"),require("./js/one-movie-modal");
 },{"./sass/main.scss":"clu1","./js/page-header":"CWwk","./js/modal":"RSqK","./js/search":"HU2o","./js/spinner":"Sc1o","./js/api-service":"hC31","./js/pagination":"o8lo","./js/watched-queue":"pknh","./js/authorization":"ARBQ","./js/back-to-top":"EZ65","./js/one-movie-modal":"H46Z"}]},{},["Focm"], null)
-//# sourceMappingURL=/DigitalUnicorns-Filmoteka/src.5eddcb97.js.map
+//# sourceMappingURL=/DigitalUnicorns-Filmoteka/src.9cd287be.js.map
