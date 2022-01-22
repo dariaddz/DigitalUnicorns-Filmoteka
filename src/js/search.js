@@ -109,6 +109,16 @@ function onSearch(event) {
       clearMoviesList();
       markUpMoviesList(data);
       Notify.success(`Hooray! We found ${data.total_results} movies`);
+      // Пагинация найденных фильмов
+      pagination.on('afterMove', function (event) {
+        page = event.page;
+        getMoviesbySearchQuery().then(data => {
+          changeReleaseGenres(data);
+          changeReleaseDate(data);
+          markUpMoviesList(data);
+          smoothScroll();
+        });
+      });
     })
     .finally(() => {
       searchForm.reset();
@@ -116,7 +126,7 @@ function onSearch(event) {
 }
 
 async function getMoviesbySearchQuery() {
-  const url = `${BASE_URL}search/movie?api_key=${API_KEY}&page=${page}&language=en-US&query=${searchQuery}&page=${page}&include_adult=false`;
+  const url = `${BASE_URL}search/movie?api_key=${API_KEY}&query=${searchQuery}&page=${page}&language=en-US&include_adult=false`;
   try {
     const { data } = await axios.get(url);
     const { page, results, total_pages, total_results } = data;
@@ -133,4 +143,13 @@ function clearMoviesList() {
 
 function markUpMoviesList(data) {
   moviesList.innerHTML = moviesTemplate(data.results);
+}
+
+function smoothScroll() {
+  setTimeout(() => {
+    window.scrollTo({
+      top: 100,
+      behavior: 'smooth',
+    });
+  }, 2000);
 }
