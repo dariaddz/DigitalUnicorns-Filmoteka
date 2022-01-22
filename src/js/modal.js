@@ -48,3 +48,15 @@ function onEscKeyPress(event) {
     onCloseModal();
   }
 }
+
+const cards = document.querySelectorAll('.team__item');
+
+function flipCard() {
+  
+  this.classList.toggle('show-tasks');
+  // if (this.target.nodeName === 'IMG' && this.target.classList.contains('team__task-list')) {
+
+  // }  
+}
+
+cards.forEach(card => card.addEventListener('click', flipCard));
