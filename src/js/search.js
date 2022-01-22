@@ -1,5 +1,6 @@
 import moviesTemplate from '../templates/movies-list.hbs';
 import { pagination } from './pagination';
+import { Notify } from 'notiflix';
 
 const axios = require('axios');
 
@@ -7,6 +8,8 @@ const API_KEY = '1aaaa4b4eb79ea073919ef453434f2ea';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
 const moviesList = document.querySelector('.movies-list');
+const cardsContainer = document.querySelector('.movies-gallery');
+const searchForm = document.querySelector('.search__form');
 
 let page = 1;
 
@@ -14,7 +17,7 @@ const search__button = document.querySelector('.search__button');
 const search__input = document.querySelector('.search__input');
 
 search__button.addEventListener('click', onSearch);
-
+searchForm.addEventListener('submit', onSearch);
 search__input.addEventListener('input', event => {
   searchQuery = event.currentTarget.value;
 });
@@ -93,12 +96,23 @@ let searchQuery = '';
 function onSearch(event) {
   event.preventDefault();
 
-  getMoviesbySearchQuery().then(data => {
-    changeReleaseGenres(data);
-    changeReleaseDate(data);
-    moviesList.innerHTML = '';
-    moviesList.innerHTML = moviesTemplate(data.results);
-  });
+  if (searchQuery === '') {
+    Notify.failure('Sorry, there are no movies matching your search query. Please try again');
+    return clearCardsContainer();
+  }
+  getMoviesbySearchQuery()
+    .then(data => {
+      if (data.total_results === 0) {
+        Notify.failure('Sorry, there are no movies matching your search query. Please try again');
+        return clearCardsContainer();
+      }
+      changeReleaseGenres(data);
+      changeReleaseDate(data);
+      moviesList.innerHTML = '';
+      moviesList.innerHTML = moviesTemplate(data.results);
+      Notify.success(`Hooray! We found ${data.total_results} movies`);
+    })
+    .finally(() => searchForm.reset());
 }
 
 async function getMoviesbySearchQuery() {
@@ -111,4 +125,7 @@ async function getMoviesbySearchQuery() {
   } catch (error) {
     console.error(error);
   }
+}
+function clearCardsContainer() {
+  cardsContainer.innerHTML = '';
 }
