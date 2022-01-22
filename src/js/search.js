@@ -11,14 +11,7 @@ const searchForm = document.querySelector('.search__form');
 
 let page = 1;
 
-const search__button = document.querySelector('.search__button');
-const search__input = document.querySelector('.search__input');
-
-search__button.addEventListener('click', onSearch);
 searchForm.addEventListener('submit', onSearch);
-search__input.addEventListener('input', event => {
-  searchQuery = event.currentTarget.value;
-});
 
 function changeReleaseDate(data) {
   for (let result of data.results) {
@@ -93,6 +86,7 @@ let searchQuery = '';
 
 function onSearch(event) {
   event.preventDefault();
+  searchQuery = event.currentTarget.search.value.trim();
 
   if (searchQuery === '') {
     Notify.failure('Sorry, there are no movies matching your search query. Please try again');
