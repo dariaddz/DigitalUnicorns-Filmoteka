@@ -55,4 +55,7 @@ img {
 html {
   scroll-behavior: smooth;
 }
-
+// скрывает элементы
+.is-hidden {
+  display: none;
+}
