@@ -11,14 +11,7 @@ const searchForm = document.querySelector('.search__form');
 
 let page = 1;
 
-const search__button = document.querySelector('.search__button');
-const search__input = document.querySelector('.search__input');
-
-search__button.addEventListener('click', onSearch);
 searchForm.addEventListener('submit', onSearch);
-search__input.addEventListener('input', event => {
-  searchQuery = event.currentTarget.value;
-});
 
 function changeReleaseDate(data) {
   for (let result of data.results) {
@@ -93,6 +86,7 @@ let searchQuery = '';
 
 function onSearch(event) {
   event.preventDefault();
+  searchQuery = event.currentTarget.search.value.trim();
 
   if (searchQuery === '') {
     Notify.failure('Sorry, there are no movies matching your search query. Please try again');
@@ -109,6 +103,16 @@ function onSearch(event) {
       clearMoviesList();
       markUpMoviesList(data);
       Notify.success(`Hooray! We found ${data.total_results} movies`);
+      // Пагинация найденных фильмов
+      pagination.on('afterMove', function (event) {
+        page = event.page;
+        getMoviesbySearchQuery().then(data => {
+          changeReleaseGenres(data);
+          changeReleaseDate(data);
+          markUpMoviesList(data);
+          smoothScroll();
+        });
+      });
     })
     .finally(() => {
       searchForm.reset();
@@ -116,7 +120,7 @@ function onSearch(event) {
 }
 
 async function getMoviesbySearchQuery() {
-  const url = `${BASE_URL}search/movie?api_key=${API_KEY}&page=${page}&language=en-US&query=${searchQuery}&page=${page}&include_adult=false`;
+  const url = `${BASE_URL}search/movie?api_key=${API_KEY}&query=${searchQuery}&page=${page}&language=en-US&include_adult=false`;
   try {
     const { data } = await axios.get(url);
     const { page, results, total_pages, total_results } = data;
@@ -133,4 +137,13 @@ function clearMoviesList() {
 
 function markUpMoviesList(data) {
   moviesList.innerHTML = moviesTemplate(data.results);
+}
+
+function smoothScroll() {
+  setTimeout(() => {
+    window.scrollTo({
+      top: 100,
+      behavior: 'smooth',
+    });
+  }, 2000);
 }
