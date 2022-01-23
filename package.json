@@ -30,7 +30,6 @@
     "body-scroll-lock": "^4.0.0-beta.0",
     "firebase": "^9.6.3",
     "notiflix": "^3.2.2",
-    "tmdbv3": "^0.1.2",
     "tui-pagination": "^3.4.1",
     "vanilla-back-to-top": "^7.2.1"
   }
