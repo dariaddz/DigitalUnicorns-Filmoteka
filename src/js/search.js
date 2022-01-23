@@ -171,3 +171,5 @@ function smoothScroll() {
     });
   }, 2000);
 }
+
+export { clearMoviesList };
