@@ -12,3 +12,4 @@ const options = {
 };
 
 export const pagination = new Pagination('pagination', options);
+export const paginationOnSearch = new Pagination('search-pagination', options);
