@@ -1,6 +1,5 @@
 import moviesTemplate from '../templates/movies-list.hbs';
 import { pagination } from './pagination';
-
 import axios from 'axios';
 
 const API_KEY = '1aaaa4b4eb79ea073919ef453434f2ea';
@@ -27,11 +26,11 @@ renderTrendingMovies();
 
 function renderTrendingMovies() {
   page = 1;
+  hidePaginationContainerOnSearch();
   // Рендеринг на старте
   getTrendingMovies().then(data => {
     changeReleaseGenres(data);
     changeReleaseDate(data);
-    hidePaginationContainerOnSearch();
     moviesList.innerHTML = moviesTemplate(data.results);
   });
   // Рендеринг при пагинации
