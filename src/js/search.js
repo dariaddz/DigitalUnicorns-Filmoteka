@@ -1,5 +1,5 @@
 import moviesTemplate from '../templates/movies-list.hbs';
-import { pagination } from './pagination';
+import { paginationOnSearch } from './pagination';
 import { Notify } from 'notiflix';
 import axios from 'axios';
 
@@ -8,6 +8,8 @@ const BASE_URL = 'https://api.themoviedb.org/3/';
 
 const moviesList = document.querySelector('.movies-list');
 const searchForm = document.querySelector('.search__form');
+const paginationContainer = document.querySelector('.tui-pagination');
+const paginationContainerOnSearch = document.querySelector('.tui-pagination.search');
 
 let page = 1;
 
@@ -87,9 +89,11 @@ let searchQuery = '';
 function onSearch(event) {
   event.preventDefault();
   searchQuery = event.currentTarget.search.value.trim();
+  hidePaginationContainer();
 
   if (searchQuery === '') {
     Notify.failure('Sorry, there are no movies matching your search query. Please try again');
+
     return clearMoviesList();
   }
   getMoviesbySearchQuery()
@@ -102,9 +106,10 @@ function onSearch(event) {
       changeReleaseDate(data);
       clearMoviesList();
       markUpMoviesList(data);
+      showPaginationContainerOnSearch();
       Notify.success(`Hooray! We found ${data.total_results} movies`);
       // Пагинация найденных фильмов
-      pagination.on('afterMove', function (event) {
+      paginationOnSearch.on('afterMove', function (event) {
         page = event.page;
         getMoviesbySearchQuery().then(data => {
           changeReleaseGenres(data);
@@ -133,6 +138,14 @@ async function getMoviesbySearchQuery() {
 
 function clearMoviesList() {
   moviesList.innerHTML = '';
+}
+
+function hidePaginationContainer() {
+  paginationContainer.classList.add('hidden');
+}
+
+function showPaginationContainerOnSearch() {
+  paginationContainerOnSearch.classList.remove('hidden');
 }
 
 function markUpMoviesList(data) {

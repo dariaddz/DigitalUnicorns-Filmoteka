@@ -1,12 +1,12 @@
 import moviesTemplate from '../templates/movies-list.hbs';
 import { pagination } from './pagination';
-
 import axios from 'axios';
 
 const API_KEY = '1aaaa4b4eb79ea073919ef453434f2ea';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
 const moviesList = document.querySelector('.movies-list');
+const paginationContainerOnSearch = document.querySelector('.tui-pagination.search');
 
 let page = 1;
 
@@ -26,6 +26,7 @@ renderTrendingMovies();
 
 function renderTrendingMovies() {
   page = 1;
+  hidePaginationContainerOnSearch();
   // Рендеринг на старте
   getTrendingMovies().then(data => {
     changeReleaseGenres(data);
@@ -121,3 +122,7 @@ const genres = [
   { id: 10752, name: 'War' },
   { id: 37, name: 'Western' },
 ];
+
+function hidePaginationContainerOnSearch() {
+  paginationContainerOnSearch.classList.add('hidden');
+}
