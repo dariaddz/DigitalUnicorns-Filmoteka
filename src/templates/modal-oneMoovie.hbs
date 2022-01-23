@@ -4,6 +4,7 @@
       class='modal-img'
       src='https://image.tmdb.org/t/p/w500{{poster_path}}'
       alt='{{title}}'
+      data-id="{{id}}"
     />
   {{/if}}
 </div>
@@ -74,18 +75,18 @@
     <button
       type='button'
       class='animate__slideInUp animate__animated modal-button add-to-library'
-      data-action='add-to-watched'
+      data-action='watched'
       data-id="{{id}}"
     >
-      Add to watched
+      Watched
     </button>
     <button
       type='button'
       class='animate__slideInUp animate__animated modal-button add-to-library'
-      data-action='add-to-queue'
+      data-action='queued'
       data-id="{{id}}"
     >
-      Add to queue
+      Queue
     </button>
   </div>
 

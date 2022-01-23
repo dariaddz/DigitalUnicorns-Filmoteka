@@ -1,79 +1,79 @@
-import moviesTemplate from '../templates/film-template.hbs';
-const API_KEY = '1aaaa4b4eb79ea073919ef453434f2ea';
-const BASE_URL = 'https://api.themoviedb.org/3/';
-const axios = require('axios');
+// import moviesTemplate from '../templates/film-template.hbs';
+// const API_KEY = '1aaaa4b4eb79ea073919ef453434f2ea';
+// const BASE_URL = 'https://api.themoviedb.org/3/';
+// const axios = require('axios');
 
-const dataDiv = document.querySelector('.movies-list');
+// const dataDiv = document.querySelector('.movies-list');
 
-const Watched = [];
+// const Watched = [];
 
-const Queued = [];
+// const Queued = [];
 
-async function fetchMovies() {
-  const response = await fetch(`${BASE_URL}trending/all/day?api_key=${API_KEY}`);
-  const data = await response.json();
-  console.log(data.results);
-  dataDiv.insertAdjacentHTML('afterbegin', moviesTemplate(data.results));
+// async function fetchMovies() {
+//   const response = await fetch(`${BASE_URL}trending/all/day?api_key=${API_KEY}`);
+//   const data = await response.json();
+//   console.log(data.results);
+//   dataDiv.insertAdjacentHTML('afterbegin', moviesTemplate(data.results));
 
-  // getClickedElem()
-  getButtonWatched();
-  getButtonQueued();
-  return data;
-}
+//   // getClickedElem()
+//   getButtonWatched();
+//   getButtonQueued();
+//   return data;
+// }
 
-function addArrayToLocalStorage(array) {
-  localStorage.setItem('Watched', JSON.stringify(array));
-  localStorage.setItem('Queued', JSON.stringify(array));
-}
-// fetchMovies(550)
+// function addArrayToLocalStorage(array) {
+//   localStorage.setItem('Watched', JSON.stringify(array));
+//   localStorage.setItem('Queued', JSON.stringify(array));
+// }
+// // fetchMovies(550)
 
-addArrayToLocalStorage([]);
+// addArrayToLocalStorage([]);
 
-function addToWatched(e) {
-  fetchMovies(550).then(data => {
-    data.results.forEach(element => {
-      if (+e.srcelementent.parentElement.attributes.value.value === element.id) {
-        try {
-          const savedData = localStorage.getItem('Watched');
-          const parsedData = JSON.parse(savedData);
+// function addToWatched(e) {
+//   fetchMovies(550).then(data => {
+//     data.results.forEach(element => {
+//       if (+e.srcelementent.parentElement.attributes.value.value === element.id) {
+//         try {
+//           const savedData = localStorage.getItem('Watched');
+//           const parsedData = JSON.parse(savedData);
 
-          parsedData.push(element);
-          localStorage.setItem('Watched', JSON.stringify(parsedData));
-          console.log(element, parsedData);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    });
-  });
-}
+//           parsedData.push(element);
+//           localStorage.setItem('Watched', JSON.stringify(parsedData));
+//           console.log(element, parsedData);
+//         } catch (error) {
+//           console.log(error);
+//         }
+//       }
+//     });
+//   });
+// }
 
-function addToQueued(e) {
-  fetchMovies(550).then(data => {
-    data.results.forEach(element => {
-      if (+e.srcelementent.parentElement.attributes.value.value === element.id) {
-        try {
-          const savedData = localStorage.getItem('Queued');
-          const parsedData = JSON.parse(savedData);
+// function addToQueued(e) {
+//   fetchMovies(550).then(data => {
+//     data.results.forEach(element => {
+//       if (+e.srcelementent.parentElement.attributes.value.value === element.id) {
+//         try {
+//           const savedData = localStorage.getItem('Queued');
+//           const parsedData = JSON.parse(savedData);
 
-          parsedData.push(element);
-          localStorage.setItem('Queued', JSON.stringify(parsedData));
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    });
-  });
-}
+//           parsedData.push(element);
+//           localStorage.setItem('Queued', JSON.stringify(parsedData));
+//         } catch (error) {
+//           console.log(error);
+//         }
+//       }
+//     });
+//   });
+// }
 
-function getButtonWatched() {
-  const buttonWatched = document.querySelectorAll('.watched-link');
-  buttonWatched.forEach(element => element.addEventListener('click', addToWatched));
-}
-function getButtonQueued() {
-  const buttonQueued = document.querySelectorAll('queue-link');
-  buttonQueued.forEach(element => element.addEventListener('click', addToQueued));
-}
+// function getButtonWatched() {
+//   const buttonWatched = document.querySelectorAll('.watched-link');
+//   buttonWatched.forEach(element => element.addEventListener('click', addToWatched));
+// }
+// function getButtonQueued() {
+//   const buttonQueued = document.querySelectorAll('queue-link');
+//   buttonQueued.forEach(element => element.addEventListener('click', addToQueued));
+// }
 
 // export default function (data) {
 //   const addToWatched = document.querySelector('.modal__watch-list')
