@@ -33,17 +33,17 @@ function renderTrendingMovies() {
     changeReleaseDate(data);
     moviesList.innerHTML = moviesTemplate(data.results);
   });
-  // Рендеринг при пагинации
-  pagination.on('afterMove', function (event) {
-    page = event.page;
-    getTrendingMovies().then(data => {
-      changeReleaseGenres(data);
-      changeReleaseDate(data);
-      moviesList.innerHTML = moviesTemplate(data.results);
-      smoothScroll();
-    });
-  });
 }
+// Рендеринг при пагинации
+pagination.on('afterMove', function (event) {
+  page = event.page;
+  getTrendingMovies().then(data => {
+    changeReleaseGenres(data);
+    changeReleaseDate(data);
+    moviesList.innerHTML = moviesTemplate(data.results);
+    smoothScroll();
+  });
+});
 
 function smoothScroll() {
   setTimeout(() => {
