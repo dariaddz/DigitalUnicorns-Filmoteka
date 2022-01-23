@@ -90,16 +90,18 @@ function onSearch(event) {
   event.preventDefault();
   searchQuery = event.currentTarget.search.value.trim();
   hidePaginationContainer();
+  // paginationOnSearch.reset();
 
   if (searchQuery === '') {
     Notify.failure('Sorry, there are no movies matching your search query. Please try again');
-
+    hidePaginationContainerOnSearch();
     return clearMoviesList();
   }
   getMoviesbySearchQuery()
     .then(data => {
       if (data.total_results === 0 || searchQuery === '') {
         Notify.failure('Sorry, there are no movies matching your search query. Please try again');
+        hidePaginationContainerOnSearch();
         return clearMoviesList();
       }
       changeReleaseGenres(data);
@@ -146,6 +148,10 @@ function hidePaginationContainer() {
 
 function showPaginationContainerOnSearch() {
   paginationContainerOnSearch.classList.remove('hidden');
+}
+
+function hidePaginationContainerOnSearch() {
+  paginationContainerOnSearch.classList.add('hidden');
 }
 
 function markUpMoviesList(data) {
