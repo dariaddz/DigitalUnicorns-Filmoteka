@@ -90,41 +90,44 @@ function onSearch(event) {
   event.preventDefault();
   searchQuery = event.currentTarget.search.value.trim();
   hidePaginationContainer();
-  // paginationOnSearch.reset();
 
   if (searchQuery === '') {
-    Notify.failure('Sorry, there are no movies matching your search query. Please try again');
     hidePaginationContainerOnSearch();
-    return clearMoviesList();
+    clearMoviesList();
+    return Notify.failure(
+      'Sorry, there are no movies matching your search query. Please try again',
+    );
   }
   getMoviesbySearchQuery()
     .then(data => {
-      if (data.total_results === 0 || searchQuery === '') {
-        Notify.failure('Sorry, there are no movies matching your search query. Please try again');
+      if (data.total_results === 0) {
         hidePaginationContainerOnSearch();
-        return clearMoviesList();
+        clearMoviesList();
+        return Notify.failure(
+          'Sorry, there are no movies matching your search query. Please try again',
+        );
       }
       changeReleaseGenres(data);
       changeReleaseDate(data);
       clearMoviesList();
       markUpMoviesList(data);
       showPaginationContainerOnSearch();
-      Notify.success(`Hooray! We found ${data.total_results} movies`);
-      // Пагинация найденных фильмов
-      paginationOnSearch.on('afterMove', function (event) {
-        page = event.page;
-        getMoviesbySearchQuery().then(data => {
-          changeReleaseGenres(data);
-          changeReleaseDate(data);
-          markUpMoviesList(data);
-          smoothScroll();
-        });
-      });
+      return Notify.success(`Hooray! We found ${data.total_results} movies`);
     })
     .finally(() => {
       searchForm.reset();
     });
 }
+// Пагинация найденных фильмов
+paginationOnSearch.on('afterMove', function (eventData) {
+  page = eventData.page;
+  getMoviesbySearchQuery().then(data => {
+    changeReleaseGenres(data);
+    changeReleaseDate(data);
+    markUpMoviesList(data);
+    smoothScroll();
+  });
+});
 
 async function getMoviesbySearchQuery() {
   const url = `${BASE_URL}search/movie?api_key=${API_KEY}&query=${searchQuery}&page=${page}&language=en-US&include_adult=false`;
