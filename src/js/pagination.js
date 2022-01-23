@@ -2,7 +2,7 @@ import Pagination from 'tui-pagination';
 import '../sass/_pagination.scss';
 
 const options = {
-  totalItems: 20000,
+  totalItems: 400,
   itemsPerPage: 20,
   visiblePages: 5,
   page: 1,
