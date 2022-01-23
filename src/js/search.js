@@ -89,24 +89,23 @@ let searchQuery = '';
 function onSearch(event) {
   event.preventDefault();
   searchQuery = event.currentTarget.search.value.trim();
+  hidePaginationContainer();
 
   if (searchQuery === '') {
     Notify.failure('Sorry, there are no movies matching your search query. Please try again');
-    hidePaginationContainer();
+
     return clearMoviesList();
   }
   getMoviesbySearchQuery()
     .then(data => {
       if (data.total_results === 0 || searchQuery === '') {
         Notify.failure('Sorry, there are no movies matching your search query. Please try again');
-        hidePaginationContainer();
         return clearMoviesList();
       }
       changeReleaseGenres(data);
       changeReleaseDate(data);
       clearMoviesList();
       markUpMoviesList(data);
-      showPaginationContainer();
       Notify.success(`Hooray! We found ${data.total_results} movies`);
       // Пагинация найденных фильмов
       paginationOnSearch.movePageTo(1);
