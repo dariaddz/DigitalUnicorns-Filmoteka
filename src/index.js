@@ -5,6 +5,8 @@ import './js/search';
 import './js/spinner';
 
 import './js/api-service';
+import './js/get-movies-from-storage';
+import './js/reload-library-page';
 import './js/pagination';
 import './js/watched-queue';
 import './js/authorization';
