@@ -10,6 +10,7 @@ const BASE_URL = 'https://api.themoviedb.org/3/';
 const moviesList = document.querySelector('.movies-list');
 const searchForm = document.querySelector('.search__form');
 const paginationContainer = document.querySelector('.tui-pagination');
+const paginationContainerOnSearch = document.querySelector('.tui-pagination.search');
 
 let page = 1;
 
@@ -106,6 +107,7 @@ function onSearch(event) {
       changeReleaseDate(data);
       clearMoviesList();
       markUpMoviesList(data);
+      showPaginationContainerOnSearch();
       Notify.success(`Hooray! We found ${data.total_results} movies`);
       // Пагинация найденных фильмов
       paginationOnSearch.movePageTo(1);
@@ -146,6 +148,10 @@ function hidePaginationContainer() {
 
 function showPaginationContainer() {
   paginationContainer.classList.remove('hidden');
+}
+
+function showPaginationContainerOnSearch() {
+  paginationContainerOnSearch.classList.remove('hidden');
 }
 
 function markUpMoviesList(data) {
