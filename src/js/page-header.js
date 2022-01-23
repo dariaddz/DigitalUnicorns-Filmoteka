@@ -1,13 +1,7 @@
 
 
-const refs = {
-  headerRef: document.querySelector('header'),
-  logoRef: document.querySelector('#logo'),
-  homeRef: document.querySelector('#home'),
-  libraryRef: document.querySelector('#library'),
-
-};
-
+import refs from './refs';
+//import showPopular from './getPopular';
 
 refs.logoRef.addEventListener('click', toHome);
 refs.homeRef.addEventListener('click', toHome);
@@ -15,6 +9,7 @@ refs.libraryRef.addEventListener('click', toLibrary);
 
 function toHome(e) {
  e.preventDefault()
+ 
   const lib = refs.headerRef.classList.contains('page-my-library');
   const det = refs.headerRef.classList.contains('page-details');
 
@@ -32,6 +27,7 @@ function toHome(e) {
 
 function toLibrary(e) {
   e.preventDefault()
+  
   const det = refs.headerRef.classList.contains('page-details');
 
   if (det) {
