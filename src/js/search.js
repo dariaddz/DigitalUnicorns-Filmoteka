@@ -2,6 +2,7 @@ import moviesTemplate from '../templates/movies-list.hbs';
 import { pagination } from './pagination';
 import { Notify } from 'notiflix';
 import axios from 'axios';
+import { Pagination } from 'tui-pagination';
 
 const API_KEY = '1aaaa4b4eb79ea073919ef453434f2ea';
 const BASE_URL = 'https://api.themoviedb.org/3/';
@@ -108,6 +109,7 @@ function onSearch(event) {
       showPaginationContainer();
       Notify.success(`Hooray! We found ${data.total_results} movies`);
       // Пагинация найденных фильмов
+      pagination.movePageTo(1);
       pagination.on('afterMove', function (event) {
         page = event.page;
         getMoviesbySearchQuery().then(data => {
