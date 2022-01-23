@@ -7,6 +7,7 @@ const API_KEY = '1aaaa4b4eb79ea073919ef453434f2ea';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
 const moviesList = document.querySelector('.movies-list');
+const paginationContainerOnSearch = document.querySelector('.tui-pagination.search');
 
 let page = 1;
 
@@ -30,6 +31,7 @@ function renderTrendingMovies() {
   getTrendingMovies().then(data => {
     changeReleaseGenres(data);
     changeReleaseDate(data);
+    hidePaginationContainerOnSearch();
     moviesList.innerHTML = moviesTemplate(data.results);
   });
   // Рендеринг при пагинации
@@ -121,3 +123,7 @@ const genres = [
   { id: 10752, name: 'War' },
   { id: 37, name: 'Western' },
 ];
+
+function hidePaginationContainerOnSearch() {
+  paginationContainerOnSearch.classList.add('hidden');
+}
