@@ -1,5 +1,5 @@
 import moviesTemplate from '../templates/movies-list.hbs';
-import { pagination } from './pagination';
+import { paginationOnSearch } from './pagination';
 import { Notify } from 'notiflix';
 import axios from 'axios';
 import { Pagination } from 'tui-pagination';
@@ -109,8 +109,8 @@ function onSearch(event) {
       showPaginationContainer();
       Notify.success(`Hooray! We found ${data.total_results} movies`);
       // Пагинация найденных фильмов
-      pagination.movePageTo(1);
-      pagination.on('afterMove', function (event) {
+      paginationOnSearch.movePageTo(1);
+      paginationOnSearch.on('afterMove', function (event) {
         page = event.page;
         getMoviesbySearchQuery().then(data => {
           changeReleaseGenres(data);
