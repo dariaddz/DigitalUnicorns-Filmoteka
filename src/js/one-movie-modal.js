@@ -1,4 +1,6 @@
 import modalTemplate from '../templates/modal-oneMoovie.hbs';
+import localStorageApi from './localStorageApi';
+
 const axios = require('axios');
 const bodyScrollLock = require('body-scroll-lock');
 const disableBodyScroll = bodyScrollLock.disableBodyScroll;
@@ -39,11 +41,12 @@ async function makeOneMovieModal(id) {
 }
 
 function renderOneMovieModal(data) {
-    const modalMarkup = modalTemplate(data);
-    refs.movieContainer.innerHTML = modalMarkup;
-    refs.backdropMovie.classList.remove('is-hidden');
-    disableBodyScroll(refs.movieContainer);
-    window.addEventListener('keydown', escKeyPress);
+  const modalMarkup = modalTemplate(data);
+  refs.movieContainer.innerHTML = modalMarkup;
+  refs.backdropMovie.classList.remove('is-hidden');
+  disableBodyScroll(refs.movieContainer);
+  window.addEventListener('keydown', escKeyPress);
+  initStorageBtns();
 }
 
 async function getMovieById(id) {
@@ -79,3 +82,49 @@ function escKeyPress(event) {
     onCloseMovieModal();
   }
 }
+
+//робота з кнобками бібліотеки
+function initStorageBtns() {
+  const storageEl = document.querySelectorAll('.add-to-library');
+  const movieId  = document.querySelector('.modal-img').dataset.id;
+
+  checkStorage(storageEl);
+
+  storageEl.forEach(element => element.addEventListener('click', onStorageBtnClick));
+
+  function onStorageBtnClick(e) { 
+  
+    const storageKey = e.target.dataset.action;
+    
+    if (e.target.classList.contains('active')){
+      localStorageApi.removeMovie(storageKey, movieId);
+      e.target.classList.toggle('active');
+      return
+    };
+
+    if (!e.target.classList.contains('active')){
+      localStorageApi.addMovie(storageKey, movieId);
+      e.target.classList.toggle('active');
+      return
+    };
+
+  }
+
+  //перевіряє чи є фільм в списках
+  function checkStorage(storageEl) { 
+  
+  
+    storageEl.forEach(element => {
+      const storageKey = element.dataset.action;
+  
+      const arr = localStorageApi.load(storageKey);
+  
+      if (0 <= arr.indexOf(movieId)) {
+        element.classList.add('active');
+      };
+      
+    });
+  }
+
+
+  } 
