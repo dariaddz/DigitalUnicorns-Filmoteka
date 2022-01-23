@@ -8,6 +8,7 @@ const BASE_URL = 'https://api.themoviedb.org/3/';
 
 const moviesList = document.querySelector('.movies-list');
 const searchForm = document.querySelector('.search__form');
+const paginationContainer = document.querySelector('.tui-pagination');
 
 let page = 1;
 
@@ -90,18 +91,21 @@ function onSearch(event) {
 
   if (searchQuery === '') {
     Notify.failure('Sorry, there are no movies matching your search query. Please try again');
+    hidePaginationContainer();
     return clearMoviesList();
   }
   getMoviesbySearchQuery()
     .then(data => {
       if (data.total_results === 0 || searchQuery === '') {
         Notify.failure('Sorry, there are no movies matching your search query. Please try again');
+        hidePaginationContainer();
         return clearMoviesList();
       }
       changeReleaseGenres(data);
       changeReleaseDate(data);
       clearMoviesList();
       markUpMoviesList(data);
+      showPaginationContainer();
       Notify.success(`Hooray! We found ${data.total_results} movies`);
       // Пагинация найденных фильмов
       pagination.on('afterMove', function (event) {
@@ -133,6 +137,14 @@ async function getMoviesbySearchQuery() {
 
 function clearMoviesList() {
   moviesList.innerHTML = '';
+}
+
+function hidePaginationContainer() {
+  paginationContainer.classList.add('hidden');
+}
+
+function showPaginationContainer() {
+  paginationContainer.classList.remove('hidden');
 }
 
 function markUpMoviesList(data) {
