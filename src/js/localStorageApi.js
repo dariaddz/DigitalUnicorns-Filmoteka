@@ -1,3 +1,17 @@
+const Watched = [];
+
+const Queued = [];
+
+function addArrayToLocalStorage(array) {
+    if (!localStorageApi.load('Watched')) {
+    localStorage.setItem('Watched', JSON.stringify(array));
+  }  
+    if (!localStorageApi.load('Queued')) {
+    localStorage.setItem('Queued', JSON.stringify(array));
+  }  
+  
+}
+
 const localStorageApi = {
 
     // Читає файл `key` з бібліотеки
