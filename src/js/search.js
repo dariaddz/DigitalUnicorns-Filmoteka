@@ -87,6 +87,7 @@ const genres = [
 let searchQuery = '';
 
 function onSearch(event) {
+  page = 1;
   event.preventDefault();
   searchQuery = event.currentTarget.search.value.trim();
   hidePaginationContainer();
@@ -116,6 +117,7 @@ function onSearch(event) {
     })
     .finally(() => {
       searchForm.reset();
+      paginationOnSearch.reset();
     });
 }
 // Пагинация найденных фильмов
