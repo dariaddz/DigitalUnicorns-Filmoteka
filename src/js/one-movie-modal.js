@@ -9,6 +9,7 @@ const enableBodyScroll = bodyScrollLock.enableBodyScroll;
 const ID_URL = 'https://api.themoviedb.org/3/movie/';
 const API_KEY = '1aaaa4b4eb79ea073919ef453434f2ea';
 
+
 const refs = {
     moviesGallery: document.querySelector('.movies-gallery'),
     movieContainer: document.querySelector('.modal-movie-template'),
@@ -19,6 +20,21 @@ const refs = {
 refs.moviesGallery.addEventListener('click', clickOnMovie);
 refs.closeMovieModalBtn.addEventListener('click', onCloseMovieModal);
 refs.backdropMovie.addEventListener('click', onBackdropMovieClick);
+
+const watched = [];
+const queued = [];
+
+
+
+function addArrayToLocalStorage() {
+    if (!localStorageApi.load('watched')) {
+    localStorage.setItem('watched', JSON.stringify(watched));
+  }  
+    if (!localStorageApi.load('queued')) {
+    localStorage.setItem('queued', JSON.stringify(queued));
+  }  
+  
+}
 
 async function clickOnMovie(event) {
     event.preventDefault();
@@ -88,6 +104,7 @@ function initStorageBtns() {
   const storageEl = document.querySelectorAll('.add-to-library');
   const movieId  = document.querySelector('.modal-img').dataset.id;
 
+  addArrayToLocalStorage();
   checkStorage(storageEl);
 
   storageEl.forEach(element => element.addEventListener('click', onStorageBtnClick));
