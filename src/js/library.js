@@ -7,8 +7,8 @@ import { hidePaginationContainerOnSearch, hidePaginationContainer } from './sear
 
 import moviesTemplate from '../templates/movies-list.hbs';
 
-const savedWatched = JSON.parse(localStorage.getItem('watched'));
-const savedQueue = JSON.parse(localStorage.getItem('queued'));
+// const savedWatched = JSON.parse(localStorage.getItem('watched'));
+// const savedQueue = JSON.parse(localStorage.getItem('queued'));
 let arrayForMarkup = [];
 
 // клик по кнопкам библиотеки
@@ -38,7 +38,7 @@ function onQueueBtnCLick() {
 
 function onWatchedCheck() {
   // сообщение список фильмов пуст
-  if (savedWatched.length === 0) {
+  if (refs.savedWatched.length === 0) {
     Notify.failure('Sorry, your list is empty');
     return;
   }
@@ -47,7 +47,7 @@ function onWatchedCheck() {
 
 function onQueueCheck() {
   // сообщение список фильмов пуст
-  if (savedQueue.length === 0) {
+  if (refs.savedQueue.length === 0) {
     Notify.failure('Sorry, your list is empty');
     return;
   }
@@ -57,7 +57,7 @@ function onQueueCheck() {
 async function watchedForMarkup() {
   // перебираем массив ID фильмов и получаем объекты фильмов с API
   arrayForMarkup = [];
-  for (const watchedID of savedWatched) {
+  for (const watchedID of refs.savedWatched) {
     const movieData = await getMovieById(watchedID);
 
     // добавляем фильмы в объект, из которого будем строить разметку
@@ -72,7 +72,7 @@ async function watchedForMarkup() {
 async function queuedForMarkup() {
   // перебираем массив ID фильмов и получаем объекты фильмов с API
   arrayForMarkup = [];
-  for (const movieID of savedQueue) {
+  for (const movieID of refs.savedQueue) {
     const movieData = await getMovieById(movieID);
 
     // добавляем фильмы в объект, из которого будем строить разметку
@@ -83,4 +83,4 @@ async function queuedForMarkup() {
   refs.moviesList.innerHTML = moviesTemplate(arrayForMarkup);
 }
 
-export { onQueueBtnCLick };
+export { onQueueBtnCLick, onWatchedBtnCLick };
