@@ -4,15 +4,12 @@ import getTrendingMovies from './api-service';
 import { renderTrendingMovies } from './api-service';
 import { onQueueBtnCLick, onWatchedBtnCLick } from './library';
 
-
 refs.logoRef.addEventListener('click', toHome);
 refs.homeRef.addEventListener('click', toHome);
 refs.libraryRef.addEventListener('click', toLibrary);
 
-
 function toHome(e) {
-
- e.preventDefault()
+  e.preventDefault();
 
   const lib = refs.headerRef.classList.contains('page-my-library');
   const det = refs.headerRef.classList.contains('page-details');
@@ -31,11 +28,11 @@ function toHome(e) {
   libraryBtnsHide();
   searchFormShow();
   renderTrendingMovies();
+  refs.paginationContainer.classList.remove('hidden');
 }
 
 function toLibrary(e) {
-
-  e.preventDefault()
+  e.preventDefault();
 
   const det = refs.headerRef.classList.contains('page-details');
 
@@ -73,8 +70,7 @@ export default function isResults() {
   const w = JSON.parse(localStorage.getItem('watched'));
   const q = JSON.parse(localStorage.getItem('queue'));
 
-  if (w === null || w.length === 0 ) {
-
+  if (w === null || w.length === 0) {
     refs.noResults.classList.add('visible');
   } else {
     refs.noResults.classList.remove('visible');
@@ -86,7 +82,6 @@ export default function isResults() {
     refs.noResults.classList.remove('visible');
   }
 }
-
 
 // прячем/показываем  кнопки watched/queue
 
@@ -106,4 +101,3 @@ function searchFormHide() {
 function searchFormShow() {
   refs.searchForm.classList.remove('is-hidden');
 }
-
