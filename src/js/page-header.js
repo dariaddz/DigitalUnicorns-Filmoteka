@@ -1,5 +1,5 @@
 import refs from './refs';
-import markupMovies from './renderMarkup';
+//import markupMovies from './renderMarkup';
 import getTrendingMovies from './api-service';
 
 
