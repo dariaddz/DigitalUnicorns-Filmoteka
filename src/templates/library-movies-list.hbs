@@ -8,7 +8,11 @@
             {{/if}}
             <div class="movies-list__container">
                 <h3 data-id="{{id}}" class="movies-list__title">{{original_title}}</h3>
-                <p class="movies-list__description">{{#each genres}} {{this.name}}{{#unless @last}},{{/unless}} {{/each}} | {{release_date}}</p>
+                 <div class="movie-details">
+                    <p class="movies-list__description">{{#each genres}} {{this.name}}{{#unless @last}},{{/unless}} {{/each}} |</p>
+                    <p class="movies-list__description"> {{release_date}} |</p>
+                    <p class="movies-list__description votes">{{vote_average}} </p>
+                </div>
             </div>
         </a>
     </li>
