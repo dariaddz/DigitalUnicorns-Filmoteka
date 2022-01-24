@@ -5,7 +5,7 @@ import refs from './refs';
 
 import { hidePaginationContainerOnSearch, hidePaginationContainer } from './search';
 // import { changeReleaseGenres, changeReleaseDate } from './api-service';
-import moviesTemplate from '../templates/movies-list.hbs';
+import libraryMoviesTemplate from '../templates/library-movies-list.hbs';
 
 let arrayForMarkup = [];
 let savedWatched = '';
@@ -71,7 +71,7 @@ async function watchedForMarkup() {
   console.log('массив с обьектами-фильмами', arrayForMarkup);
 
   // строит разметку
-  refs.moviesList.innerHTML = moviesTemplate(arrayForMarkup);
+  refs.moviesList.innerHTML = libraryMoviesTemplate(arrayForMarkup);
 }
 
 async function queuedForMarkup() {
@@ -87,7 +87,7 @@ async function queuedForMarkup() {
   changeReleaseDate(arrayForMarkup);
   console.log('массив с обьектами-фильмами', arrayForMarkup);
   // строит разметку
-  refs.moviesList.innerHTML = moviesTemplate(arrayForMarkup);
+  refs.moviesList.innerHTML = libraryMoviesTemplate(arrayForMarkup);
 }
 
 // function changeReleaseGenres(arrayForMarkup) {
@@ -118,11 +118,16 @@ async function queuedForMarkup() {
 // }
 function changeReleaseDate(arrayForMarkup) {
   for (let result of arrayForMarkup) {
-    if (result.release_date !== '') {
+    if (result.release_date !== '' || result.genres.length >= 1) {
+      let newGenre = result.genres.slice(0, 2);
       let newDate = result.release_date.slice(0, 4);
       Object.defineProperties(result, {
         release_date: {
           value: newDate,
+          writable: true,
+        },
+        genres: {
+          value: newGenre,
           writable: true,
         },
       });
