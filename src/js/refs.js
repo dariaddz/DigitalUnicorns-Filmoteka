@@ -12,6 +12,7 @@ const refs = {
   //   backdropTeam: document.querySelector('[data-action="backdrop-team"]'),
   //   modal: document.querySelectorAll('.modal'),
 
+
   // page-header.js
   headerRef: document.querySelector('header'),
   logoRef: document.querySelector('#logo'),
@@ -19,6 +20,7 @@ const refs = {
   libraryRef: document.querySelector('#library'),
   libraryBtns: document.querySelectorAll('.library-button'),
   searchForm: document.querySelector('.search'),
+
 
   // spinner.js
   spinner: document.querySelector('.loader'),
