@@ -1,15 +1,7 @@
+import refs from './refs';
+//import markupMovies from './renderMarkup';
+import getTrendingMovies from './api-service';
 import { onQueueBtnCLick } from './library';
-const refs = {
-  headerRef: document.querySelector('header'),
-  logoRef: document.querySelector('#logo'),
-  homeRef: document.querySelector('#home'),
-  libraryRef: document.querySelector('#library'),
-
-  // кнопки library
-  libraryBtns: document.querySelectorAll('.library-button'),
-  // div поиска
-  searchForm: document.querySelector('.search'),
-};
 
 refs.logoRef.addEventListener('click', toHome);
 refs.homeRef.addEventListener('click', toHome);

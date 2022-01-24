@@ -13,10 +13,12 @@ const refs = {
   //   modal: document.querySelectorAll('.modal'),
 
   // page-header.js
-  //   headerRef: document.querySelector('header'),
-  //   logoRef: document.querySelector('#logo'),
-  //   homeRef: document.querySelector('#home'),
-  //   libraryRef: document.querySelector('#library'),
+  headerRef: document.querySelector('header'),
+  logoRef: document.querySelector('#logo'),
+  homeRef: document.querySelector('#home'),
+  libraryRef: document.querySelector('#library'),
+  libraryBtns: document.querySelectorAll('.library-button'),
+  searchForm: document.querySelector('.search'),
 
   // spinner.js
   spinner: document.querySelector('.loader'),
