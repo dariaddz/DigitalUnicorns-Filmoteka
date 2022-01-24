@@ -111,4 +111,4 @@ var o;function t(o){return(t="function"==typeof Symbol&&"symbol"==typeof Symbol.
 },{"./search":"HU2o","./one-movie-modal":"H46Z","notiflix":"hWOm"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/page-header"),require("./js/modal"),require("./js/search"),require("./js/spinner"),require("./js/api-service"),require("./js/pagination"),require("./js/authorization"),require("./js/back-to-top"),require("./js/one-movie-modal"),require("./js/library");
 },{"./sass/main.scss":"clu1","./js/page-header":"CWwk","./js/modal":"RSqK","./js/search":"HU2o","./js/spinner":"Sc1o","./js/api-service":"hC31","./js/pagination":"o8lo","./js/authorization":"ARBQ","./js/back-to-top":"EZ65","./js/one-movie-modal":"H46Z","./js/library":"BfNj"}]},{},["Focm"], null)
-//# sourceMappingURL=/DigitalUnicorns-Filmoteka/src.40191800.js.map
+//# sourceMappingURL=/DigitalUnicorns-Filmoteka/src.80e4ec82.js.map
