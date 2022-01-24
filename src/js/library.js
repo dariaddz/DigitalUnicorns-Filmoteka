@@ -4,12 +4,12 @@ import { Notify } from 'notiflix';
 import refs from './refs';
 
 import { hidePaginationContainerOnSearch, hidePaginationContainer } from './search';
-
+// import { changeReleaseGenres, changeReleaseDate } from './api-service';
 import moviesTemplate from '../templates/movies-list.hbs';
 
-const savedWatched = JSON.parse(localStorage.getItem('watched'));
-const savedQueue = JSON.parse(localStorage.getItem('queued'));
 let arrayForMarkup = [];
+let savedWatched = '';
+let savedQueue = '';
 
 // клик по кнопкам библиотеки
 
@@ -38,6 +38,7 @@ function onQueueBtnCLick() {
 
 function onWatchedCheck() {
   // сообщение список фильмов пуст
+  savedWatched = JSON.parse(localStorage.getItem('watched'));
   if (savedWatched.length === 0) {
     Notify.failure('Sorry, your list is empty');
     return;
@@ -47,6 +48,7 @@ function onWatchedCheck() {
 
 function onQueueCheck() {
   // сообщение список фильмов пуст
+  savedQueue = JSON.parse(localStorage.getItem('queued'));
   if (savedQueue.length === 0) {
     Notify.failure('Sorry, your list is empty');
     return;
@@ -56,6 +58,7 @@ function onQueueCheck() {
 
 async function watchedForMarkup() {
   // перебираем массив ID фильмов и получаем объекты фильмов с API
+
   arrayForMarkup = [];
   for (const watchedID of savedWatched) {
     const movieData = await getMovieById(watchedID);
@@ -64,7 +67,9 @@ async function watchedForMarkup() {
     arrayForMarkup.push(movieData);
   }
 
+  changeReleaseDate(arrayForMarkup);
   console.log('массив с обьектами-фильмами', arrayForMarkup);
+
   // строит разметку
   refs.moviesList.innerHTML = moviesTemplate(arrayForMarkup);
 }
@@ -78,9 +83,58 @@ async function queuedForMarkup() {
     // добавляем фильмы в объект, из которого будем строить разметку
     arrayForMarkup.push(movieData);
   }
+  // changeReleaseGenres(arrayForMarkup);
+  changeReleaseDate(arrayForMarkup);
   console.log('массив с обьектами-фильмами', arrayForMarkup);
   // строит разметку
   refs.moviesList.innerHTML = moviesTemplate(arrayForMarkup);
 }
 
-export { onQueueBtnCLick };
+// function changeReleaseGenres(arrayForMarkup) {
+//   console.log('change release');
+//   for (let result of arrayForMarkup) {
+//     const genresWord = [];
+
+//     result.genre_ids.forEach(element => {
+//       genres.find(({ id, name }) => {
+//         if (id === element) {
+//           genresWord.push(name);
+//         }
+//       });
+//     });
+
+//     if (genresWord.length > 2 || genresWord.length === 0) {
+//       const extraGenres = genresWord.length - 2;
+//       genresWord.splice(2, extraGenres, 'Other');
+//     }
+
+//     Object.defineProperties(result, {
+//       genre_ids: {
+//         value: genresWord,
+//         writable: true,
+//       },
+//     });
+//   }
+// }
+function changeReleaseDate(arrayForMarkup) {
+  for (let result of arrayForMarkup) {
+    if (result.release_date !== '') {
+      let newDate = result.release_date.slice(0, 4);
+      Object.defineProperties(result, {
+        release_date: {
+          value: newDate,
+          writable: true,
+        },
+      });
+    } else {
+      Object.defineProperties(result, {
+        release_date: {
+          value: 'Unknown',
+          writable: true,
+        },
+      });
+    }
+  }
+}
+
+export { onQueueBtnCLick, onWatchedBtnCLick };
