@@ -26,7 +26,5 @@ const refs = {
   queueBtn: document.querySelector('.queue-link'),
   watchedBtn: document.querySelector('.watched-link'),
   moviesList: document.querySelector('.movies-list'),
-  savedWatched: JSON.parse(localStorage.getItem('watched')),
-  savedQueue: JSON.parse(localStorage.getItem('queued')),
 };
 export default refs;

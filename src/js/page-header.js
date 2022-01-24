@@ -43,7 +43,7 @@ function toLibrary(e) {
   // даша добавила функцию
   libraryBtnsShow();
   searchFormHide();
-  if (refs.savedQueue.length !== 0) {
+  if (JSON.parse(localStorage.getItem('queued')).length !== 0) {
     onQueueBtnCLick();
     return;
   }

@@ -8,6 +8,8 @@ import { hidePaginationContainerOnSearch, hidePaginationContainer } from './sear
 import moviesTemplate from '../templates/movies-list.hbs';
 
 let arrayForMarkup = [];
+let savedWatched = '';
+let savedQueue = '';
 
 // клик по кнопкам библиотеки
 
@@ -36,7 +38,8 @@ function onQueueBtnCLick() {
 
 function onWatchedCheck() {
   // сообщение список фильмов пуст
-  if (refs.savedWatched.length === 0) {
+  savedWatched = JSON.parse(localStorage.getItem('watched'));
+  if (savedWatched.length === 0) {
     Notify.failure('Sorry, your list is empty');
     return;
   }
@@ -45,7 +48,8 @@ function onWatchedCheck() {
 
 function onQueueCheck() {
   // сообщение список фильмов пуст
-  if (refs.savedQueue.length === 0) {
+  savedQueue = JSON.parse(localStorage.getItem('queued'));
+  if (savedQueue.length === 0) {
     Notify.failure('Sorry, your list is empty');
     return;
   }
@@ -54,8 +58,9 @@ function onQueueCheck() {
 
 async function watchedForMarkup() {
   // перебираем массив ID фильмов и получаем объекты фильмов с API
+
   arrayForMarkup = [];
-  for (const watchedID of refs.savedWatched) {
+  for (const watchedID of savedWatched) {
     const movieData = await getMovieById(watchedID);
 
     // добавляем фильмы в объект, из которого будем строить разметку
@@ -72,7 +77,7 @@ async function watchedForMarkup() {
 async function queuedForMarkup() {
   // перебираем массив ID фильмов и получаем объекты фильмов с API
   arrayForMarkup = [];
-  for (const movieID of refs.savedQueue) {
+  for (const movieID of savedQueue) {
     const movieData = await getMovieById(movieID);
 
     // добавляем фильмы в объект, из которого будем строить разметку
