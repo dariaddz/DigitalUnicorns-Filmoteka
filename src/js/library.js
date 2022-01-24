@@ -8,7 +8,6 @@ import moviesTemplate from '../templates/movies-list.hbs';
 const savedWatched = JSON.parse(localStorage.getItem('watched'));
 const savedQueue = JSON.parse(localStorage.getItem('queued'));
 let arrayForMarkup = [];
-let page = 1;
 
 // клик по кнопкам библиотеки
 
@@ -58,23 +57,10 @@ async function watchedForMarkup() {
     // добавляем фильмы в объект, из которого будем строить разметку
     arrayForMarkup.push(movieData);
   }
-  // const { data } = arrayForMarkup;
-  // const { results, total_pages, total_results } = data;
-  console.log('массив с обьектами-фильмами', arrayForMarkup);
-  // return { results, total_pages, total_results };
-  // return { results, total_pages, page, total_results };
-}
 
-function renderTrendingMovies() {
-  console.log('я работаю');
-  // page = 1;
-  hidePaginationContainerOnSearch();
-  // Рендеринг на старте
-  watchedForMarkup().then(data => {
-    // changeReleaseGenres(data);
-    // changeReleaseDate(data);
-    refs.moviesList.innerHTML = moviesTemplate(data.results);
-  });
+  console.log('массив с обьектами-фильмами', arrayForMarkup);
+  // строит разметку
+  refs.moviesList.innerHTML = moviesTemplate(arrayForMarkup);
 }
 
 async function queuedForMarkup() {
@@ -87,6 +73,8 @@ async function queuedForMarkup() {
     arrayForMarkup.push(movieData);
   }
   console.log('массив с обьектами-фильмами', arrayForMarkup);
+  // строит разметку
+  refs.moviesList.innerHTML = moviesTemplate(arrayForMarkup);
 }
 
 export { onQueueBtnCLick };
