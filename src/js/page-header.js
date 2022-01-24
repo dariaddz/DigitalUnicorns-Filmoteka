@@ -1,3 +1,4 @@
+import { onQueueBtnCLick } from './library';
 const refs = {
   headerRef: document.querySelector('header'),
   logoRef: document.querySelector('#logo'),
@@ -48,6 +49,7 @@ function toLibrary(e) {
   // даша добавила функцию
   libraryBtnsShow();
   searchFormHide();
+  onQueueBtnCLick();
 }
 
 function toDetails() {

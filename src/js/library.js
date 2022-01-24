@@ -1,24 +1,32 @@
 import { clearMoviesList } from './search';
 import { getMovieById } from './one-movie-modal';
 import { Notify } from 'notiflix';
+import refs from './refs';
+import { hidePaginationContainerOnSearch } from './api-service';
+import moviesTemplate from '../templates/movies-list.hbs';
 
 const savedWatched = JSON.parse(localStorage.getItem('watched'));
 const savedQueue = JSON.parse(localStorage.getItem('queued'));
 let arrayForMarkup = [];
+let page = 1;
 
 // клик по кнопкам библиотеки
-const watchedBtn = document.querySelector('.watched-link');
-watchedBtn.addEventListener('click', onWatchedBtnCLick);
 
-const queueBtn = document.querySelector('.queue-link');
-queueBtn.addEventListener('click', onQueueBtnCLick);
+refs.watchedBtn.addEventListener('click', onWatchedBtnCLick);
+
+refs.queueBtn.addEventListener('click', onQueueBtnCLick);
 
 function onWatchedBtnCLick() {
+  refs.watchedBtn.classList.add('is-active');
+  refs.queueBtn.classList.remove('is-active');
   clearMoviesList();
   onWatchedCheck();
+  // renderTrendingMovies();
 }
 
 function onQueueBtnCLick() {
+  refs.queueBtn.classList.add('is-active');
+  refs.watchedBtn.classList.remove('is-active');
   clearMoviesList();
   onQueueCheck();
 }
@@ -50,7 +58,23 @@ async function watchedForMarkup() {
     // добавляем фильмы в объект, из которого будем строить разметку
     arrayForMarkup.push(movieData);
   }
+  // const { data } = arrayForMarkup;
+  // const { results, total_pages, total_results } = data;
   console.log('массив с обьектами-фильмами', arrayForMarkup);
+  // return { results, total_pages, total_results };
+  // return { results, total_pages, page, total_results };
+}
+
+function renderTrendingMovies() {
+  console.log('я работаю');
+  // page = 1;
+  hidePaginationContainerOnSearch();
+  // Рендеринг на старте
+  watchedForMarkup().then(data => {
+    // changeReleaseGenres(data);
+    // changeReleaseDate(data);
+    refs.moviesList.innerHTML = moviesTemplate(data.results);
+  });
 }
 
 async function queuedForMarkup() {
@@ -65,4 +89,4 @@ async function queuedForMarkup() {
   console.log('массив с обьектами-фильмами', arrayForMarkup);
 }
 
-export { getMovieById };
+export { onQueueBtnCLick };

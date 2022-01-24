@@ -20,5 +20,9 @@ const refs = {
 
   // spinner.js
   spinner: document.querySelector('.loader'),
+  // library.js
+  queueBtn: document.querySelector('.queue-link'),
+  watchedBtn: document.querySelector('.watched-link'),
+  moviesList: document.querySelector('.movies-list'),
 };
 export default refs;
