@@ -1,25 +1,38 @@
 import { clearMoviesList } from './search';
 import { getMovieById } from './one-movie-modal';
 import { Notify } from 'notiflix';
+import refs from './refs';
+
+import { hidePaginationContainerOnSearch, hidePaginationContainer } from './search';
+
+import moviesTemplate from '../templates/movies-list.hbs';
 
 const savedWatched = JSON.parse(localStorage.getItem('watched'));
 const savedQueue = JSON.parse(localStorage.getItem('queued'));
 let arrayForMarkup = [];
 
 // клик по кнопкам библиотеки
-const watchedBtn = document.querySelector('.watched-link');
-watchedBtn.addEventListener('click', onWatchedBtnCLick);
 
-const queueBtn = document.querySelector('.queue-link');
-queueBtn.addEventListener('click', onQueueBtnCLick);
+refs.watchedBtn.addEventListener('click', onWatchedBtnCLick);
+
+refs.queueBtn.addEventListener('click', onQueueBtnCLick);
 
 function onWatchedBtnCLick() {
+  refs.watchedBtn.classList.add('is-active');
+  refs.queueBtn.classList.remove('is-active');
   clearMoviesList();
+  hidePaginationContainer();
+  hidePaginationContainerOnSearch();
   onWatchedCheck();
+  // renderTrendingMovies();
 }
 
 function onQueueBtnCLick() {
+  refs.queueBtn.classList.add('is-active');
+  refs.watchedBtn.classList.remove('is-active');
   clearMoviesList();
+  hidePaginationContainer();
+  hidePaginationContainerOnSearch();
   onQueueCheck();
 }
 
@@ -50,7 +63,10 @@ async function watchedForMarkup() {
     // добавляем фильмы в объект, из которого будем строить разметку
     arrayForMarkup.push(movieData);
   }
+
   console.log('массив с обьектами-фильмами', arrayForMarkup);
+  // строит разметку
+  refs.moviesList.innerHTML = moviesTemplate(arrayForMarkup);
 }
 
 async function queuedForMarkup() {
@@ -63,6 +79,8 @@ async function queuedForMarkup() {
     arrayForMarkup.push(movieData);
   }
   console.log('массив с обьектами-фильмами', arrayForMarkup);
+  // строит разметку
+  refs.moviesList.innerHTML = moviesTemplate(arrayForMarkup);
 }
 
-export { getMovieById };
+export { onQueueBtnCLick };

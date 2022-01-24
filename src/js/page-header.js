@@ -1,6 +1,7 @@
 import refs from './refs';
 //import markupMovies from './renderMarkup';
 import getTrendingMovies from './api-service';
+import { onQueueBtnCLick } from './library';
 
 
 refs.logoRef.addEventListener('click', toHome);
@@ -46,6 +47,7 @@ function toLibrary(e) {
   // даша добавила функцию
   libraryBtnsShow();
   searchFormHide();
+  onQueueBtnCLick();
 }
 
 function toDetails() {
