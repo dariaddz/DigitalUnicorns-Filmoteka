@@ -172,4 +172,4 @@ function smoothScroll() {
   }, 2000);
 }
 
-export { clearMoviesList };
+export { clearMoviesList, hidePaginationContainerOnSearch, hidePaginationContainer };

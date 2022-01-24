@@ -2,7 +2,9 @@ import { clearMoviesList } from './search';
 import { getMovieById } from './one-movie-modal';
 import { Notify } from 'notiflix';
 import refs from './refs';
-import { hidePaginationContainerOnSearch } from './api-service';
+
+import { hidePaginationContainerOnSearch, hidePaginationContainer } from './search';
+
 import moviesTemplate from '../templates/movies-list.hbs';
 
 const savedWatched = JSON.parse(localStorage.getItem('watched'));
@@ -19,6 +21,8 @@ function onWatchedBtnCLick() {
   refs.watchedBtn.classList.add('is-active');
   refs.queueBtn.classList.remove('is-active');
   clearMoviesList();
+  hidePaginationContainer();
+  hidePaginationContainerOnSearch();
   onWatchedCheck();
   // renderTrendingMovies();
 }
@@ -27,6 +31,8 @@ function onQueueBtnCLick() {
   refs.queueBtn.classList.add('is-active');
   refs.watchedBtn.classList.remove('is-active');
   clearMoviesList();
+  hidePaginationContainer();
+  hidePaginationContainerOnSearch();
   onQueueCheck();
 }
 
