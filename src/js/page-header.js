@@ -1,11 +1,13 @@
 
-
 import refs from './refs';
-//import showPopular from './getPopular';
+import markupMovies from './renderMarkup';
+import getTrendingMovies from './api-service';
+
 
 refs.logoRef.addEventListener('click', toHome);
 refs.homeRef.addEventListener('click', toHome);
 refs.libraryRef.addEventListener('click', toLibrary);
+
 
 function toHome(e) {
  e.preventDefault()
@@ -51,10 +53,10 @@ function toDetails() {
   refs.homeRef.classList.remove('current');
   refs.headerRef.classList.add('page-details');
 }
+
 export default function isResults() {
   const w = JSON.parse(localStorage.getItem('watched')); 
   const q = JSON.parse(localStorage.getItem('queue'));
-
 
   if (w === null || w.length === 0 ) {
     refs.noResults.classList.add('visible');
@@ -71,5 +73,3 @@ export default function isResults() {
     refs.noResults.classList.remove('visible');
   }
 }
-
-

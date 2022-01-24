@@ -3,5 +3,5 @@ import moviesTemplate from '../templates/movies-list.hbs';
 
 export default function markupMovies(movies) {
     refs.filmContainer.innerHTML = '';
-    refs.filmContainer.insertAdjacentHTML('beforeend', trendTpl(movies));
+    refs.filmContainer.insertAdjacentHTML('beforeend', markupMovies(movies));
 }
