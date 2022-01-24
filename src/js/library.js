@@ -7,8 +7,6 @@ import { hidePaginationContainerOnSearch, hidePaginationContainer } from './sear
 
 import moviesTemplate from '../templates/movies-list.hbs';
 
-// const savedWatched = JSON.parse(localStorage.getItem('watched'));
-// const savedQueue = JSON.parse(localStorage.getItem('queued'));
 let arrayForMarkup = [];
 
 // клик по кнопкам библиотеки

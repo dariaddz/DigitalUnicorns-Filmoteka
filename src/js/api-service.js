@@ -126,3 +126,5 @@ const genres = [
 function hidePaginationContainerOnSearch() {
   paginationContainerOnSearch.classList.add('hidden');
 }
+
+export { renderTrendingMovies };
