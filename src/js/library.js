@@ -4,7 +4,7 @@ import { Notify } from 'notiflix';
 import refs from './refs';
 
 import { hidePaginationContainerOnSearch, hidePaginationContainer } from './search';
-
+// import { changeReleaseGenres, changeReleaseDate } from './api-service';
 import moviesTemplate from '../templates/movies-list.hbs';
 
 let arrayForMarkup = [];
@@ -62,7 +62,9 @@ async function watchedForMarkup() {
     arrayForMarkup.push(movieData);
   }
 
+  changeReleaseDate(arrayForMarkup);
   console.log('массив с обьектами-фильмами', arrayForMarkup);
+
   // строит разметку
   refs.moviesList.innerHTML = moviesTemplate(arrayForMarkup);
 }
@@ -76,9 +78,58 @@ async function queuedForMarkup() {
     // добавляем фильмы в объект, из которого будем строить разметку
     arrayForMarkup.push(movieData);
   }
+  // changeReleaseGenres(arrayForMarkup);
+  changeReleaseDate(arrayForMarkup);
   console.log('массив с обьектами-фильмами', arrayForMarkup);
   // строит разметку
   refs.moviesList.innerHTML = moviesTemplate(arrayForMarkup);
+}
+
+// function changeReleaseGenres(arrayForMarkup) {
+//   console.log('change release');
+//   for (let result of arrayForMarkup) {
+//     const genresWord = [];
+
+//     result.genre_ids.forEach(element => {
+//       genres.find(({ id, name }) => {
+//         if (id === element) {
+//           genresWord.push(name);
+//         }
+//       });
+//     });
+
+//     if (genresWord.length > 2 || genresWord.length === 0) {
+//       const extraGenres = genresWord.length - 2;
+//       genresWord.splice(2, extraGenres, 'Other');
+//     }
+
+//     Object.defineProperties(result, {
+//       genre_ids: {
+//         value: genresWord,
+//         writable: true,
+//       },
+//     });
+//   }
+// }
+function changeReleaseDate(arrayForMarkup) {
+  for (let result of arrayForMarkup) {
+    if (result.release_date !== '') {
+      let newDate = result.release_date.slice(0, 4);
+      Object.defineProperties(result, {
+        release_date: {
+          value: newDate,
+          writable: true,
+        },
+      });
+    } else {
+      Object.defineProperties(result, {
+        release_date: {
+          value: 'Unknown',
+          writable: true,
+        },
+      });
+    }
+  }
 }
 
 export { onQueueBtnCLick, onWatchedBtnCLick };
