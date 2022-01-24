@@ -28,7 +28,7 @@ function onOpenModal(event) {
 function onCloseModal() {
   window.removeEventListener('keydown', onEscKeyPress);
   refs.backdropTeam.classList.add('is-hidden');
-
+  cards.forEach(card => card.classList.remove('show-tasks'));
   enableBodyScroll(refs.modalTeam);
 }
 
@@ -48,3 +48,13 @@ function onEscKeyPress(event) {
     onCloseModal();
   }
 }
+
+const cards = document.querySelectorAll('.team__item');
+
+function flipCard() {
+  
+  this.classList.toggle('show-tasks');
+
+}
+
+cards.forEach(card => card.addEventListener('click', flipCard));

@@ -1,4 +1,6 @@
 import modalTemplate from '../templates/modal-oneMoovie.hbs';
+import localStorageApi from './localStorageApi';
+
 const axios = require('axios');
 const bodyScrollLock = require('body-scroll-lock');
 const disableBodyScroll = bodyScrollLock.disableBodyScroll;
@@ -8,52 +10,62 @@ const ID_URL = 'https://api.themoviedb.org/3/movie/';
 const API_KEY = '1aaaa4b4eb79ea073919ef453434f2ea';
 
 const refs = {
-    moviesGallery: document.querySelector('.movies-gallery'),
-    movieContainer: document.querySelector('.modal-movie-template'),
-    backdropMovie: document.querySelector('.movie__backdrop'),
-    closeMovieModalBtn: document.querySelector('[data-action="close-modal__movie"]'),  
+  moviesGallery: document.querySelector('.movies-gallery'),
+  movieContainer: document.querySelector('.modal-movie-template'),
+  backdropMovie: document.querySelector('.movie__backdrop'),
+  closeMovieModalBtn: document.querySelector('[data-action="close-modal__movie"]'),
 };
 
 refs.moviesGallery.addEventListener('click', clickOnMovie);
 refs.closeMovieModalBtn.addEventListener('click', onCloseMovieModal);
 refs.backdropMovie.addEventListener('click', onBackdropMovieClick);
 
+const watched = [];
+const queued = [];
+
+function addArrayToLocalStorage() {
+  if (!localStorageApi.load('watched')) {
+    localStorage.setItem('watched', JSON.stringify(watched));
+  }
+  if (!localStorageApi.load('queued')) {
+    localStorage.setItem('queued', JSON.stringify(queued));
+  }
+}
+
 async function clickOnMovie(event) {
-    event.preventDefault();
-     
-    if (event.target.nodeName !== 'IMG' && event.target.nodeName !== 'H3') {
-        return;
-    }
-  
-    const movieID = event.target.dataset.id;
+  event.preventDefault();
 
-    await  makeOneMovieModal(movieID);
+  if (event.target.nodeName !== 'IMG' && event.target.nodeName !== 'H3') {
+    return;
+  }
 
+  const movieID = event.target.dataset.id;
+
+  await makeOneMovieModal(movieID);
 }
 
 async function makeOneMovieModal(id) {
-
-    const movieData = await getMovieById(id);
-    renderOneMovieModal(movieData);
-
+  const movieData = await getMovieById(id);
+  renderOneMovieModal(movieData);
 }
 
 function renderOneMovieModal(data) {
-    const modalMarkup = modalTemplate(data);
-    refs.movieContainer.innerHTML = modalMarkup;
-    refs.backdropMovie.classList.remove('is-hidden');
-    disableBodyScroll(refs.movieContainer);
-    window.addEventListener('keydown', escKeyPress);
+  const modalMarkup = modalTemplate(data);
+  refs.movieContainer.innerHTML = modalMarkup;
+  refs.backdropMovie.classList.remove('is-hidden');
+  disableBodyScroll(refs.movieContainer);
+  window.addEventListener('keydown', escKeyPress);
+  initStorageBtns();
 }
 
 async function getMovieById(id) {
-    try {
-      const { data } = await axios.get(`${ID_URL}${id}?api_key=${API_KEY}`);
-    
-      return data;
-    } catch (error) {
-      console.error('Smth wrong with api ID fetch' + error);
-    }
+  try {
+    const { data } = await axios.get(`${ID_URL}${id}?api_key=${API_KEY}`);
+
+    return data;
+  } catch (error) {
+    console.error('Smth wrong with api ID fetch' + error);
+  }
 }
 
 function onCloseMovieModal() {
@@ -64,11 +76,9 @@ function onCloseMovieModal() {
 }
 
 function onBackdropMovieClick(event) {
-
   if (event.currentTarget === event.target) {
     onCloseMovieModal();
-  };
-
+  }
 }
 
 function escKeyPress(event) {
@@ -79,3 +89,44 @@ function escKeyPress(event) {
     onCloseMovieModal();
   }
 }
+
+//робота з кнобками бібліотеки
+function initStorageBtns() {
+  const storageEl = document.querySelectorAll('.add-to-library');
+  const movieId = document.querySelector('.modal-img').dataset.id;
+
+  addArrayToLocalStorage();
+  checkStorage(storageEl);
+
+  storageEl.forEach(element => element.addEventListener('click', onStorageBtnClick));
+
+  function onStorageBtnClick(e) {
+    const storageKey = e.target.dataset.action;
+
+    if (e.target.classList.contains('active')) {
+      localStorageApi.removeMovie(storageKey, movieId);
+      e.target.classList.toggle('active');
+      return;
+    }
+
+    if (!e.target.classList.contains('active')) {
+      localStorageApi.addMovie(storageKey, movieId);
+      e.target.classList.toggle('active');
+      return;
+    }
+  }
+
+  //перевіряє чи є фільм в списках
+  function checkStorage(storageEl) {
+    storageEl.forEach(element => {
+      const storageKey = element.dataset.action;
+
+      const arr = localStorageApi.load(storageKey);
+
+      if (0 <= arr.indexOf(movieId)) {
+        element.classList.add('active');
+      }
+    });
+  }
+}
+export { getMovieById };
