@@ -1,17 +1,15 @@
 export function changeReleaseDate(data) {
   for (let result of data.results) {
-    if (result.release_date !== '') {
+    if (!result.release_date) {
+      Object.defineProperty(result, 'release_date', {
+        value: 'Unknown',
+        writable: true,
+      });
+    } else {
       let newDate = result.release_date.slice(0, 4);
       Object.defineProperties(result, {
         release_date: {
           value: newDate,
-          writable: true,
-        },
-      });
-    } else {
-      Object.defineProperties(result, {
-        release_date: {
-          value: 'Unknown',
           writable: true,
         },
       });
