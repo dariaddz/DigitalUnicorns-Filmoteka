@@ -16,4 +16,14 @@ export default class ApiService {
       console.error(error);
     }
   }
+  async getMoviesbySearchQuery() {
+    const url = `${BASE_URL}search/movie?api_key=${API_KEY}&query=${searchQuery}&page=${page}&language=en-US&include_adult=false`;
+    try {
+      const { data } = await axios.get(url);
+      const { page, results, total_pages, total_results } = data;
+      return { results, total_pages, page, total_results };
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
