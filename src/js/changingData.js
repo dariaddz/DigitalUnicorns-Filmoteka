@@ -1,3 +1,24 @@
+export function changeReleaseDate(data) {
+  for (let result of data.results) {
+    if (result.release_date !== '') {
+      let newDate = result.release_date.slice(0, 4);
+      Object.defineProperties(result, {
+        release_date: {
+          value: newDate,
+          writable: true,
+        },
+      });
+    } else {
+      Object.defineProperties(result, {
+        release_date: {
+          value: 'Unknown',
+          writable: true,
+        },
+      });
+    }
+  }
+}
+
 export function changeReleaseGenres(data) {
   for (let result of data.results) {
     const genresWord = [];

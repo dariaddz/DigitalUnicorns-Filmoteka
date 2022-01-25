@@ -1,5 +1,5 @@
 import moviesTemplate from '../templates/movies-list.hbs';
-import { changeReleaseGenres } from './genres';
+import { changeReleaseGenres, changeReleaseDate } from './changingData';
 import ApiService from './api-service';
 import { pagination } from './pagination';
 import { paginationOnSearch } from './pagination';
@@ -93,27 +93,6 @@ function smoothScroll() {
       behavior: 'smooth',
     });
   }, 2000);
-}
-
-function changeReleaseDate(data) {
-  for (let result of data.results) {
-    if (result.release_date !== '') {
-      let newDate = result.release_date.slice(0, 4);
-      Object.defineProperties(result, {
-        release_date: {
-          value: newDate,
-          writable: true,
-        },
-      });
-    } else {
-      Object.defineProperties(result, {
-        release_date: {
-          value: 'Unknown',
-          writable: true,
-        },
-      });
-    }
-  }
 }
 
 export function markUpMoviesList(data) {
