@@ -100,7 +100,7 @@ function escKeyPress(event) {
 //робота з кнобками бібліотеки
 function initStorageBtns() {
   const storageEl = document.querySelectorAll('.add-to-library');
-  const movieId = document.querySelector('.modal-img').dataset.id;
+  const movieId = Number.parseInt(document.querySelector('.modal-img').dataset.id);
 
   addArrayToLocalStorage();
   checkStorage(storageEl);
@@ -113,12 +113,14 @@ function initStorageBtns() {
     if (e.target.classList.contains('active')) {
       localStorageApi.removeMovie(storageKey, movieId);
       e.target.classList.toggle('active');
+      e.target.textContent = (`ADD TO ${e.target.dataset.action.toUpperCase()}`);
       return;
     }
 
     if (!e.target.classList.contains('active')) {
       localStorageApi.addMovie(storageKey, ...movieData);
       e.target.classList.toggle('active');
+      e.target.textContent = (`REMOVE FROM ${e.target.dataset.action.toUpperCase()}`);
       return;
     }
   }
@@ -131,8 +133,8 @@ function initStorageBtns() {
       const arr = localStorageApi.load(storageKey);
       const movieToFind = arr.find(({ id }) => id === movieId);
       if (movieToFind) {
-        console.log(movieToFind);
         element.classList.add('active');
+        element.textContent = (`REMOVE FROM ${element.dataset.action.toUpperCase()}`);
       }
     });
   }
