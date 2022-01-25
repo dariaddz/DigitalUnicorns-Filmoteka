@@ -74,6 +74,16 @@ function renderMoviesbySearchQuery(event) {
       paginationOnSearch.reset();
     });
 }
+// Рендеринг при пагинации найденных по ключевому слову фильмов
+paginationOnSearch.on('afterMove', function (eventData) {
+  apiService.page = eventData.page;
+  apiService.getMoviesbySearchQuery().then(data => {
+    changeReleaseGenres(data);
+    changeReleaseDate(data);
+    markUpMoviesList(data);
+    smoothScroll();
+  });
+});
 
 function smoothScroll() {
   setTimeout(() => {
