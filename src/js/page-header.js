@@ -2,6 +2,8 @@ import refs from './refs';
 import getTrendingMovies from './api-service';
 import { renderTrendingMovies } from './rendering';
 import { onQueueBtnCLick, onWatchedBtnCLick } from './library';
+import { pagination } from './pagination';
+import { paginationOnSearch } from './pagination';
 
 refs.logoRef.addEventListener('click', toHome);
 refs.homeRef.addEventListener('click', toHome);
@@ -21,7 +23,8 @@ function toHome(e) {
     refs.headerRef.classList.remove('page-details');
   }
   refs.homeRef.classList.add('current');
-
+  paginationOnSearch.reset();
+  pagination.reset();
   libraryBtnsHide();
   searchFormShow();
   renderTrendingMovies();
