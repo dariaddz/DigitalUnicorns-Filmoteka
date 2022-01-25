@@ -23,6 +23,8 @@ refs.backdropMovie.addEventListener('click', onBackdropMovieClick);
 const watched = [];
 const queued = [];
 
+const movieData = [];
+
 function addArrayToLocalStorage() {
   if (!localStorageApi.load('watched')) {
     localStorage.setItem('watched', JSON.stringify(watched));
@@ -32,7 +34,7 @@ function addArrayToLocalStorage() {
   }
 }
 
-async function clickOnMovie(event) {
+function clickOnMovie(event) {
   event.preventDefault();
 
   if (event.target.nodeName !== 'IMG' && event.target.nodeName !== 'H3') {
@@ -41,7 +43,12 @@ async function clickOnMovie(event) {
 
   const movieID = event.target.dataset.id;
 
-  await makeOneMovieModal(movieID);
+  try {
+    makeOneMovieModal(movieID);
+  } catch (error) {
+    console.error('Smt gone wrong', error);
+  }
+
 }
 
 async function makeOneMovieModal(id) {
@@ -59,9 +66,9 @@ function renderOneMovieModal(data) {
 }
 
 async function getMovieById(id) {
-  try {
+    try {
     const { data } = await axios.get(`${ID_URL}${id}?api_key=${API_KEY}`);
-
+    movieData.push(data);
     return data;
   } catch (error) {
     console.error('Smth wrong with api ID fetch' + error);
@@ -71,7 +78,7 @@ async function getMovieById(id) {
 function onCloseMovieModal() {
   window.removeEventListener('keydown', escKeyPress);
   refs.backdropMovie.classList.add('is-hidden');
-
+  movieData.pop();
   enableBodyScroll(refs.movieContainer);
 }
 
@@ -110,7 +117,7 @@ function initStorageBtns() {
     }
 
     if (!e.target.classList.contains('active')) {
-      localStorageApi.addMovie(storageKey, movieId);
+      localStorageApi.addMovie(storageKey, ...movieData);
       e.target.classList.toggle('active');
       return;
     }
@@ -122,8 +129,9 @@ function initStorageBtns() {
       const storageKey = element.dataset.action;
 
       const arr = localStorageApi.load(storageKey);
-
-      if (0 <= arr.indexOf(movieId)) {
+      const movieToFind = arr.find(({ id }) => id === movieId);
+      if (movieToFind) {
+        console.log(movieToFind);
         element.classList.add('active');
       }
     });

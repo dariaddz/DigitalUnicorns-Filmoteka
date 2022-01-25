@@ -22,14 +22,12 @@ const localStorageApi = {
     removeMovie(key, value) {
   
         const dataFromLocalStorage = this.load(key);
-
-        const valueIndex = dataFromLocalStorage.indexOf(value);
-
-        if (0 <= valueIndex) { 
-            dataFromLocalStorage.splice(valueIndex, 1);
+        dataFromLocalStorage.forEach((element, i) => {
+            if (element.id === value) dataFromLocalStorage.splice(i, 1)
+        });
+        
 
             this.save(key, dataFromLocalStorage);
-        }
      },
 
 
