@@ -15,7 +15,6 @@ export default class ApiService {
     try {
       const { data } = await axios.get(url);
       const { page, results, total_pages, total_results } = data;
-      console.log(data);
       return { results, total_pages, page, total_results };
     } catch (error) {
       console.error(error);

@@ -19,6 +19,7 @@ function renderTrendingMovies() {
     changeReleaseGenres(data);
     changeReleaseDate(data);
     moviesList.innerHTML = moviesTemplate(data.results);
+    console.log(data);
   });
 }
 
