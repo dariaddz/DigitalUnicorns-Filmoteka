@@ -3,8 +3,6 @@ import axios from 'axios';
 const API_KEY = '1aaaa4b4eb79ea073919ef453434f2ea';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
-// let page = 1;
-
 export default class ApiService {
   constructor() {
     this.searchQuery = '';

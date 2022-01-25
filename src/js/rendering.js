@@ -12,7 +12,6 @@ const paginationContainerOnSearch = document.querySelector('.tui-pagination.sear
 
 const apiService = new ApiService();
 
-// let page = 1;
 // Рендеринг трендовых фильмов на старте
 renderTrendingMovies();
 function renderTrendingMovies() {
@@ -38,7 +37,7 @@ pagination.on('afterMove', function (event) {
 });
 // Рендеринг при поиске фильмов по ключевому слову
 searchForm.addEventListener('submit', renderMoviesbySearchQuery);
-// let searchQuery = '';
+
 function renderMoviesbySearchQuery(event) {
   apiService.page = 1;
   event.preventDefault();
