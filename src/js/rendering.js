@@ -156,4 +156,9 @@ function markUpMoviesList(data) {
   moviesList.innerHTML = moviesTemplate(data.results);
 }
 
-export { renderTrendingMovies };
+export {
+  renderTrendingMovies,
+  clearMoviesList,
+  hidePaginationContainerOnSearch,
+  hidePaginationContainer,
+};

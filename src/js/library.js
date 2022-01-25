@@ -1,4 +1,4 @@
-import { clearMoviesList } from './search';
+import { clearMoviesList } from './rendering';
 import { getMovieById } from './one-movie-modal';
 import { Notify } from 'notiflix';
 import refs from './refs';
