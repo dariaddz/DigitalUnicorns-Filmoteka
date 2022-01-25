@@ -42,6 +42,11 @@
 
 .movies-list__link {
   display: block;
+  transition: 250ms ease-in-out;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .movies-list__image {
