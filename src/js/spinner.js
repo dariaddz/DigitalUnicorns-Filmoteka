@@ -1,9 +1,9 @@
 import refs from './refs';
 
-function showSpinner() {
+export function showSpinner() {
   refs.spinner.classList.remove('is-hidden');
 }
 
-function hideSpinner() {
+export function hideSpinner() {
   refs.spinner.classList.add('is-hidden');
 }
