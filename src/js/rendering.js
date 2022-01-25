@@ -1,5 +1,5 @@
 import moviesTemplate from '../templates/movies-list.hbs';
-import { genres } from './genres';
+import { changeReleaseGenres } from './genres';
 import ApiService from './api-service';
 import { pagination } from './pagination';
 import { paginationOnSearch } from './pagination';
@@ -113,32 +113,6 @@ function changeReleaseDate(data) {
         },
       });
     }
-  }
-}
-
-function changeReleaseGenres(data) {
-  for (let result of data.results) {
-    const genresWord = [];
-
-    result.genre_ids.forEach(element => {
-      genres.find(({ id, name }) => {
-        if (id === element) {
-          genresWord.push(name);
-        }
-      });
-    });
-
-    if (genresWord.length > 2 || genresWord.length === 0) {
-      const extraGenres = genresWord.length - 2;
-      genresWord.splice(2, extraGenres, 'Other');
-    }
-
-    Object.defineProperties(result, {
-      genre_ids: {
-        value: genresWord,
-        writable: true,
-      },
-    });
   }
 }
 

@@ -1,3 +1,29 @@
+export function changeReleaseGenres(data) {
+  for (let result of data.results) {
+    const genresWord = [];
+
+    result.genre_ids.forEach(element => {
+      genres.find(({ id, name }) => {
+        if (id === element) {
+          genresWord.push(name);
+        }
+      });
+    });
+
+    if (genresWord.length > 2 || genresWord.length === 0) {
+      const extraGenres = genresWord.length - 2;
+      genresWord.splice(2, extraGenres, 'Other');
+    }
+
+    Object.defineProperties(result, {
+      genre_ids: {
+        value: genresWord,
+        writable: true,
+      },
+    });
+  }
+}
+
 const genres = [
   { id: 28, name: 'Action' },
   { id: 12, name: 'Adventure' },
@@ -19,5 +45,3 @@ const genres = [
   { id: 10752, name: 'War' },
   { id: 37, name: 'Western' },
 ];
-
-export { genres };
