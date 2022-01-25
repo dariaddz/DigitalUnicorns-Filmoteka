@@ -1,5 +1,4 @@
 import refs from './refs';
-//import markupMovies from './renderMarkup';
 import getTrendingMovies from './api-service';
 import { renderTrendingMovies } from './api-service';
 import { onQueueBtnCLick, onWatchedBtnCLick } from './library';
@@ -18,7 +17,6 @@ function toHome(e) {
     refs.headerRef.classList.remove('page-my-library');
     refs.libraryRef.classList.remove('current');
   }
-
   if (det) {
     refs.headerRef.classList.remove('page-details');
   }
@@ -35,7 +33,6 @@ function toLibrary(e) {
   e.preventDefault();
 
   const det = refs.headerRef.classList.contains('page-details');
-
   if (det) {
     refs.headerRef.classList.remove('page-details');
   }
@@ -43,7 +40,9 @@ function toLibrary(e) {
   refs.homeRef.classList.remove('current');
   refs.headerRef.classList.add('page-my-library');
   refs.libraryRef.classList.add('current');
+
   // даша добавила функцию
+
   libraryBtnsShow();
   searchFormHide();
   if (JSON.parse(localStorage.getItem('queued')).length !== 0) {
@@ -67,19 +66,20 @@ function toDetails() {
 }
 
 export default function isResults() {
-  const w = JSON.parse(localStorage.getItem('watched'));
-  const q = JSON.parse(localStorage.getItem('queue'));
+const w = JSON.parse(localStorage.getItem('watched'));
+const q = JSON.parse(localStorage.getItem('queue'));
 
-  if (w === null || w.length === 0) {
-    refs.noResults.classList.add('visible');
-  } else {
-    refs.noResults.classList.remove('visible');
-  }
+if (w === null || w.length === 0) {
+ refs.noResults.classList.add('visible');
+ } else {
+   refs.noResults.classList.remove('visible');
+ }
+
 
   if (q === null || q.length === 0) {
-    refs.noResults.classList.add('visible');
-  } else {
-    refs.noResults.classList.remove('visible');
+  refs.noResults.classList.add('visible');
+ } else {
+  refs.noResults.classList.remove('visible');
   }
 }
 
