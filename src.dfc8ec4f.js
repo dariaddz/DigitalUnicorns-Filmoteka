@@ -115,4 +115,4 @@ var o;function t(o){return(t="function"==typeof Symbol&&"symbol"==typeof Symbol.
 },{"../templates/modal-oneMoovie.hbs":"FMhP","./localStorageApi":"i9Ec","axios":"dZBD","body-scroll-lock":"AK1d"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/page-header"),require("./js/modal"),require("./js/spinner"),require("./js/api-service"),require("./js/pagination"),require("./js/rendering"),require("./js/back-to-top"),require("./js/one-movie-modal"),require("./js/library");
 },{"./sass/main.scss":"clu1","./js/page-header":"CWwk","./js/modal":"RSqK","./js/spinner":"Sc1o","./js/api-service":"hC31","./js/pagination":"o8lo","./js/rendering":"pZO9","./js/back-to-top":"EZ65","./js/one-movie-modal":"H46Z","./js/library":"BfNj"}]},{},["Focm"], null)
-//# sourceMappingURL=/DigitalUnicorns-Filmoteka/src.445af1ac.js.map
+//# sourceMappingURL=/DigitalUnicorns-Filmoteka/src.dfc8ec4f.js.map
