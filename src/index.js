@@ -6,6 +6,7 @@ import './js/spinner';
 
 import './js/api-service';
 import './js/pagination';
+import './js/rendering';
 
 import './js/authorization';
 
