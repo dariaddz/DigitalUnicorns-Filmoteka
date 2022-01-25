@@ -6,6 +6,8 @@
       alt='{{title}}'
       data-id="{{id}}"
     />
+    {{else}}
+    <img class="modal-img" src="https://raw.githubusercontent.com/dariaddz/DigitalUnicorns-Filmoteka/main/src/images/no-poster-big-1x.jpg" alt="{{title}}" data-id="{{id}}">
   {{/if}}
 </div>
 
@@ -56,11 +58,7 @@
       </td>
 
       <td class='movie-table-data value'>
-        {{#each genres}}
-          <span class='value__genres'>
-            {{this.name}}
-          </span>
-        {{/each}}
+        {{#each genres}}{{this.name}}{{#unless @last}}, {{/unless}}{{/each}}
       </td>
     </tr>
   </table>

@@ -1,8 +1,11 @@
-import { clearMoviesList } from './search';
+
+import { clearMoviesList } from './rendering';
+import { getMovieById } from './one-movie-modal';
 import { Notify } from 'notiflix';
 import refs from './refs';
 
-import { hidePaginationContainerOnSearch, hidePaginationContainer } from './search';
+import { hidePaginationContainerOnSearch, hidePaginationContainer } from './rendering';
+
 import libraryMoviesTemplate from '../templates/library-movies-list.hbs';
 
 let savedWatched = '';

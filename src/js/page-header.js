@@ -1,6 +1,6 @@
 import refs from './refs';
 import getTrendingMovies from './api-service';
-import { renderTrendingMovies } from './api-service';
+import { renderTrendingMovies } from './rendering';
 import { onQueueBtnCLick, onWatchedBtnCLick } from './library';
 
 refs.logoRef.addEventListener('click', toHome);
