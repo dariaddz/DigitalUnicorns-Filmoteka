@@ -11,7 +11,7 @@ const paginationContainerOnSearch = document.querySelector('.tui-pagination.sear
 
 let page = 1;
 
-class ApiService {
+export default class ApiService {
   async getTrendingMovies() {
     const url = `${BASE_URL}trending/movie/week?api_key=${API_KEY}&page=${page}`;
     try {
