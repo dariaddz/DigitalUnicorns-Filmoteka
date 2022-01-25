@@ -12,93 +12,6 @@ const searchForm = document.querySelector('.search__form');
 const paginationContainer = document.querySelector('.tui-pagination');
 const paginationContainerOnSearch = document.querySelector('.tui-pagination.search');
 
-let page = 1;
-
-// searchForm.addEventListener('submit', onSearch);
-
-function changeReleaseDate(data) {
-  for (let result of data.results) {
-    if (result.release_date !== '') {
-      let newDate = result.release_date.slice(0, 4);
-      Object.defineProperties(result, {
-        release_date: {
-          value: newDate,
-          writable: true,
-        },
-      });
-    } else {
-      Object.defineProperties(result, {
-        release_date: {
-          value: 'Unknown',
-          writable: true,
-        },
-      });
-    }
-  }
-}
-
-function changeReleaseGenres(data) {
-  for (let result of data.results) {
-    const genresWord = [];
-
-    result.genre_ids.forEach(element => {
-      genres.find(({ id, name }) => {
-        if (id === element) {
-          genresWord.push(name);
-        }
-      });
-    });
-
-    if (genresWord.length > 2 || genresWord.length === 0) {
-      const extraGenres = genresWord.length - 2;
-      genresWord.splice(2, extraGenres, 'Other');
-    }
-
-    Object.defineProperties(result, {
-      genre_ids: {
-        value: genresWord,
-        writable: true,
-      },
-    });
-  }
-}
-
-let searchQuery = '';
-
-function onSearch(event) {
-  page = 1;
-  event.preventDefault();
-  searchQuery = event.currentTarget.search.value.trim();
-  hidePaginationContainer();
-
-  if (searchQuery === '') {
-    hidePaginationContainerOnSearch();
-    clearMoviesList();
-    return Notify.failure(
-      'Sorry, there are no movies matching your search query. Please try again',
-    );
-  }
-  getMoviesbySearchQuery()
-    .then(data => {
-      if (data.total_results === 0) {
-        hidePaginationContainerOnSearch();
-        clearMoviesList();
-        return Notify.failure(
-          'Sorry, there are no movies matching your search query. Please try again',
-        );
-      }
-      changeReleaseGenres(data);
-      changeReleaseDate(data);
-      clearMoviesList();
-      markUpMoviesList(data);
-      showPaginationContainerOnSearch();
-      return Notify.success(`Hooray! We found ${data.total_results} movies`);
-    })
-    .finally(() => {
-      searchForm.reset();
-      paginationOnSearch.reset();
-    });
-}
 // Пагинация найденных фильмов
 paginationOnSearch.on('afterMove', function (eventData) {
   page = eventData.page;
@@ -109,18 +22,6 @@ paginationOnSearch.on('afterMove', function (eventData) {
     smoothScroll();
   });
 });
-
-async function getMoviesbySearchQuery() {
-  const url = `${BASE_URL}search/movie?api_key=${API_KEY}&query=${searchQuery}&page=${page}&language=en-US&include_adult=false`;
-  try {
-    const { data } = await axios.get(url);
-    const { page, results, total_pages, total_results } = data;
-    console.log(data);
-    return { results, total_pages, page, total_results };
-  } catch (error) {
-    console.error(error);
-  }
-}
 
 function clearMoviesList() {
   moviesList.innerHTML = '';
