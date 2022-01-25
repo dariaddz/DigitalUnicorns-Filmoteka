@@ -75,6 +75,7 @@ if (w === null || w.length === 0) {
    refs.noResults.classList.remove('visible');
  }
 
+
   if (q === null || q.length === 0) {
   refs.noResults.classList.add('visible');
  } else {

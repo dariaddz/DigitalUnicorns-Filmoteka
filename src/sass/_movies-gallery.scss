@@ -55,7 +55,22 @@
   color: $primary-text-color;
   text-transform: uppercase;
 }
+.movie-details {
+  display: flex;
+}
 
 .movies-list__description {
   color: $accent-text-color;
+  &:not(:last-child) {
+    margin-right: 5px;
+  }
+  &:after {
+  }
+}
+
+.votes {
+  padding: 0 5px;
+  background-color: $accent-text-color;
+  border-radius: 5px;
+  color: $secondary-text-color;
 }

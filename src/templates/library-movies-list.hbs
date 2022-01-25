@@ -1,0 +1,19 @@
+{{#each this}}
+    <li class="movies-list__item">
+        <a class="movies-list__link" href="#">
+            {{#if poster_path}}
+            <img class="movies-list__image" src="https://image.tmdb.org/t/p/w500/{{poster_path}}" loading="eager" alt="{{original_title}}"  data-id="{{id}}">
+            {{else}}
+            <img class="movies-list__image" src="https://raw.githubusercontent.com/dariaddz/DigitalUnicorns-Filmoteka/main/src/images/no-poster-big-1x.jpg" loading="lazy" alt="{{original_title}}" data-id="{{id}}">
+            {{/if}}
+            <div class="movies-list__container">
+                <h3 data-id="{{id}}" class="movies-list__title">{{original_title}}</h3>
+                 <div class="movie-details">
+                    <p class="movies-list__description">{{#each genres}} {{this.name}}{{#unless @last}},{{/unless}} {{/each}} |</p>
+                    <p class="movies-list__description"> {{release_date}} |</p>
+                    <p class="movies-list__description votes">{{vote_average}} </p>
+                </div>
+            </div>
+        </a>
+    </li>
+{{/each}}

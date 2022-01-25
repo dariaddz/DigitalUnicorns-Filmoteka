@@ -12,7 +12,6 @@ const refs = {
   //   backdropTeam: document.querySelector('[data-action="backdrop-team"]'),
   //   modal: document.querySelectorAll('.modal'),
 
-
   // page-header.js
   headerRef: document.querySelector('header'),
   logoRef: document.querySelector('#logo'),
@@ -21,12 +20,13 @@ const refs = {
   libraryBtns: document.querySelectorAll('.library-button'),
   searchForm: document.querySelector('.search'),
 
-
   // spinner.js
   spinner: document.querySelector('.loader'),
   // library.js
   queueBtn: document.querySelector('.queue-link'),
   watchedBtn: document.querySelector('.watched-link'),
   moviesList: document.querySelector('.movies-list'),
+
+  paginationContainer: document.querySelector('.tui-pagination'),
 };
 export default refs;
