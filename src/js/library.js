@@ -1,18 +1,14 @@
 import { clearMoviesList } from './search';
-import { getMovieById } from './one-movie-modal';
 import { Notify } from 'notiflix';
 import refs from './refs';
 
 import { hidePaginationContainerOnSearch, hidePaginationContainer } from './search';
-// import { changeReleaseGenres, changeReleaseDate } from './api-service';
 import libraryMoviesTemplate from '../templates/library-movies-list.hbs';
 
-let arrayForMarkup = [];
 let savedWatched = '';
 let savedQueue = '';
 
 // клик по кнопкам библиотеки
-
 refs.watchedBtn.addEventListener('click', onWatchedBtnCLick);
 refs.queueBtn.addEventListener('click', onQueueBtnCLick);
 
