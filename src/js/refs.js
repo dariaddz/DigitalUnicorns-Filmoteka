@@ -5,13 +5,11 @@ const refs = {
   authModal: document.querySelector('.auth-modal'),
   signInBtn: document.querySelector('.navigation__autorization'),
   closeAuthModalBtn: document.querySelector('.close-authmodal-btn'),
-
   // modal.js
   //   openModal: document.querySelector('[data-action="open-modal-team"]'),
   //   backdrop: document.querySelector('.js-backdrop'),
   //   backdropTeam: document.querySelector('[data-action="backdrop-team"]'),
   //   modal: document.querySelectorAll('.modal'),
-
   // page-header.js
   headerRef: document.querySelector('header'),
   logoRef: document.querySelector('#logo'),
@@ -19,14 +17,14 @@ const refs = {
   libraryRef: document.querySelector('#library'),
   libraryBtns: document.querySelectorAll('.library-button'),
   searchForm: document.querySelector('.search'),
-
   // spinner.js
   spinner: document.querySelector('.loader'),
   // library.js
   queueBtn: document.querySelector('.queue-link'),
   watchedBtn: document.querySelector('.watched-link'),
   moviesList: document.querySelector('.movies-list'),
-
+  // rendering.js
   paginationContainer: document.querySelector('.tui-pagination'),
+  paginationContainerOnSearch: document.querySelector('.tui-pagination.search'),
 };
 export default refs;
