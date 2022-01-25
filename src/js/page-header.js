@@ -1,17 +1,14 @@
 import refs from './refs';
-//import markupMovies from './renderMarkup';
 import getTrendingMovies from './api-service';
-import { onQueueBtnCLick } from './library';
-
+import { renderTrendingMovies } from './api-service';
+import { onQueueBtnCLick, onWatchedBtnCLick } from './library';
 
 refs.logoRef.addEventListener('click', toHome);
 refs.homeRef.addEventListener('click', toHome);
 refs.libraryRef.addEventListener('click', toLibrary);
 
-
 function toHome(e) {
-
- e.preventDefault()
+  e.preventDefault();
 
   const lib = refs.headerRef.classList.contains('page-my-library');
   const det = refs.headerRef.classList.contains('page-details');
@@ -20,7 +17,6 @@ function toHome(e) {
     refs.headerRef.classList.remove('page-my-library');
     refs.libraryRef.classList.remove('current');
   }
-
   if (det) {
     refs.headerRef.classList.remove('page-details');
   }
@@ -29,14 +25,14 @@ function toHome(e) {
   // даша добавила функцию
   libraryBtnsHide();
   searchFormShow();
+  renderTrendingMovies();
+  refs.paginationContainer.classList.remove('hidden');
 }
 
 function toLibrary(e) {
-
-  e.preventDefault()
+  e.preventDefault();
 
   const det = refs.headerRef.classList.contains('page-details');
-
   if (det) {
     refs.headerRef.classList.remove('page-details');
   }
@@ -44,10 +40,17 @@ function toLibrary(e) {
   refs.homeRef.classList.remove('current');
   refs.headerRef.classList.add('page-my-library');
   refs.libraryRef.classList.add('current');
+
   // даша добавила функцию
+
   libraryBtnsShow();
   searchFormHide();
-  onQueueBtnCLick();
+  if (JSON.parse(localStorage.getItem('queued')).length !== 0) {
+    onQueueBtnCLick();
+    return;
+  }
+
+  onWatchedBtnCLick();
 }
 
 function toDetails() {
@@ -63,23 +66,21 @@ function toDetails() {
 }
 
 export default function isResults() {
-  const w = JSON.parse(localStorage.getItem('watched'));
-  const q = JSON.parse(localStorage.getItem('queue'));
+const w = JSON.parse(localStorage.getItem('watched'));
+const q = JSON.parse(localStorage.getItem('queue'));
 
-  if (w === null || w.length === 0 ) {
-
-    refs.noResults.classList.add('visible');
-  } else {
-    refs.noResults.classList.remove('visible');
-  }
+if (w === null || w.length === 0) {
+ refs.noResults.classList.add('visible');
+ } else {
+   refs.noResults.classList.remove('visible');
+ }
 
   if (q === null || q.length === 0) {
-    refs.noResults.classList.add('visible');
-  } else {
-    refs.noResults.classList.remove('visible');
+  refs.noResults.classList.add('visible');
+ } else {
+  refs.noResults.classList.remove('visible');
   }
 }
-
 
 // прячем/показываем  кнопки watched/queue
 
@@ -99,4 +100,3 @@ function searchFormHide() {
 function searchFormShow() {
   refs.searchForm.classList.remove('is-hidden');
 }
-
