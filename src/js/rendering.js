@@ -20,7 +20,7 @@ function renderTrendingMovies() {
   apiService.getTrendingMovies().then(data => {
     changeReleaseGenres(data);
     changeReleaseDate(data);
-    moviesList.innerHTML = moviesTemplate(data.results);
+    markUpMoviesList(data);
     console.log('Рендеринг трендовых фильмов на старте:', data);
   });
 }
@@ -30,7 +30,7 @@ pagination.on('afterMove', function (event) {
   apiService.getTrendingMovies().then(data => {
     changeReleaseGenres(data);
     changeReleaseDate(data);
-    moviesList.innerHTML = moviesTemplate(data.results);
+    markUpMoviesList(data);
     smoothScroll();
     console.log('Рендеринг трендовых фильмов при пагинации:', data);
   });
