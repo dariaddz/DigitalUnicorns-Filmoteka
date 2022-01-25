@@ -41,10 +41,10 @@ let searchQuery = '';
 function renderMoviesbySearchQuery(event) {
   page = 1;
   event.preventDefault();
-  searchQuery = event.currentTarget.search.value.trim();
+  apiService.searchQuery = event.currentTarget.search.value.trim();
   hidePaginationContainer();
 
-  if (searchQuery === '') {
+  if (apiService.searchQuery === '') {
     hidePaginationContainerOnSearch();
     clearMoviesList();
     return Notify.failure(
