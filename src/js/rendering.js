@@ -1,21 +1,19 @@
 import moviesTemplate from '../templates/movies-list.hbs';
+import refs from './refs';
+import ApiService from './api-service';
 import { changeReleaseGenres, changeReleaseDate } from './changingData';
 import { smoothScroll } from './smoothScroll';
-import ApiService from './api-service';
 import { pagination } from './pagination';
 import { paginationOnSearch } from './pagination';
 import { Notify } from 'notiflix';
 
-const moviesList = document.querySelector('.movies-list');
 const searchForm = document.querySelector('.search__form');
-const paginationContainer = document.querySelector('.tui-pagination');
-const paginationContainerOnSearch = document.querySelector('.tui-pagination.search');
 
 const apiService = new ApiService();
 
 // Рендеринг трендовых фильмов на старте
 renderTrendingMovies();
-function renderTrendingMovies() {
+export function renderTrendingMovies() {
   apiService.page = 1;
   hidePaginationContainerOnSearch();
   apiService.getTrendingMovies().then(data => {
@@ -88,21 +86,21 @@ paginationOnSearch.on('afterMove', function (eventData) {
 });
 
 export function markUpMoviesList(data) {
-  moviesList.innerHTML = moviesTemplate(data.results);
+  refs.moviesList.innerHTML = moviesTemplate(data.results);
 }
 
 export function clearMoviesList() {
-  moviesList.innerHTML = '';
+  refs.moviesList.innerHTML = '';
 }
 
 export function showPaginationContainerOnSearch() {
-  paginationContainerOnSearch.classList.remove('hidden');
+  refs.paginationContainerOnSearch.classList.remove('hidden');
 }
 
 export function hidePaginationContainerOnSearch() {
-  paginationContainerOnSearch.classList.add('hidden');
+  refs.paginationContainerOnSearch.classList.add('hidden');
 }
 
 export function hidePaginationContainer() {
-  paginationContainer.classList.add('hidden');
+  refs.paginationContainer.classList.add('hidden');
 }
