@@ -2,8 +2,12 @@ import moviesTemplate from '../templates/movies-list.hbs';
 import { genres } from './genres';
 import ApiService from './api-service';
 import { pagination } from './pagination';
+import { paginationOnSearch } from './pagination';
+import { Notify } from 'notiflix';
 
 const moviesList = document.querySelector('.movies-list');
+const searchForm = document.querySelector('.search__form');
+const paginationContainer = document.querySelector('.tui-pagination');
 const paginationContainerOnSearch = document.querySelector('.tui-pagination.search');
 
 const apiService = new ApiService();
@@ -21,7 +25,7 @@ function renderTrendingMovies() {
     console.log(data);
   });
 }
-// Рендеринг при пагинации
+// Рендеринг при пагинации трендовых фильмов
 pagination.on('afterMove', function (event) {
   page = event.page;
   apiService.getTrendingMovies().then(data => {
@@ -31,6 +35,44 @@ pagination.on('afterMove', function (event) {
     smoothScroll();
   });
 });
+// Рендеринг при поиске фильмов по ключевому слову
+searchForm.addEventListener('submit', renderMoviesbySearchQuery);
+let searchQuery = '';
+function renderMoviesbySearchQuery(event) {
+  page = 1;
+  event.preventDefault();
+  searchQuery = event.currentTarget.search.value.trim();
+  hidePaginationContainer();
+
+  if (searchQuery === '') {
+    hidePaginationContainerOnSearch();
+    clearMoviesList();
+    return Notify.failure(
+      'Sorry, there are no movies matching your search query. Please try again',
+    );
+  }
+  apiService
+    .getMoviesbySearchQuery()
+    .then(data => {
+      if (data.total_results === 0) {
+        hidePaginationContainerOnSearch();
+        clearMoviesList();
+        return Notify.failure(
+          'Sorry, there are no movies matching your search query. Please try again',
+        );
+      }
+      changeReleaseGenres(data);
+      changeReleaseDate(data);
+      clearMoviesList();
+      markUpMoviesList(data);
+      showPaginationContainerOnSearch();
+      return Notify.success(`Hooray! We found ${data.total_results} movies`);
+    })
+    .finally(() => {
+      searchForm.reset();
+      paginationOnSearch.reset();
+    });
+}
 
 function smoothScroll() {
   setTimeout(() => {
@@ -90,6 +132,26 @@ function changeReleaseGenres(data) {
 
 function hidePaginationContainerOnSearch() {
   paginationContainerOnSearch.classList.add('hidden');
+}
+
+function clearMoviesList() {
+  moviesList.innerHTML = '';
+}
+
+function hidePaginationContainer() {
+  paginationContainer.classList.add('hidden');
+}
+
+function showPaginationContainerOnSearch() {
+  paginationContainerOnSearch.classList.remove('hidden');
+}
+
+function hidePaginationContainerOnSearch() {
+  paginationContainerOnSearch.classList.add('hidden');
+}
+
+function markUpMoviesList(data) {
+  moviesList.innerHTML = moviesTemplate(data.results);
 }
 
 export { renderTrendingMovies };
