@@ -21,13 +21,3 @@ export default class ApiService {
     }
   }
 }
-// Рендеринг при пагинации
-pagination.on('afterMove', function (event) {
-  page = event.page;
-  getTrendingMovies().then(data => {
-    changeReleaseGenres(data);
-    changeReleaseDate(data);
-    moviesList.innerHTML = moviesTemplate(data.results);
-    smoothScroll();
-  });
-});
