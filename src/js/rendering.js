@@ -142,16 +142,12 @@ function changeReleaseGenres(data) {
   }
 }
 
-function hidePaginationContainerOnSearch() {
-  paginationContainerOnSearch.classList.add('hidden');
+function markUpMoviesList(data) {
+  moviesList.innerHTML = moviesTemplate(data.results);
 }
 
 function clearMoviesList() {
   moviesList.innerHTML = '';
-}
-
-function hidePaginationContainer() {
-  paginationContainer.classList.add('hidden');
 }
 
 function showPaginationContainerOnSearch() {
@@ -162,8 +158,8 @@ function hidePaginationContainerOnSearch() {
   paginationContainerOnSearch.classList.add('hidden');
 }
 
-function markUpMoviesList(data) {
-  moviesList.innerHTML = moviesTemplate(data.results);
+function hidePaginationContainer() {
+  paginationContainer.classList.add('hidden');
 }
 
 export {
