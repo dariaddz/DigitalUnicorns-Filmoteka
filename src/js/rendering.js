@@ -12,11 +12,11 @@ const paginationContainerOnSearch = document.querySelector('.tui-pagination.sear
 
 const apiService = new ApiService();
 
-let page = 1;
+// let page = 1;
 // Рендеринг трендовых фильмов на старте
 renderTrendingMovies();
 function renderTrendingMovies() {
-  page = 1;
+  apiService.page = 1;
   hidePaginationContainerOnSearch();
   apiService.getTrendingMovies().then(data => {
     changeReleaseGenres(data);
@@ -27,7 +27,7 @@ function renderTrendingMovies() {
 }
 // Рендеринг при пагинации трендовых фильмов
 pagination.on('afterMove', function (event) {
-  page = event.page;
+  apiService.page = event.page;
   apiService.getTrendingMovies().then(data => {
     changeReleaseGenres(data);
     changeReleaseDate(data);
@@ -38,9 +38,9 @@ pagination.on('afterMove', function (event) {
 });
 // Рендеринг при поиске фильмов по ключевому слову
 searchForm.addEventListener('submit', renderMoviesbySearchQuery);
-let searchQuery = '';
+// let searchQuery = '';
 function renderMoviesbySearchQuery(event) {
-  page = 1;
+  apiService.page = 1;
   event.preventDefault();
   apiService.searchQuery = event.currentTarget.search.value.trim();
   hidePaginationContainer();
