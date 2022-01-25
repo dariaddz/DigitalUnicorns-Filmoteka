@@ -14,7 +14,7 @@ const paginationContainerOnSearch = document.querySelector('.tui-pagination.sear
 
 let page = 1;
 
-searchForm.addEventListener('submit', onSearch);
+// searchForm.addEventListener('submit', onSearch);
 
 function changeReleaseDate(data) {
   for (let result of data.results) {

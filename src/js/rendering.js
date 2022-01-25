@@ -22,7 +22,7 @@ function renderTrendingMovies() {
     changeReleaseGenres(data);
     changeReleaseDate(data);
     moviesList.innerHTML = moviesTemplate(data.results);
-    console.log(data);
+    console.log('Рендеринг трендовых фильмов на старте:', data);
   });
 }
 // Рендеринг при пагинации трендовых фильмов
@@ -33,6 +33,7 @@ pagination.on('afterMove', function (event) {
     changeReleaseDate(data);
     moviesList.innerHTML = moviesTemplate(data.results);
     smoothScroll();
+    console.log('Рендеринг трендовых фильмов при пагинации:', data);
   });
 });
 // Рендеринг при поиске фильмов по ключевому слову
@@ -66,6 +67,7 @@ function renderMoviesbySearchQuery(event) {
       clearMoviesList();
       markUpMoviesList(data);
       showPaginationContainerOnSearch();
+      console.log('Рендеринг при поиске фильмов по ключевому слову:', data);
       return Notify.success(`Hooray! We found ${data.total_results} movies`);
     })
     .finally(() => {
