@@ -3,9 +3,6 @@ import axios from 'axios';
 const API_KEY = '1aaaa4b4eb79ea073919ef453434f2ea';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
-const moviesList = document.querySelector('.movies-list');
-const paginationContainerOnSearch = document.querySelector('.tui-pagination.search');
-
 let page = 1;
 
 export default class ApiService {
