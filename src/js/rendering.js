@@ -82,6 +82,7 @@ paginationOnSearch.on('afterMove', function (eventData) {
     changeReleaseDate(data);
     markUpMoviesList(data);
     smoothScroll();
+    console.log('Рендеринг найденных фильмов при пагинации:', data);
   });
 });
 
