@@ -1,5 +1,6 @@
 import moviesTemplate from '../templates/movies-list.hbs';
 import { changeReleaseGenres, changeReleaseDate } from './changingData';
+import { smoothScroll } from './smoothScroll';
 import ApiService from './api-service';
 import { pagination } from './pagination';
 import { paginationOnSearch } from './pagination';
@@ -85,15 +86,6 @@ paginationOnSearch.on('afterMove', function (eventData) {
     console.log('Рендеринг найденных фильмов при пагинации:', data);
   });
 });
-
-function smoothScroll() {
-  setTimeout(() => {
-    window.scrollTo({
-      top: 100,
-      behavior: 'smooth',
-    });
-  }, 2000);
-}
 
 export function markUpMoviesList(data) {
   moviesList.innerHTML = moviesTemplate(data.results);
