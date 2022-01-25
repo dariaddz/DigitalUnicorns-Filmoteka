@@ -26,5 +26,6 @@ const refs = {
   // rendering.js
   paginationContainer: document.querySelector('.tui-pagination'),
   paginationContainerOnSearch: document.querySelector('.tui-pagination.search'),
+  searchForm: document.querySelector('.search__form'),
 };
 export default refs;
