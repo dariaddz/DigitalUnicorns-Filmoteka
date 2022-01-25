@@ -116,29 +116,22 @@ function changeReleaseDate(data) {
   }
 }
 
-function markUpMoviesList(data) {
+export function markUpMoviesList(data) {
   moviesList.innerHTML = moviesTemplate(data.results);
 }
 
-function clearMoviesList() {
+export function clearMoviesList() {
   moviesList.innerHTML = '';
 }
 
-function showPaginationContainerOnSearch() {
+export function showPaginationContainerOnSearch() {
   paginationContainerOnSearch.classList.remove('hidden');
 }
 
-function hidePaginationContainerOnSearch() {
+export function hidePaginationContainerOnSearch() {
   paginationContainerOnSearch.classList.add('hidden');
 }
 
-function hidePaginationContainer() {
+export function hidePaginationContainer() {
   paginationContainer.classList.add('hidden');
 }
-
-export {
-  renderTrendingMovies,
-  clearMoviesList,
-  hidePaginationContainerOnSearch,
-  hidePaginationContainer,
-};
