@@ -11,6 +11,20 @@ const paginationContainerOnSearch = document.querySelector('.tui-pagination.sear
 
 let page = 1;
 
+class ApiService {
+  async getTrendingMovies() {
+    const url = `${BASE_URL}trending/movie/week?api_key=${API_KEY}&page=${page}`;
+    try {
+      const { data } = await axios.get(url);
+      const { page, results, total_pages, total_results } = data;
+      console.log(data);
+      return { results, total_pages, page, total_results };
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
 async function getTrendingMovies() {
   const url = `${BASE_URL}trending/movie/week?api_key=${API_KEY}&page=${page}`;
   try {
