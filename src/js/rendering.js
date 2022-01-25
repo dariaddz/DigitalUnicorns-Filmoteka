@@ -13,7 +13,7 @@ const paginationContainerOnSearch = document.querySelector('.tui-pagination.sear
 const apiService = new ApiService();
 
 let page = 1;
-// Рендеринг на старте
+// Рендеринг трендовых фильмов на старте
 renderTrendingMovies();
 function renderTrendingMovies() {
   page = 1;
