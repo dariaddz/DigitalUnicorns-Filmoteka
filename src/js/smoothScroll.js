@@ -1,8 +1,7 @@
 export function smoothScroll() {
-  setTimeout(() => {
-    window.scrollTo({
-      top: 100,
-      behavior: 'smooth',
-    });
-  }, 2000);
+  const firstItem = document
+    .querySelector('.movies-list')
+    .firstElementChild.getBoundingClientRect();
+
+  window.scrollTo({ top: firstItem, behavior: 'smooth' });
 }
