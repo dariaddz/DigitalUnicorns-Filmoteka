@@ -1,6 +1,7 @@
 import moviesTemplate from '../templates/movies-list.hbs';
 import { genres } from './genres';
 import ApiService from './api-service';
+import { pagination } from './pagination';
 
 const moviesList = document.querySelector('.movies-list');
 const paginationContainerOnSearch = document.querySelector('.tui-pagination.search');
@@ -8,13 +9,11 @@ const paginationContainerOnSearch = document.querySelector('.tui-pagination.sear
 const apiService = new ApiService();
 
 let page = 1;
-
+// Рендеринг на старте
 renderTrendingMovies();
-
 function renderTrendingMovies() {
   page = 1;
   hidePaginationContainerOnSearch();
-  // Рендеринг на старте
   apiService.getTrendingMovies().then(data => {
     changeReleaseGenres(data);
     changeReleaseDate(data);
@@ -22,6 +21,16 @@ function renderTrendingMovies() {
     console.log(data);
   });
 }
+// Рендеринг при пагинации
+pagination.on('afterMove', function (event) {
+  page = event.page;
+  apiService.getTrendingMovies().then(data => {
+    changeReleaseGenres(data);
+    changeReleaseDate(data);
+    moviesList.innerHTML = moviesTemplate(data.results);
+    smoothScroll();
+  });
+});
 
 function smoothScroll() {
   setTimeout(() => {

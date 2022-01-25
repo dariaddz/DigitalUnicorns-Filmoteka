@@ -1,4 +1,3 @@
-import { pagination } from './pagination';
 import axios from 'axios';
 
 const API_KEY = '1aaaa4b4eb79ea073919ef453434f2ea';
