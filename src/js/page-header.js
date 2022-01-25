@@ -20,9 +20,8 @@ function toHome(e) {
   if (det) {
     refs.headerRef.classList.remove('page-details');
   }
-
   refs.homeRef.classList.add('current');
-  // даша добавила функцию
+
   libraryBtnsHide();
   searchFormShow();
   renderTrendingMovies();
@@ -41,11 +40,9 @@ function toLibrary(e) {
   refs.headerRef.classList.add('page-my-library');
   refs.libraryRef.classList.add('current');
 
-  // даша добавила функцию
-
   libraryBtnsShow();
   searchFormHide();
-  if (JSON.parse(localStorage.getItem('queued')).length !== 0) {
+  if (JSON.parse(localStorage.getItem('queued'))) {
     onQueueBtnCLick();
     return;
   }
@@ -66,20 +63,19 @@ function toDetails() {
 }
 
 export default function isResults() {
-const w = JSON.parse(localStorage.getItem('watched'));
-const q = JSON.parse(localStorage.getItem('queue'));
+  const w = JSON.parse(localStorage.getItem('watched'));
+  const q = JSON.parse(localStorage.getItem('queue'));
 
-if (w === null || w.length === 0) {
- refs.noResults.classList.add('visible');
- } else {
-   refs.noResults.classList.remove('visible');
- }
-
+  if (w === null || w.length === 0) {
+    refs.noResults.classList.add('visible');
+  } else {
+    refs.noResults.classList.remove('visible');
+  }
 
   if (q === null || q.length === 0) {
-  refs.noResults.classList.add('visible');
- } else {
-  refs.noResults.classList.remove('visible');
+    refs.noResults.classList.add('visible');
+  } else {
+    refs.noResults.classList.remove('visible');
   }
 }
 
