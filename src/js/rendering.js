@@ -7,8 +7,6 @@ import { pagination } from './pagination';
 import { paginationOnSearch } from './pagination';
 import { Notify } from 'notiflix';
 
-const searchForm = document.querySelector('.search__form');
-
 const apiService = new ApiService();
 
 // Рендеринг трендовых фильмов на старте
@@ -35,7 +33,7 @@ pagination.on('afterMove', function (event) {
   });
 });
 // Рендеринг при поиске фильмов по ключевому слову
-searchForm.addEventListener('submit', renderMoviesbySearchQuery);
+refs.searchForm.addEventListener('submit', renderMoviesbySearchQuery);
 
 function renderMoviesbySearchQuery(event) {
   apiService.page = 1;
@@ -69,7 +67,7 @@ function renderMoviesbySearchQuery(event) {
       return Notify.success(`Hooray! We found ${data.total_results} movies`);
     })
     .finally(() => {
-      searchForm.reset();
+      refs.searchForm.reset();
       paginationOnSearch.reset();
     });
 }
