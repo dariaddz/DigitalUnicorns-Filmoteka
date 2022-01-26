@@ -5,11 +5,12 @@ const refs = {
   authModal: document.querySelector('.auth-modal'),
   signInBtn: document.querySelector('.navigation__autorization'),
   closeAuthModalBtn: document.querySelector('.close-authmodal-btn'),
-  // modal.js
-  //   openModal: document.querySelector('[data-action="open-modal-team"]'),
-  //   backdrop: document.querySelector('.js-backdrop'),
-  //   backdropTeam: document.querySelector('[data-action="backdrop-team"]'),
-  //   modal: document.querySelectorAll('.modal'),
+  // team-modal.js
+  openModal: document.querySelector('[data-action="open-modal-team"]'),
+  backdropTeam: document.querySelector('[data-action="backdrop-team"]'),
+  modalTeam: document.querySelector('.team-modal'),
+  closeModalBtn: document.querySelector('[data-action="close-modal__team"]'),
+  cards: document.querySelectorAll('.team__item'),
   // page-header.js
   headerRef: document.querySelector('header'),
   logoRef: document.querySelector('#logo'),
@@ -26,6 +27,14 @@ const refs = {
   // rendering.js
   paginationContainer: document.querySelector('.tui-pagination'),
   paginationContainerOnSearch: document.querySelector('.tui-pagination.search'),
-  searchForm: document.querySelector('.search__form'),
+
+  // one-movie-modal.js
+  moviesGallery: document.querySelector('.movies-gallery'),
+  movieContainer: document.querySelector('.modal-movie-template'),
+  backdropMovie: document.querySelector('.movie__backdrop'),
+  closeMovieModalBtn: document.querySelector('[data-action="close-modal__movie"]'),  
+
+  //searchForm: document.querySelector('.search__form'),
+
 };
 export default refs;

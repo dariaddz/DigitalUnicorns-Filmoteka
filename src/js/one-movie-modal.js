@@ -1,39 +1,18 @@
+import refs from './refs';
 import modalTemplate from '../templates/modal-oneMoovie.hbs';
 import localStorageApi from './localStorageApi';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import ApiService from './api-service';
 
-const axios = require('axios');
-const bodyScrollLock = require('body-scroll-lock');
-const disableBodyScroll = bodyScrollLock.disableBodyScroll;
-const enableBodyScroll = bodyScrollLock.enableBodyScroll;
+const apiService = new ApiService();
 
-const ID_URL = 'https://api.themoviedb.org/3/movie/';
-const API_KEY = '1aaaa4b4eb79ea073919ef453434f2ea';
-
-const refs = {
-  moviesGallery: document.querySelector('.movies-gallery'),
-  movieContainer: document.querySelector('.modal-movie-template'),
-  backdropMovie: document.querySelector('.movie__backdrop'),
-  closeMovieModalBtn: document.querySelector('[data-action="close-modal__movie"]'),
-};
+const movieData = [];
 
 refs.moviesGallery.addEventListener('click', clickOnMovie);
 refs.closeMovieModalBtn.addEventListener('click', onCloseMovieModal);
 refs.backdropMovie.addEventListener('click', onBackdropMovieClick);
 
-const watched = [];
-const queued = [];
-
-const movieData = [];
-
-function addArrayToLocalStorage() {
-  if (!localStorageApi.load('watched')) {
-    localStorage.setItem('watched', JSON.stringify(watched));
-  }
-  if (!localStorageApi.load('queued')) {
-    localStorage.setItem('queued', JSON.stringify(queued));
-  }
-}
-
+//  викликається при кліку на фільмі в галереї
 function clickOnMovie(event) {
   event.preventDefault();
 
@@ -51,13 +30,17 @@ function clickOnMovie(event) {
 
 }
 
+//  відсилає запит на бек, дані з беку передає в ф-ію рендерингу модалки
 async function makeOneMovieModal(id) {
-  const movieData = await getMovieById(id);
+  const movieData = await apiService.getMovieById(id);
+  // const movieData = await getMovieById(id);
   renderOneMovieModal(movieData);
 }
 
+//  рендерить модалку одного фільму, ініціалізує роботу з локалсторидж
 function renderOneMovieModal(data) {
   const modalMarkup = modalTemplate(data);
+  movieData.push(data);
   refs.movieContainer.innerHTML = modalMarkup;
   refs.backdropMovie.classList.remove('is-hidden');
   disableBodyScroll(refs.movieContainer);
@@ -65,16 +48,7 @@ function renderOneMovieModal(data) {
   initStorageBtns();
 }
 
-async function getMovieById(id) {
-    try {
-    const { data } = await axios.get(`${ID_URL}${id}?api_key=${API_KEY}`);
-    movieData.push(data);
-    return data;
-  } catch (error) {
-    console.error('Smth wrong with api ID fetch' + error);
-  }
-}
-
+//  закриває модалку
 function onCloseMovieModal() {
   window.removeEventListener('keydown', escKeyPress);
   refs.backdropMovie.classList.add('is-hidden');
@@ -82,12 +56,14 @@ function onCloseMovieModal() {
   enableBodyScroll(refs.movieContainer);
 }
 
+//  закриває модалку по кліку на бекдроп
 function onBackdropMovieClick(event) {
   if (event.currentTarget === event.target) {
     onCloseMovieModal();
   }
 }
 
+//  закриває модалку при нажиманні клавіші Esc
 function escKeyPress(event) {
   const ESC_KEY_CODE = 'Escape';
   const isEscKey = event.code === ESC_KEY_CODE;
@@ -97,7 +73,21 @@ function escKeyPress(event) {
   }
 }
 
-//робота з кнобками бібліотеки
+//  робота з local storage
+const watched = [];
+const queued = [];
+
+//  перевіряє чи є дані в local storage
+function addArrayToLocalStorage() {
+  if (!localStorageApi.load('watched')) {
+    localStorage.setItem('watched', JSON.stringify(watched));
+  }
+  if (!localStorageApi.load('queued')) {
+    localStorage.setItem('queued', JSON.stringify(queued));
+  }
+}
+
+//  додає/видаляє дані фільму в local storage
 function initStorageBtns() {
   const storageEl = document.querySelectorAll('.add-to-library');
   const movieId = Number.parseInt(document.querySelector('.modal-img').dataset.id);
@@ -110,6 +100,7 @@ function initStorageBtns() {
   function onStorageBtnClick(e) {
     const storageKey = e.target.dataset.action;
 
+    //  видаляє дані з local storage
     if (e.target.classList.contains('active')) {
       localStorageApi.removeMovie(storageKey, movieId);
       e.target.classList.toggle('active');
@@ -117,6 +108,7 @@ function initStorageBtns() {
       return;
     }
 
+    //  додає дані з local storage
     if (!e.target.classList.contains('active')) {
       localStorageApi.addMovie(storageKey, ...movieData);
       e.target.classList.toggle('active');
@@ -125,7 +117,7 @@ function initStorageBtns() {
     }
   }
 
-  //перевіряє чи є фільм в списках
+  //перевіряє чи є фільм в local storage
   function checkStorage(storageEl) {
     storageEl.forEach(element => {
       const storageKey = element.dataset.action;
@@ -139,4 +131,4 @@ function initStorageBtns() {
     });
   }
 }
-export { getMovieById };
+
