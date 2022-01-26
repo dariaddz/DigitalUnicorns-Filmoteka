@@ -17,7 +17,7 @@ const refs = {
   homeRef: document.querySelector('#home'),
   libraryRef: document.querySelector('#library'),
   libraryBtns: document.querySelectorAll('.library-button'),
-  searchForm: document.querySelector('.search'),
+  searchFormDiv: document.querySelector('.search'),
   // spinner.js
   spinner: document.querySelector('.loader'),
   // library.js
@@ -32,9 +32,8 @@ const refs = {
   moviesGallery: document.querySelector('.movies-gallery'),
   movieContainer: document.querySelector('.modal-movie-template'),
   backdropMovie: document.querySelector('.movie__backdrop'),
-  closeMovieModalBtn: document.querySelector('[data-action="close-modal__movie"]'),  
+  closeMovieModalBtn: document.querySelector('[data-action="close-modal__movie"]'),
 
-  //searchForm: document.querySelector('.search__form'),
-
+  searchForm: document.querySelector('.search__form'),
 };
 export default refs;
