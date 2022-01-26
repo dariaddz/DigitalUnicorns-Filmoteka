@@ -3,6 +3,7 @@ import { showSpinner, hideSpinner } from './spinner';
 
 const API_KEY = '1aaaa4b4eb79ea073919ef453434f2ea';
 const BASE_URL = 'https://api.themoviedb.org/3/';
+const ID_URL = 'https://api.themoviedb.org/3/movie/';
 
 export default class ApiService {
   constructor() {
@@ -33,4 +34,15 @@ export default class ApiService {
       console.error(error);
     }
   }
+  async getMovieById(id) {
+    try {
+    await showSpinner();  
+    const { data } = await axios.get(`${ID_URL}${id}?api_key=${API_KEY}`);
+    await hideSpinner();
+    return data;
+    } catch (error) {
+    console.error('Smth wrong with api ID fetch' + error);
+    }
+  }
+  
 }

@@ -1,5 +1,4 @@
 
-
 const localStorageApi = {
 
     // Читає файл `key` з бібліотеки
@@ -24,7 +23,6 @@ const localStorageApi = {
         const truncatedArray = dataFromLocalStorage.filter((el) => el.id !== value);
         this.save(key, truncatedArray);
      },
-
 
     load(key){
         try {
