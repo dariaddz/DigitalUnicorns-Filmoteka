@@ -26,6 +26,8 @@
   transition: transform $duration $timing-function;
   @media (max-width: 785px) {
     overflow-y: scroll;
+    width: 85vw;
+    height: 85vh;
   }
   @media (min-width: 786px) {
     width: 620px;
@@ -132,14 +134,11 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(100% - 50px);
+  min-height: calc(100% - 50px);
   z-index: 1000;
 
   background-color: rgba(0, 0, 0, 0.603);
   color: $secondary-text-color;
-
-  transform: scale(0.7);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {
@@ -149,11 +148,7 @@
 
 .team__item.show-tasks .team__task-list {
   display: flex;
-  transform: scale(1);
-
-  @media (min-width: 786px) and (max-width: 1023px) {
-    display: none;
-  }
+  overflow-y: visible;
 }
 .technology {
   color: $accent-text-color;

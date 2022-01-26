@@ -40,7 +40,11 @@ function onEscKeyPress(event) {
 }
 
 //  показує/ховає оверфлоу(виконана робота) при кліку на картку члена команди
-function flipCard() {
+function flipCard(event) {
+
+  if (event.target.nodeName === 'svg') {
+    return
+  }
   this.classList.toggle('show-tasks');
 }
 
