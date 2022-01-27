@@ -26,8 +26,6 @@ const refs = {
   moviesList: document.querySelector('.movies-list'),
   // rendering.js
   paginationContainer: document.querySelector('.tui-pagination'),
-  paginationContainerOnSearch: document.querySelector('.tui-pagination.search'),
-
   // one-movie-modal.js
   moviesGallery: document.querySelector('.movies-gallery'),
   movieContainer: document.querySelector('.modal-movie-template'),

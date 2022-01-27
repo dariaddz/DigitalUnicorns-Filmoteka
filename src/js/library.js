@@ -1,7 +1,7 @@
 import { clearMoviesList } from './rendering';
 import { Notify } from 'notiflix';
 import refs from './refs';
-import { hidePaginationContainerOnSearch, hidePaginationContainer } from './rendering';
+import { hidePaginationContainer } from './rendering';
 import libraryMoviesTemplate from '../templates/library-movies-list.hbs';
 
 let savedWatched = '';
@@ -14,7 +14,6 @@ refs.queueBtn.addEventListener('click', onQueueBtnCLick);
 function onLibraryLoad() {
   clearMoviesList();
   hidePaginationContainer();
-  hidePaginationContainerOnSearch();
 }
 
 function onWatchedBtnCLick() {
