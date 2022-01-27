@@ -40,7 +40,8 @@ function toLibrary(e) {
 
   libraryBtnsShow();
   searchFormHide();
-  if (JSON.parse(localStorage.getItem('queued')).length !== 0) {
+
+  if (!localStorage.getItem('queued') || JSON.parse(localStorage.getItem('queued')).length !== 0) {
     onQueueBtnCLick();
     return;
   }
