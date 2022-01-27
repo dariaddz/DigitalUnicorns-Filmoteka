@@ -8,3 +8,4 @@ import './js/rendering';
 import './js/back-to-top';
 import './js/one-movie-modal';
 import './js/library';
+import './js/switchTheme';
