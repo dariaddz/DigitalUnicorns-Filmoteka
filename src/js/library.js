@@ -33,7 +33,7 @@ function onQueueBtnCLick() {
 function onWatchedCheck() {
   savedWatched = JSON.parse(localStorage.getItem('watched'));
 
-  if (savedWatched.length === 0) {
+  if (!localStorage.getItem('queued') || savedWatched.length === 0) {
     Notify.failure('Sorry, your list is empty');
     return;
   }
@@ -42,7 +42,7 @@ function onWatchedCheck() {
 
 function onQueueCheck() {
   savedQueue = JSON.parse(localStorage.getItem('queued'));
-  if (savedQueue.length === 0) {
+  if (!localStorage.getItem('queued') || savedQueue.length === 0) {
     Notify.failure('Sorry, your list is empty');
     return;
   }
