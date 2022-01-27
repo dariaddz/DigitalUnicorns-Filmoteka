@@ -19,7 +19,7 @@ export function renderTrendingMovies() {
     changeReleaseGenres(data);
     changeReleaseDate(data);
     markUpMoviesList(data);
-    console.log('Рендеринг трендовых фильмов на старте:', data);
+    // console.log('Рендеринг трендовых фильмов на старте:', data);
     paginationStart(data);
 
     // Рендеринг при пагинации трендовых фильмов
@@ -30,7 +30,7 @@ export function renderTrendingMovies() {
         changeReleaseDate(data);
         markUpMoviesList(data);
         smoothScroll();
-        console.log('Рендеринг трендовых фильмов при пагинации:', data);
+        // console.log('Рендеринг трендовых фильмов при пагинации:', data);
       });
     });
   });
@@ -54,6 +54,7 @@ function renderMoviesbySearchQuery(event) {
     .then(data => {
       if (data.total_results === 0) {
         clearMoviesList();
+        hidePaginationContainer();
         return Notify.failure(
           'Sorry, there are no movies matching your search query. Please try again',
         );
@@ -73,10 +74,10 @@ function renderMoviesbySearchQuery(event) {
           changeReleaseDate(data);
           markUpMoviesList(data);
           smoothScroll();
-          console.log('Рендеринг найденных фильмов при пагинации:', data);
+          // console.log('Рендеринг найденных фильмов при пагинации:', data);
         });
       });
-      console.log('Рендеринг при поиске фильмов по ключевому слову:', data);
+      // console.log('Рендеринг при поиске фильмов по ключевому слову:', data);
       return Notify.success(`Hooray! We found ${data.total_results} movies`);
     })
     .finally(() => {
