@@ -2,7 +2,7 @@ import Pagination from 'tui-pagination';
 import '../sass/_pagination.scss';
 
 const options = {
-  totalItems: 400,
+  totalItems: 0,
   itemsPerPage: 20,
   visiblePages: 5,
   page: 1,
@@ -11,5 +11,10 @@ const options = {
   lastItemClassName: 'tui-last-child',
 };
 
-export const pagination = new Pagination('pagination', options);
-export const paginationOnSearch = new Pagination('search-pagination', options);
+export let pagination = new Pagination('pagination', options);
+
+export function paginationStart(data) {
+  options.totalItems = data.total_results;
+  pagination = new Pagination('pagination', options);
+  return pagination;
+}

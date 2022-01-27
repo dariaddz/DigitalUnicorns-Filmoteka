@@ -36,13 +36,12 @@ export default class ApiService {
   }
   async getMovieById(id) {
     try {
-    await showSpinner();  
-    const { data } = await axios.get(`${ID_URL}${id}?api_key=${API_KEY}`);
-    await hideSpinner();
-    return data;
+      await showSpinner();
+      const { data } = await axios.get(`${ID_URL}${id}?api_key=${API_KEY}`);
+      await hideSpinner();
+      return data;
     } catch (error) {
-    console.error('Smth wrong with api ID fetch' + error);
+      console.error('Smth wrong with api ID fetch' + error);
     }
   }
-  
 }
